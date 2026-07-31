@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UXexpert.ai — AI UX Expert | Instant Website UX Audits for Design, Code & Conversion</title>
+<meta name="description" content="UXexpert.ai is your instant principal UX expert: AI-powered website UX audits covering design, accessibility, code quality, performance, and conversion — with prioritized, actionable fixes in seconds.">
+<meta property="og:title" content="UXexpert.ai — Your Instant Principal UX Expert">
+<meta property="og:description" content="Upload your web app. Get an AI UX expert review of design, code, and growth with prioritized, actionable fixes.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="UXexpert.ai">
+<meta property="og:url" content="https://uxexpert.ai/">
+<meta property="og:image" content="https://uxexpert.ai/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="UXexpert.ai — Your Instant Principal UX Expert">
+<meta name="twitter:description" content="Upload your web app. Get an AI UX expert review of design, code, and growth with prioritized, actionable fixes.">
+<meta name="twitter:image" content="https://uxexpert.ai/og.png">
+<link rel="canonical" href="https://uxexpert.ai/">
+<!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa-HuKnDbBb6VROp-Q7KzWUg.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%234F46E5'/%3E%3Cpath d='M9 9l14 14M23 9L9 23' stroke='%23fff' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"UXexpert.ai","alternateName":"UXexpert","url":"https://uxexpert.ai","slogan":"Your instant principal UX expert","applicationCategory":"DeveloperApplication","description":"AI UX expert for instant website UX audits: design, accessibility, code quality, performance, and conversion review with prioritized fixes.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+  :root{
+    --indigo:#4F46E5; --indigo-soft:#6366F1; --teal:#14B8A6;
+    /* Muted tones darkened so all text passes WCAG AA (4.5:1) on paper/white */
+    --slate:#0F172A; --slate-700:#334155; --slate-500:#5A6879; --slate-400:#64748B;
+    --paper:#F8FAFC; --white:#FFFFFF; --line:#E2E8F0; --line-soft:#EEF2F7;
+    --emerald:#10B981; --amber:#F59E0B; --red:#DC2626;
+    --serif:"New York","Iowan Old Style",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --radius:12px;
+    --shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px rgba(15,23,42,.06);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--slate);font-family:var(--sans);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+  a{color:var(--indigo);text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+  section{padding:104px 0}
+  h1,h2{font-family:var(--serif);font-weight:600;letter-spacing:-.015em;line-height:1.12}
+  h2{font-size:clamp(28px,3.4vw,38px)}
+  h3{font-size:16px;font-weight:650;letter-spacing:-.01em}
+  .eyebrow{font-size:12px;font-weight:650;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo);margin-bottom:16px}
+  .lede{color:var(--slate-500);font-size:17px;max-width:620px;margin-top:14px}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:9px;padding:13px 24px;font-size:15px;font-weight:600;font-family:var(--sans);cursor:pointer;transition:background .15s,border-color .15s,color .15s;text-decoration:none;line-height:1.2}
+  .btn-primary{background:var(--indigo);color:#fff}
+  .btn-primary:hover{background:#4338CA}
+  .btn-quiet{background:var(--white);color:var(--slate);border:1px solid var(--line)}
+  .btn-quiet:hover{border-color:var(--slate-400)}
+  .btn-sm{padding:9px 16px;font-size:13.5px}
+  .textlink{font-weight:600;font-size:14px}
+  .textlink:hover{text-decoration:underline}
+
+  /* Nav */
+  nav{position:sticky;top:0;z-index:50;background:rgba(248,250,252,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:var(--slate);letter-spacing:-.02em}
+  .logo svg{display:block}
+  .navlinks{display:flex;gap:30px;align-items:center}
+  .navlinks a:not(.btn){color:var(--slate-500);font-size:14.5px;font-weight:550}
+  .navlinks a:not(.btn):hover{color:var(--slate)}
+  @media(max-width:780px){.navlinks a:not(.btn){display:none}}
+
+  /* Hero */
+  .hero{padding:120px 0 96px;text-align:center}
+  .hero h1{font-size:clamp(36px,5.4vw,58px);max-width:820px;margin:0 auto 22px}
+  .hero h1 em{font-style:italic;color:var(--indigo)}
+  .hero .sub{font-size:18.5px;color:var(--slate-500);max-width:600px;margin:0 auto 12px}
+  .hero .proof{font-size:14px;color:var(--slate-400);margin-bottom:36px}
+  .hero .proof b{color:var(--slate-700);font-weight:650}
+  .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .hero .under{margin-top:14px;font-size:13.5px;color:var(--slate-400)}
+  .lensline{display:flex;gap:0;justify-content:center;margin:64px auto 0;max-width:860px;border:1px solid var(--line);border-radius:var(--radius);background:var(--white);box-shadow:var(--shadow);overflow:hidden}
+  .lensline .cell{flex:1;padding:24px 26px;text-align:left;border-left:1px solid var(--line-soft)}
+  .lensline .cell:first-child{border-left:0}
+  .lensline .cell .role{font-weight:650;font-size:14.5px;margin:10px 0 3px}
+  .lensline .cell .scope{font-size:13px;color:var(--slate-500)}
+  @media(max-width:720px){.lensline{flex-direction:column}.lensline .cell{border-left:0;border-top:1px solid var(--line-soft)}}
+
+  .ico{width:34px;height:34px;border-radius:8px;display:grid;place-items:center;background:#EEF2FF;color:var(--indigo)}
+  .ico.teal{background:#F0FDFA;color:var(--teal)}
+  .ico.emerald{background:#ECFDF5;color:var(--emerald)}
+  .ico svg{width:18px;height:18px}
+
+  /* How it works */
+  #how{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:48px;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  @media(max-width:820px){.steps{grid-template-columns:1fr}}
+  .step{padding:32px 30px;border-left:1px solid var(--line);background:var(--paper)}
+  .step:first-child{border-left:0}
+  @media(max-width:820px){.step{border-left:0;border-top:1px solid var(--line)}.step:first-child{border-top:0}}
+  .step .n{font-family:var(--serif);font-size:15px;color:var(--slate-400);margin-bottom:14px}
+  .step h3{margin-bottom:8px}
+  .step p{font-size:14.5px;color:var(--slate-500)}
+
+  /* Playground */
+  .pg-grid{display:grid;grid-template-columns:400px 1fr;gap:24px;margin-top:44px;align-items:start}
+  @media(max-width:980px){.pg-grid{grid-template-columns:1fr}}
+  .pg-grid>.card{min-width:0}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
+  .stephead{display:flex;align-items:baseline;gap:10px;margin:26px 0 10px}
+  .stephead:first-child{margin-top:0}
+  .stephead .k{font-family:var(--serif);font-size:13px;color:var(--slate-400);min-width:20px}
+  .stephead h3{font-size:14px}
+  .stephead .hint{font-size:12.5px;color:var(--slate-400);font-weight:400}
+  .drop{border:1.5px dashed var(--line);border-radius:10px;padding:22px 16px;text-align:center;color:var(--slate-500);font-size:14px;cursor:pointer;transition:border-color .15s,background .15s;background:var(--paper)}
+  .drop.over,.drop:hover{border-color:var(--indigo-soft);background:#EEF2FF40}
+  .drop b{color:var(--slate)}
+  .drop .sub{font-size:12.5px;color:var(--slate-400);margin-top:4px}
+  textarea{width:100%;min-height:120px;background:var(--paper);border:1px solid var(--line);border-radius:9px;color:var(--slate);font-family:var(--mono);font-size:12.5px;padding:12px;resize:vertical}
+  textarea:focus,input:focus,select:focus{outline:none;border-color:var(--indigo-soft);box-shadow:0 0 0 3px #6366F122}
+  input[type=url],select{width:100%;background:var(--white);border:1px solid var(--line);border-radius:9px;color:var(--slate);font-size:14px;padding:10px 12px;font-family:var(--sans)}
+  .or{display:flex;align-items:center;gap:10px;color:var(--slate-400);font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin:14px 0 8px}
+  .or::before,.or::after{content:"";flex:1;height:1px;background:var(--line-soft)}
+  .rules{display:flex;flex-direction:column;gap:9px}
+  .rules label{display:flex;gap:10px;align-items:center;font-size:14px;color:var(--slate-700);cursor:pointer}
+  .rules input{accent-color:var(--indigo);width:15px;height:15px}
+  .engines{display:flex;flex-direction:column;gap:10px}
+  .engine{border:1px solid var(--line);border-radius:10px;padding:13px 15px;cursor:pointer;display:flex;gap:11px;align-items:flex-start;background:var(--white);transition:border-color .15s,background .15s}
+  .engine:hover{border-color:var(--slate-400)}
+  .engine.active{border-color:var(--indigo);background:#EEF2FF40}
+  .engine input{accent-color:var(--indigo);margin-top:3px}
+  .engine .t{font-size:14px;font-weight:650;display:block}
+  .engine .d{font-size:12.5px;color:var(--slate-500);margin-top:2px;display:block}
+  .keywrap{display:none;margin-top:12px}
+  .keywrap.show{display:block}
+  input.key{width:100%;background:var(--white);border:1px solid var(--line);border-radius:9px;color:var(--slate);font-size:13px;padding:10px 12px;font-family:var(--mono)}
+  .keynote{font-size:12px;color:var(--slate-400);margin-top:8px;line-height:1.5}
+  .remember{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--slate-700);margin-top:10px;cursor:pointer}
+  .remember input{accent-color:var(--indigo)}
+  .btn[disabled]{opacity:.6;cursor:default}
+  .storyhead{font-size:14px;font-weight:650;margin:22px 0 12px;letter-spacing:.02em;padding-top:18px;border-top:1px solid var(--line-soft)}
+  .story{background:var(--white);border:1px solid var(--line);border-left:3px solid var(--indigo);border-radius:10px;padding:16px 18px;margin-bottom:12px}
+  .story h4{font-size:15px;font-weight:650;margin:6px 0 4px;letter-spacing:-.01em}
+  .story .narr{font-size:13.5px;color:var(--slate-700);font-style:italic;margin-bottom:10px}
+  .story .ac{list-style:none;margin:0}
+  .story .ac li{font-size:13px;color:var(--slate-500);padding:4px 0 4px 24px;position:relative}
+  .story .ac li::before{content:"";position:absolute;left:2px;top:7px;width:11px;height:11px;border:1.5px solid var(--teal);border-radius:3px}
+  .skillrow{display:flex;gap:8px;margin-top:8px}
+  .skillrow .btn{flex:1}
+  .composer{display:none;margin-top:10px}
+  .composer.show{display:block}
+  .composer textarea{min-height:110px;font-family:var(--sans);font-size:13px}
+  .callout{background:#EEF2FF;border:1px solid #C7D2FE;border-radius:10px;padding:13px 16px;font-size:13.5px;color:var(--slate-700);margin-bottom:18px;line-height:1.55}
+  .callout b{font-weight:650}
+  .fieldnote{font-size:12.5px;color:var(--slate-400);margin:2px 0 10px;line-height:1.5}
+  .filelist{margin-top:10px;display:flex;flex-direction:column;gap:6px;font-size:13px}
+  .filelist .f{display:flex;justify-content:space-between;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:6px 10px;color:var(--slate-500)}
+  .filelist .f b{color:var(--slate);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:70%}
+  .filelist .rm{color:var(--slate-400);cursor:pointer;font-size:15px;line-height:1;padding:2px 4px}
+  .filelist .rm:hover{color:var(--red)}
+  .samplelink{display:block;text-align:center;margin-top:12px;font-size:13.5px;color:var(--slate-500)}
+  .samplelink a{font-weight:600}
+  .progress{height:4px;background:var(--line-soft);border-radius:99px;overflow:hidden;margin:16px 0 0;display:none}
+  .progress i{display:block;height:100%;width:0;background:var(--indigo);transition:width .3s}
+
+  /* Results */
+  #results .placeholder{color:var(--slate-400);text-align:center;padding:80px 24px;font-size:15px}
+  #results .placeholder .ph-title{font-family:var(--serif);font-size:19px;color:var(--slate-500);margin-bottom:8px}
+  .scorebar{display:grid;grid-template-columns:auto 1fr 1fr 1fr;gap:14px;align-items:center;margin-bottom:18px}
+  @media(max-width:700px){.scorebar{grid-template-columns:1fr 1fr}}
+  .ring{position:relative;width:112px;height:112px}
+  .ring svg{transform:rotate(-90deg)}
+  .ring .val{position:absolute;inset:0;display:grid;place-items:center;font-size:28px;font-weight:700;font-family:var(--serif)}
+  .ring .val small{display:block;font-size:10px;color:var(--slate-400);font-weight:600;text-align:center;letter-spacing:.12em;font-family:var(--sans)}
+  .lens-score{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .lens-score .lbl{font-size:11.5px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;color:var(--slate-500);margin-bottom:2px}
+  .lens-score .n{font-size:24px;font-weight:700;font-family:var(--serif)}
+  .lens-score .bar{height:4px;background:var(--line);border-radius:99px;margin-top:9px;overflow:hidden}
+  .lens-score .bar i{display:block;height:100%;border-radius:99px}
+  .metaline{font-size:13px;color:var(--slate-400);margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--line-soft)}
+  .metaline b{color:var(--slate-700);font-weight:600}
+  .tabs{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+  .tab{border:1px solid var(--line);background:var(--white);color:var(--slate-500);border-radius:99px;padding:7px 15px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans)}
+  .tab:hover{border-color:var(--slate-400)}
+  .tab.active{background:var(--slate);color:var(--white);border-color:var(--slate)}
+  .finding{background:var(--white);border:1px solid var(--line);border-left-width:3px;border-radius:10px;padding:18px 20px;margin-bottom:12px}
+  .finding.s3{border-left-color:var(--red)} .finding.s2{border-left-color:var(--amber)}
+  .finding.s1{border-left-color:var(--indigo-soft)} .finding.s0{border-left-color:var(--slate-400)}
+  .finding .top{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+  .sev{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:5px;padding:3px 8px}
+  .sev-3{background:#FEF2F2;color:var(--red)} .sev-2{background:#FFFBEB;color:#B45309}
+  .sev-1{background:#EEF2FF;color:var(--indigo)} .sev-0{background:var(--line-soft);color:var(--slate-500)}
+  .pill{font-size:11.5px;font-weight:550;border-radius:5px;padding:3px 8px;background:var(--paper);color:var(--slate-500);border:1px solid var(--line-soft)}
+  .pill.up{color:var(--teal);border-color:#99F6E4;background:#F0FDFA}
+  .finding h4{font-size:15px;margin:2px 0 5px;font-weight:650;letter-spacing:-.01em}
+  .finding p{font-size:13.5px;color:var(--slate-500)}
+  .finding .fix{margin-top:9px;font-size:13.5px;color:var(--slate-700)}
+  .finding .fix b{color:var(--emerald);font-weight:650}
+  .finding pre{margin-top:10px;background:var(--slate);border-radius:8px;padding:13px 14px;font-size:12px;overflow-x:auto;color:#E2E8F0;font-family:var(--mono);line-height:1.55}
+  .playbook{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:20px 22px;margin-top:10px}
+  .playbook h4{font-size:14px;font-weight:650;margin-bottom:10px;letter-spacing:.02em}
+  .playbook li{font-size:13.5px;color:var(--slate-500);margin:8px 0 8px 18px}
+  .playbook li b{color:var(--slate-700);font-weight:600}
+  .export-row{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+  .empty-lens{color:var(--slate-400);font-size:14px;padding:24px;text-align:center}
+
+  /* Features */
+  .featgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
+  @media(max-width:900px){.featgrid{grid-template-columns:1fr 1fr}} @media(max-width:620px){.featgrid{grid-template-columns:1fr}}
+  .feat{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .feat h3{margin:16px 0 6px;font-size:15px}
+  .feat p{font-size:13.5px;color:var(--slate-500)}
+
+  /* Pricing */
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px;align-items:stretch}
+  @media(max-width:900px){.plans{grid-template-columns:1fr}}
+  .plan{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column}
+  .plan.hot{border-color:var(--indigo);box-shadow:0 0 0 1px var(--indigo),var(--shadow);position:relative}
+  .plan .tag{position:absolute;top:-11px;left:30px;background:var(--indigo);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:99px;padding:4px 12px}
+  .plan h3{font-size:15px}
+  .plan .price{font-family:var(--serif);font-size:40px;font-weight:600;margin:14px 0 2px}
+  .plan .price small{font-size:14px;color:var(--slate-400);font-weight:400;font-family:var(--sans)}
+  .plan .for{font-size:13px;color:var(--slate-400)}
+  .plan ul{list-style:none;margin:22px 0 28px;flex:1}
+  .plan li{font-size:13.5px;color:var(--slate-500);padding:6px 0;display:flex;gap:10px;align-items:baseline}
+  .plan li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--teal);flex:none;position:relative;top:-2px}
+
+  footer{border-top:1px solid var(--line);padding:48px 0;color:var(--slate-400);font-size:13.5px;background:var(--white)}
+  footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+  footer a{color:var(--slate-500);margin-left:22px}
+  footer a:hover{color:var(--slate)}
+
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(90px);background:var(--slate);color:var(--paper);border-radius:9px;padding:12px 20px;font-size:14px;transition:transform .25s;z-index:99;max-width:min(560px,90vw);box-shadow:0 12px 40px rgba(15,23,42,.3)}
+  .toast.show{transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#" class="logo" aria-label="UXexpert home">
+      <svg width="26" height="26" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#4F46E5"/><path d="M9 9l14 14M23 9L9 23" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/></svg>
+      <span>UXexpert<span style="color:var(--indigo)">.ai</span></span>
+    </a>
+    <div class="navlinks">
+      <a href="#how">How it works</a>
+      <a href="#audit">Run an audit</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#audit" class="btn btn-primary btn-sm">Start a free audit</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Your instant principal UX expert</p>
+    <h1>Your web app, reviewed like a <em>flagship product</em>.</h1>
+    <p class="sub">UXexpert gives you a principal-level design review, an engineering code audit, and a growth strategist's conversion analysis — in one prioritized report, in seconds.</p>
+    <p class="proof">Built for indie hackers, agencies, and product teams</p>
+    <div class="cta-row">
+      <a href="#audit" class="btn btn-primary">Start a free audit</a>
+      <button class="btn btn-quiet" onclick="startDemo()">See a sample report</button>
+    </div>
+    <p class="under">No account required. Run privately in your browser, or bring your API key for a full Claude review.</p>
+
+    <div class="lensline">
+      <div class="cell">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12z"/></svg></span>
+        <div class="role">Principal UX Designer</div>
+        <div class="scope">Usability, accessibility, hierarchy, and visual polish — mapped to WCAG.</div>
+      </div>
+      <div class="cell">
+        <span class="ico teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+        <div class="role">Full-Stack Engineer</div>
+        <div class="scope">Performance, security, correctness, and tech debt — with fixed snippets.</div>
+      </div>
+      <div class="cell">
+        <span class="ico emerald"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
+        <div class="role">Growth Strategist</div>
+        <div class="scope">Onboarding friction, trust signals, retention loops, and A/B hypotheses.</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="how">
+  <div class="wrap">
+    <p class="eyebrow">How it works</p>
+    <h2>Three steps to a shippable roadmap</h2>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><h3>Add your product</h3><p>Drop in HTML, CSS, and JavaScript files, paste code directly, or point UXexpert at a live URL or public GitHub repository. Add design systems or brand guidelines to tune enforcement.</p></div>
+      <div class="step"><div class="n">02</div><h3>Tune the review</h3><p>Choose the audience you are building for, set custom rules, and load expertise skills that teach the reviewer your domain — from telco BSS collections consoles to patient portals. The audit re-weights itself around your users.</p></div>
+      <div class="step"><div class="n">03</div><h3>Ship the fixes</h3><p>Every finding is scored by severity, effort, and impact, and arrives with a concrete fix — often a code snippet you can paste in as-is. Export the report and get to work.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="audit">
+  <div class="wrap">
+    <p class="eyebrow">Live playground</p>
+    <h2>Run an audit right now</h2>
+    <p class="lede">Two engines, your choice: the local engine runs entirely in your browser and nothing you paste leaves your machine, or bring an Anthropic API key for a deeper review by Claude. New here? <a href="#audit" onclick="startDemo();return false" class="textlink">Load the sample app</a> and run your first audit in one click.</p>
+
+    <div class="pg-grid">
+      <div class="card" id="inputcard">
+        <div class="stephead"><span class="k">01</span><h3>Add your product</h3></div>
+        <div class="drop" id="drop" tabindex="0" role="button" aria-label="Upload files">
+          <b>Drop files here</b> or click to browse
+          <div class="sub">.html · .css · .js — multiple files welcome</div>
+          <input type="file" id="fileinput" multiple accept=".html,.htm,.css,.js,.txt" hidden>
+        </div>
+        <div class="filelist" id="filelist"></div>
+        <p class="fieldnote" id="ghsummary" style="margin-top:8px;display:none"></p>
+        <div class="or">or paste code</div>
+        <textarea id="code" spellcheck="false" aria-label="Paste your code" placeholder="<!DOCTYPE html>
+<html>
+  Paste your page here…"></textarea>
+        <div class="or">or audit a live URL / GitHub repo</div>
+        <input type="url" id="url" aria-label="Live URL or GitHub repository" placeholder="https://your-app.com or github.com/owner/repo">
+        <p class="fieldnote" style="margin-top:6px">Public GitHub repos are fetched right in your browser — a branch or folder link works too.</p>
+
+        <div class="stephead"><span class="k">02</span><h3>Tune the review</h3><span class="hint">optional</span></div>
+        <label for="persona" style="display:block;font-size:13px;color:var(--slate-500);margin-bottom:6px">Audience</label>
+        <select id="persona">
+          <option value="general">General audience</option>
+          <option value="genz">Gen Z, mobile-first, emerging markets</option>
+          <option value="enterprise">Enterprise B2B buyers</option>
+          <option value="seniors">Older adults, accessibility-first</option>
+          <option value="devs">Developers and technical users</option>
+        </select>
+        <div style="height:14px"></div>
+        <div class="rules">
+          <label><input type="checkbox" id="r-contrast"> Enforce high contrast (WCAG AAA)</label>
+          <label><input type="checkbox" id="r-anim"> Prefer minimal animation</label>
+          <label><input type="checkbox" id="r-dark"> Require dark-mode support</label>
+          <label><input type="checkbox" id="r-mobile"> Mobile-first strictness</label>
+        </div>
+
+        <div style="height:16px"></div>
+        <label for="skilltpl" style="display:block;font-size:13px;color:var(--slate-500);margin-bottom:2px" id="skills-block">Expertise skills</label>
+        <p class="fieldnote">Teach the reviewer your domain: who your users are, what to research and validate, and what good design means in your world. Skills are applied in depth by the Claude AI engine.</p>
+        <select id="skilltpl" onchange="addTemplateSkill(this)" aria-label="Add a starter skill">
+          <option value="">Add a starter skill…</option>
+          <option value="telco">Telco BSS — Finance Collections agent</option>
+          <option value="health">Healthcare — patient portal</option>
+          <option value="fintech">Fintech — B2B analytics dashboard</option>
+          <option value="ecom">E-commerce — mobile-first shoppers</option>
+        </select>
+        <div class="skillrow">
+          <button class="btn btn-quiet btn-sm" onclick="document.getElementById('skillfile').click()">Upload skill file</button>
+          <button class="btn btn-quiet btn-sm" onclick="toggleComposer()">Write your own</button>
+          <input type="file" id="skillfile" multiple accept=".md,.txt,.json,.yaml,.yml" hidden>
+        </div>
+        <div class="composer" id="composer">
+          <textarea id="skilltext" spellcheck="true" aria-label="Write your own expertise skill" placeholder="Example: This is a BSS collections console for a telco. The user is a Finance Collections agent working delinquent-account queues all day. Screens must surface balance, aging buckets, and dunning stage instantly; promise-to-pay capture must be one click away; terminology must match industry usage…"></textarea>
+          <div class="skillrow">
+            <button class="btn btn-primary btn-sm" onclick="addCustomSkill()">Add skill</button>
+            <button class="btn btn-quiet btn-sm" onclick="toggleComposer(false)">Cancel</button>
+          </div>
+        </div>
+        <div class="filelist" id="skilllist"></div>
+
+        <div class="stephead"><span class="k">03</span><h3>Choose an engine</h3></div>
+        <div class="engines" role="radiogroup" aria-label="Analysis engine">
+          <label class="engine active" id="eng-local">
+            <input type="radio" name="engine" value="local" checked onchange="setEngine('local')">
+            <span><span class="t">Local engine</span><span class="d">Instant and free. Analysis runs entirely in your browser — your code never leaves your machine.</span></span>
+          </label>
+          <label class="engine" id="eng-ai">
+            <input type="radio" name="engine" value="ai" onchange="setEngine('ai')">
+            <span><span class="t">Claude AI review</span><span class="d">Deeper, contextual reasoning from Claude Opus 4.8. Bring your own Anthropic API key; your code is sent directly to Anthropic and nowhere else.</span></span>
+          </label>
+        </div>
+        <div class="keywrap" id="keywrap">
+          <label for="apikey" style="display:block;font-size:13px;color:var(--slate-500);margin-bottom:6px">Anthropic API key</label>
+          <input type="password" id="apikey" class="key" placeholder="sk-ant-..." autocomplete="off" spellcheck="false">
+          <label class="remember"><input type="checkbox" id="rememberkey"> Remember on this device</label>
+          <p class="keynote">Used only for direct calls from this page to api.anthropic.com. If remembered, it is stored in this browser's local storage — never on a server. Create a key at console.anthropic.com.</p>
+        </div>
+
+        <div class="stephead"><span class="k">04</span><h3>Get your report</h3></div>
+        <p class="fieldnote" id="readyline" style="text-align:center;margin-bottom:8px" aria-live="polite">Nothing to audit yet — add your product in step 01.</p>
+        <button class="btn btn-primary" id="runbtn" style="width:100%" onclick="runEvaluation()">Run audit</button>
+        <div class="progress" id="prog"><i></i></div>
+        <p class="samplelink">Nothing to paste? <a href="#audit" onclick="loadSample();return false">Load the sample app</a></p>
+      </div>
+
+      <div class="card" id="results" aria-live="polite">
+        <div class="placeholder" id="placeholder">
+          <div class="ph-title">Your report will appear here</div>
+          Findings from all three reviewers, scored and prioritized,<br>with fixes you can apply today.
+        </div>
+        <div id="report" hidden></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <p class="eyebrow">Features</p>
+    <h2>Depth that generic checkers can't reach</h2>
+    <div class="featgrid">
+      <div class="feat"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg></span><h3>True multi-role synthesis</h3><p>Not three separate reports — one prioritized roadmap where design, engineering, and growth trade-offs are weighed against each other.</p></div>
+      <div class="feat"><span class="ico teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><h3>Code-native fixes</h3><p>Every technical finding ships with a corrected snippet you can paste straight into your codebase.</p></div>
+      <div class="feat"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 14 0v1"/></svg></span><h3>Audience tuning</h3><p>Auditing for Gen Z mobile users in emerging markets is a different job than auditing for enterprise buyers. Priorities re-weight to who you serve.</p></div>
+      <div class="feat"><span class="ico emerald"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 3v18M3 9h18"/></svg></span><h3>Expertise skills & custom rules</h3><p>Upload skills that make the reviewer an expert in your domain and your users, plus rules like AAA contrast and minimal motion. The audit enforces them.</p></div>
+      <div class="feat"><span class="ico teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span><h3>Growth playbook</h3><p>A retention roadmap, A/B hypotheses, and conversion fixes grounded in what is actually on your page.</p></div>
+      <div class="feat"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></span><h3>One-click exports</h3><p>Markdown export today. PDF, Jira tickets, Figma comments, Notion pages, and shareable report links are on the roadmap.</p></div>
+      <div class="feat"><span class="ico emerald"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg></span><h3>Version comparison</h3><p>Re-run after each iteration and compare scores. Automatic history tracking is on the roadmap.</p></div>
+      <div class="feat"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><h3>Private by design</h3><p>Local analysis never leaves your browser. AI reviews go directly from your browser to Anthropic with your own key — no middleman server.</p></div>
+      <div class="feat"><span class="ico teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8H8z"/><path d="M4 4h4v4H4zM16 4h4v4h-4zM4 16h4v4H4zM16 16h4v4h-4z"/></svg></span><h3>API for teams</h3><p>On the roadmap: wire audits into CI so every pull request gets a design, code, and growth review before merge.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" style="background:var(--white);border-top:1px solid var(--line)">
+  <div class="wrap">
+    <p class="eyebrow">Pricing</p>
+    <h2>Free while we build. Paid tiers are coming.</h2>
+    <div class="plans">
+      <div class="plan hot">
+        <span class="tag">Available now</span>
+        <h3>Free</h3><div class="price">$0<small> / month</small></div><p class="for">Everything on this page, today</p>
+        <ul><li>Unlimited local audits, fully in your browser</li><li>Claude AI reviews with your own API key</li><li>GitHub repo and file uploads</li><li>Expertise skills and custom rules</li><li>Markdown export</li></ul>
+        <a href="#audit" class="btn btn-primary">Start auditing</a>
+      </div>
+      <div class="plan">
+        <h3>Pro</h3><div class="price">Coming soon</div><p class="for">For people who ship every week</p>
+        <ul><li>User stories with acceptance criteria (preview it free in beta with your API key)</li><li>Hosted Claude reviews, no API key needed</li><li>Live URL crawling and screenshots</li><li>Version comparison and history</li><li>PDF, Jira, Figma, and Notion exports</li><li>Shareable report links</li></ul>
+        <a href="mailto:hello@uxexpert.ai?subject=UXexpert%20Pro%20waitlist" class="btn btn-quiet">Join the waitlist</a>
+      </div>
+      <div class="plan">
+        <h3>Enterprise</h3><div class="price">Coming soon</div><p class="for">For teams with standards to enforce</p>
+        <ul><li>Team seats and SSO</li><li>API and CI integration</li><li>Custom models and rule packs</li><li>Data isolation and DPA</li></ul>
+        <a href="mailto:hello@uxexpert.ai?subject=UXexpert%20Enterprise" class="btn btn-quiet">Talk to us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>UXexpert.ai — your instant principal UX expert.</div>
+    <div><a href="mailto:hello@uxexpert.ai">Contact</a></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ============================================================
+   UXexpert audit engine — runs fully client-side.
+   Parses HTML/CSS/JS and produces findings across three lenses:
+   ux (Principal UX Designer), dev (Full-Stack Engineer),
+   gtm (Growth Strategist).
+   ============================================================ */
+
+const state = { files: [] };
+const $ = id => document.getElementById(id);
+
+/* ---------- input handling ---------- */
+const drop = $('drop'), fileinput = $('fileinput');
+drop.addEventListener('click', () => fileinput.click());
+drop.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') fileinput.click(); });
+drop.addEventListener('dragover', e => { e.preventDefault(); drop.classList.add('over'); });
+drop.addEventListener('dragleave', () => drop.classList.remove('over'));
+drop.addEventListener('drop', e => { e.preventDefault(); e.stopPropagation(); drop.classList.remove('over'); addFiles(e.dataTransfer.files); });
+fileinput.addEventListener('change', () => addFiles(fileinput.files));
+
+// Accept drops anywhere on the page — a drop that misses the dropzone must
+// never be silently ignored (or navigate the browser away).
+document.addEventListener('dragover', e => e.preventDefault());
+document.addEventListener('drop', e => {
+  e.preventDefault();
+  if (e.dataTransfer?.files?.length) addFiles(e.dataTransfer.files);
+});
+
+function addFiles(list) {
+  [...list].forEach(f => {
+    if (!/\.(html?|css|js|txt)$/i.test(f.name)) { toast(`Skipped ${f.name} — the playground analyzes HTML, CSS, and JS. Screenshot and Figma analysis is on the roadmap.`); return; }
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (state.sampleInEditor) {
+        // The demo's sample code must never ride along with a real upload
+        $('code').value = ''; state.sampleInEditor = false;
+        toast('Sample code cleared — your uploaded files will be audited instead.');
+      }
+      state.files.push({ name: f.name, size: f.size, text: reader.result });
+      renderFiles();
+    };
+    reader.readAsText(f);
+  });
+}
+function renderFiles() {
+  $('filelist').innerHTML = state.files.map((f, i) =>
+    `<div class="f"><b>${esc(f.name)}</b><span>${(f.size/1024).toFixed(1)} KB <span class="rm" role="button" aria-label="Remove file" onclick="removeFile(${i})">&times;</span></span></div>`).join('');
+  updateReady();
+}
+function removeFile(i) { state.files.splice(i, 1); renderFiles(); }
+
+/* ---------- "will audit" status line ---------- */
+function updateReady() {
+  const el = $('readyline'); if (!el) return;
+  const kb = n => (n / 1024).toFixed(1) + ' KB';
+  const fileBytes = state.files.reduce((n, f) => n + (f.text ? f.text.length : f.size || 0), 0);
+  const code = $('code').value.trim();
+  const parts = [];
+  if (state.files.length) parts.push(`${state.files.length} uploaded file${state.files.length > 1 ? 's' : ''} (${kb(fileBytes)})`);
+  if (code) parts.push(state.sampleInEditor ? `the built-in sample app (${kb(code.length)})` : `pasted code (${kb(code.length)})`);
+  if (!parts.length && $('url').value.trim()) parts.push($('url').value.trim().replace(/^https?:\/\//, ''));
+  el.textContent = parts.length ? 'Will audit: ' + parts.join(' + ') : 'Nothing to audit yet — add your product in step 01.';
+}
+
+function toast(msg) {
+  const t = $('toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('show'), 4200);
+}
+function esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+// Funnel analytics — event names and coarse labels only, never code content.
+function track(name, props) {
+  try { if (window.plausible) plausible(name, props ? { props } : undefined); } catch (e) {}
+}
+
+/* ---------- engine selection ---------- */
+state.engine = 'local';
+function setEngine(engine) {
+  state.engine = engine;
+  $('eng-local').classList.toggle('active', engine === 'local');
+  $('eng-ai').classList.toggle('active', engine === 'ai');
+  $('keywrap').classList.toggle('show', engine === 'ai');
+  if (engine === 'ai' && !$('apikey').value) $('apikey').focus();
+}
+(() => {
+  const saved = localStorage.getItem('uxexpert_api_key');
+  if (saved) { $('apikey').value = saved; $('rememberkey').checked = true; }
+  // Any manual edit means the editor no longer holds the untouched sample
+  $('code').addEventListener('input', () => { state.sampleInEditor = false; updateReady(); });
+  $('url').addEventListener('input', updateReady);
+})();
+
+/* ---------- sample app (deliberately flawed) ---------- */
+function loadSample() {
+  const hadFiles = state.files.length > 0;
+  $('code').value = SAMPLE;
+  state.sampleInEditor = true;
+  state.files = []; renderFiles();
+  toast(hadFiles ? 'Your uploaded files were cleared — the sample app is loaded now.' : 'Sample app loaded. Run the audit when ready.');
+}
+function startDemo() {
+  loadSample();
+  document.getElementById('audit').scrollIntoView({ behavior: 'smooth' });
+  setTimeout(runEvaluation, 450);
+}
+const SAMPLE = `<html>
+<head>
+  <title></title>
+  <script src="https://cdn.example.com/analytics.js"><\/script>
+  <script src="app.js"><\/script>
+  <style>
+    body { font-family: Arial; color: #999; background: #fff; }
+    .hero h1 { font-size: 40px; color: #bbb; background: #fff; }
+    .btn { padding: 4px 8px; font-size: 11px; }
+    .banner { animation: flash 0.5s infinite; }
+    .x { color: red !important; margin: 0 !important; }
+  </style>
+</head>
+<body>
+  <center>
+    <img src="logo.png">
+    <marquee>LIMITED TIME OFFER — SIGN UP NOW</marquee>
+  </center>
+  <div class="hero">
+    <h4>Welcome</h4>
+    <h1>The Best App Ever</h1>
+    <p style="font-size:10px;color:#aaa">Do stuff faster with our tool.</p>
+    <a href="signup.html" onclick="track()">Click here</a>
+  </div>
+  <form action="http://api.example.com/signup">
+    <input type="text" placeholder="Full name">
+    <input type="text" placeholder="Email">
+    <input type="text" placeholder="Company">
+    <input type="text" placeholder="Phone">
+    <input type="text" placeholder="Job title">
+    <input type="text" placeholder="Company size">
+    <input type="text" placeholder="How did you hear about us?">
+    <button></button>
+  </form>
+  <img src="shot1.png"><img src="shot2.png"><img src="shot3.png">
+  <a href="https://twitter.com/app" target="_blank">Twitter</a>
+  <video src="promo.mp4" autoplay></video>
+  <div id="footer" tabindex="5">© 2026</div>
+  <div id="footer">duplicate</div>
+  <script>
+    var count = 0;
+    document.write('<p>loaded</p>');
+    console.log('debug: init', count);
+  <\/script>
+</body>
+</html>`;
+
+/* ---------- gather inputs ---------- */
+function gatherSource() {
+  let html = '', css = '', js = '';
+  state.files.forEach(f => {
+    if (/\.css$/i.test(f.name)) css += '\n' + f.text;
+    else if (/\.js$/i.test(f.name)) js += '\n' + f.text;
+    else html += '\n' + f.text;
+  });
+  html += '\n' + $('code').value;
+  return { html: html.trim(), css, js };
+}
+
+/* ---------- shared scoring ---------- */
+// Severity-weighted deductions per lens, with hard caps when criticals exist:
+// a lens carrying critical findings can never score in the "healthy" range.
+function computeScores(findings) {
+  const deduct = { 3: 16, 2: 9, 1: 4.5, 0: 1.5 };
+  const scores = {};
+  ['ux', 'dev', 'gtm'].forEach(l => {
+    const fs = findings.filter(f => f.lens === l);
+    let s = 100;
+    fs.forEach(f => s -= deduct[f.sev] * (f.boosted ? 1.25 : 1));
+    const crits = fs.filter(f => f.sev === 3).length;
+    if (crits >= 3) s = Math.min(s, 15);
+    else if (crits === 2) s = Math.min(s, 29);
+    else if (crits === 1) s = Math.min(s, 49);
+    scores[l] = Math.max(4, Math.round(s));
+  });
+  scores.overall = Math.round((scores.ux + scores.dev + scores.gtm) / 3);
+  return scores;
+}
+
+/* ---------- engine ---------- */
+function analyze(src, opts) {
+  const findings = [];
+  const doc = new DOMParser().parseFromString(src.html, 'text/html');
+  const rawHtml = src.html;
+  let css = src.css;
+  doc.querySelectorAll('style').forEach(s => css += '\n' + s.textContent);
+  let js = src.js;
+  doc.querySelectorAll('script:not([src])').forEach(s => js += '\n' + s.textContent);
+
+  const add = (lens, sev, title, detail, fix, opts2 = {}) =>
+    findings.push({ lens, sev, title, detail, fix, snippet: opts2.snippet || null,
+      effort: opts2.effort || 'S', impact: opts2.impact || 3, tags: opts2.tags || [], wcag: opts2.wcag || null });
+
+  /* ========== UX / ACCESSIBILITY LENS ========== */
+  const title = doc.querySelector('title');
+  if (!title || !title.textContent.trim())
+    add('ux', 2, 'Missing or empty page <title>', 'The browser tab, bookmarks, screen readers, and search results all rely on the title. An empty title reads as "Untitled" to assistive tech.', 'Write a descriptive, benefit-led title under 60 characters.', { snippet: '<title>VibeApp — Do stuff faster, together</title>', impact: 4, tags: ['a11y','seo'], wcag: 'WCAG 2.4.2' });
+
+  if (!doc.documentElement.getAttribute('lang') && /<html/i.test(rawHtml) && !/<html[^>]+lang=/i.test(rawHtml))
+    add('ux', 1, 'Missing lang attribute on <html>', 'Screen readers use lang to pick the right pronunciation engine. Without it, content may be read with the wrong accent or phonemes.', 'Declare the document language.', { snippet: '<html lang="en">', impact: 3, tags: ['a11y'], wcag: 'WCAG 3.1.1' });
+
+  const imgs = [...doc.querySelectorAll('img')];
+  const noAlt = imgs.filter(i => !i.hasAttribute('alt'));
+  if (noAlt.length)
+    add('ux', 3, `${noAlt.length} image${noAlt.length>1?'s':''} missing alt text`, 'Screen-reader users hear the raw filename or nothing at all. This is one of the most common and most impactful accessibility failures.', 'Add descriptive alt text; use alt="" only for purely decorative images.', { snippet: `<img src="${noAlt[0].getAttribute('src')||'logo.png'}" alt="VibeApp logo">`, impact: 5, tags: ['a11y'], wcag: 'WCAG 1.1.1' });
+
+  const hs = [...doc.querySelectorAll('h1,h2,h3,h4,h5,h6')].map(h => +h.tagName[1]);
+  const h1s = hs.filter(n => n === 1).length;
+  if (hs.length && h1s === 0)
+    add('ux', 2, 'No <h1> on the page', 'The h1 anchors the document outline for screen readers and tells search engines what the page is about.', 'Make your primary headline an <h1>.', { impact: 4, tags: ['a11y','seo'], wcag: 'WCAG 1.3.1' });
+  if (h1s > 1)
+    add('ux', 1, `Multiple <h1> elements (${h1s})`, 'Multiple h1s dilute the document outline and confuse the page hierarchy.', 'Keep one h1; demote the rest to h2.', { impact: 2, tags: ['a11y','seo'] });
+  for (let i = 1; i < hs.length; i++) {
+    if (hs[i] < hs[i-1] && hs[0] > hs[i]) {
+      add('ux', 1, 'Heading levels appear out of order', `A lower-level heading (h${hs[i-1]}) appears before a higher one (h${hs[i]}). Screen-reader users navigate by heading structure; skipped or inverted levels break their mental map.`, 'Restructure headings to descend logically: h1, then h2, then h3.', { impact: 3, tags: ['a11y'], wcag: 'WCAG 1.3.1' });
+      break;
+    }
+  }
+
+  const inputs = [...doc.querySelectorAll('input:not([type=hidden]):not([hidden]),textarea,select')];
+  const unlabeled = inputs.filter(i => {
+    if (i.getAttribute('aria-label') || i.getAttribute('aria-labelledby')) return false;
+    const id = i.getAttribute('id');
+    if (id && doc.querySelector(`label[for="${CSS.escape(id)}"]`)) return false;
+    return !i.closest('label');
+  });
+  if (unlabeled.length)
+    add('ux', 3, `${unlabeled.length} form field${unlabeled.length>1?'s':''} without a label`, 'Placeholder text is not a label: it disappears on focus, fails contrast requirements, and is not reliably announced by screen readers.', 'Pair every field with a visible <label>.', { snippet: '<label for="email">Work email</label>\n<input id="email" type="email" autocomplete="email">', impact: 5, tags: ['a11y','conversion'], wcag: 'WCAG 3.3.2' });
+
+  const wrongType = inputs.filter(i => i.tagName === 'INPUT' && (i.getAttribute('type')||'text') === 'text' && /email|phone|tel/i.test(i.getAttribute('placeholder')||''));
+  if (wrongType.length)
+    add('ux', 1, 'Email/phone fields using type="text"', 'Correct input types trigger the right mobile keyboard and enable built-in validation — a small change that meaningfully reduces form friction on mobile.', 'Use type="email" and type="tel" with autocomplete attributes.', { snippet: '<input type="email" autocomplete="email" placeholder="you@company.com">', impact: 3, tags: ['mobile','conversion'] });
+
+  const vague = [...doc.querySelectorAll('a')].filter(a => /^(click here|here|learn more|read more|more|link)$/i.test(a.textContent.trim()));
+  if (vague.length)
+    add('ux', 1, `Vague link text ("${vague[0].textContent.trim()}")`, 'Screen-reader users often navigate by a list of links, where "click here" is meaningless. Descriptive links also lift SEO and scannability.', 'Make link text describe the destination.', { snippet: '<a href="signup.html">Start your free trial</a>', impact: 3, tags: ['a11y','conversion'], wcag: 'WCAG 2.4.4' });
+
+  const emptyCtl = [...doc.querySelectorAll('button,a')].filter(el => !el.textContent.trim() && !el.getAttribute('aria-label') && !el.querySelector('img[alt]'));
+  if (emptyCtl.length)
+    add('ux', 3, `${emptyCtl.length} button/link with no accessible name`, 'A control with no text and no aria-label is announced as just "button" — unusable for assistive-tech users and a hard WCAG failure.', 'Add visible text or an aria-label.', { snippet: '<button type="submit">Create my account</button>', impact: 5, tags: ['a11y'], wcag: 'WCAG 4.1.2' });
+
+  if (!doc.querySelector('meta[name="viewport"]'))
+    add('ux', 2, 'Missing viewport meta tag', 'Without it, mobile browsers render the page at roughly 980px and scale it down — tiny text, horizontal panning, and pinch-zooming everywhere.', 'Add the responsive viewport tag.', { snippet: '<meta name="viewport" content="width=device-width, initial-scale=1">', impact: 5, tags: ['mobile'], effort: 'S' });
+
+  const tiny = (rawHtml + css).match(/font-size:\s*(\d+(?:\.\d+)?)px/g) || [];
+  const tinyVals = tiny.map(m => parseFloat(m.match(/(\d+(?:\.\d+)?)/)[1])).filter(v => v < 12);
+  if (tinyVals.length)
+    add('ux', 1, `Font sizes below 12px detected (${tinyVals.join('px, ')}px)`, 'Sub-12px body text is hard to read for most users and effectively unreadable for older adults or low-vision users on mobile.', 'Use a 16px base with a modular scale; never go below 12px for meaningful text.', { impact: 4, tags: ['a11y','mobile'], wcag: 'WCAG 1.4.4' });
+
+  const contrastPairs = findContrastIssues(css, rawHtml, opts.contrastAAA ? 7 : 4.5);
+  contrastPairs.slice(0, 3).forEach(p =>
+    add('ux', 2, `Low text contrast (${p.ratio}:1) — ${p.where}`, `Text ${p.fg} on ${p.bg} is ${p.ratio}:1; the ${opts.contrastAAA ? 'AAA (your custom rule)' : 'AA'} requirement is ${opts.contrastAAA ? 7 : 4.5}:1 for body text. Low contrast is the most commonly reported accessibility complaint.`, 'Darken the text or lighten the background until the ratio passes.', { snippet: `/* before */ color: ${p.fg}; background: ${p.bg};\n/* after  */ color: #333; background: ${p.bg};`, impact: 4, tags: ['a11y','contrast'], wcag: opts.contrastAAA ? 'WCAG 1.4.6 (AAA)' : 'WCAG 1.4.3' }));
+
+  const badTab = [...doc.querySelectorAll('[tabindex]')].filter(el => +el.getAttribute('tabindex') > 0);
+  if (badTab.length)
+    add('ux', 1, 'Positive tabindex values found', 'tabindex greater than zero hijacks natural focus order, creating unpredictable keyboard navigation that is nearly impossible to maintain.', 'Use tabindex="0" (focusable, natural order) or restructure the DOM.', { snippet: '<div id="footer" tabindex="0">…</div>', impact: 3, tags: ['a11y'], wcag: 'WCAG 2.4.3' });
+
+  if (doc.querySelector('video[autoplay],audio[autoplay]'))
+    add('ux', 2, 'Autoplaying media', 'Autoplay video and audio startles users, burns mobile data, competes with screen readers, and most browsers block it with sound anyway.', 'Require a user gesture to play; add muted and controls if it must autoplay.', { snippet: '<video src="promo.mp4" muted controls preload="metadata"></video>', impact: 4, tags: ['mobile','a11y'], wcag: 'WCAG 1.4.2' });
+
+  const hasMarquee = doc.querySelector('marquee,blink');
+  if (hasMarquee)
+    add('ux', 2, 'Deprecated <marquee> element', 'Scrolling text is a usability anti-pattern: unreadable, distracting, inaccessible, and the element was deprecated decades ago.', 'Replace with static, benefit-led copy. If motion matters, use a subtle CSS animation that respects prefers-reduced-motion.', { impact: 4, tags: ['a11y','animation'] });
+  const infiniteAnim = /animation:[^;]*infinite/.test(css);
+  if (infiniteAnim && opts.minAnim)
+    add('ux', 2, 'Infinite animation violates your minimal-animation rule', 'A looping animation was found (animation: … infinite). Your custom ruleset prioritizes minimal motion, and infinite loops are also a vestibular-disorder trigger.', 'Remove the loop or gate it behind prefers-reduced-motion.', { snippet: '@media (prefers-reduced-motion: no-preference) {\n  .banner { animation: flash 2s ease-in-out 3; }\n}', impact: 4, tags: ['animation','a11y'], wcag: 'WCAG 2.3.3' });
+  else if (infiniteAnim && !/prefers-reduced-motion/.test(css))
+    add('ux', 1, 'Animations ignore prefers-reduced-motion', 'Users with vestibular disorders enable "reduce motion" at the OS level; infinite animations that ignore it can cause genuine physical discomfort.', 'Wrap animations in a reduced-motion media query.', { snippet: '@media (prefers-reduced-motion: reduce) {\n  * { animation: none !important; transition: none !important; }\n}', impact: 3, tags: ['animation','a11y'], wcag: 'WCAG 2.3.3' });
+
+  const smallBtn = /\.btn[^{]*\{[^}]*padding:\s*[0-4]px/.test(css) || /padding:\s*[0-4]px\s+[0-9]+px[^}]*font-size:\s*(?:[0-9]|1[01])px/.test(css);
+  if (smallBtn)
+    add('ux', 1, 'Touch targets likely below 44 by 44 pixels', 'Buttons with roughly 4px padding and 11px text land well under the 44px minimum recommended by Apple HIG and WCAG 2.5.8, causing mis-taps on mobile.', 'Increase padding and font size so interactive targets are at least 44 by 44 pixels.', { snippet: '.btn { padding: 12px 20px; font-size: 15px; min-height: 44px; }', impact: 4, tags: ['mobile','a11y'], wcag: 'WCAG 2.5.8' });
+
+  const nodeCount = doc.querySelectorAll('*').length;
+  if (nodeCount > 60 && !/skip/i.test(rawHtml.slice(0, 2000)))
+    add('ux', 0, 'No skip-to-content link', 'Keyboard users must tab through every nav item on every page. A skip link is a one-line courtesy that WCAG expects.', 'Add a visually-hidden skip link as the first focusable element.', { snippet: '<a class="skip" href="#main">Skip to content</a>', impact: 2, tags: ['a11y'], wcag: 'WCAG 2.4.1' });
+
+  if (opts.darkMode && !/prefers-color-scheme/.test(css))
+    add('ux', 2, 'No dark-mode support (violates your custom rule)', 'Your ruleset requires dark-mode support, but no prefers-color-scheme media query was found. Dark mode is table stakes for developer and Gen Z audiences.', 'Define color tokens and a dark theme via media query.', { snippet: ':root { --bg:#fff; --text:#111; }\n@media (prefers-color-scheme: dark) {\n  :root { --bg:#0b0d12; --text:#e8eaf0; }\n}', impact: 3, tags: ['polish'], effort: 'M' });
+
+  /* ========== ENGINEERING LENS ========== */
+  if (!/charset/i.test(rawHtml) && rawHtml.length > 100)
+    add('dev', 1, 'Missing charset declaration', 'Without an explicit charset, browsers guess the encoding — special characters can render as mojibake, and it is a minor security hardening item.', 'Declare UTF-8 as the first element in <head>.', { snippet: '<meta charset="utf-8">', impact: 2, tags: ['correctness'] });
+
+  const blockingScripts = [...doc.querySelectorAll('head script[src]')].filter(s => !s.defer && !s.async && !s.type?.includes('module'));
+  if (blockingScripts.length)
+    add('dev', 2, `${blockingScripts.length} render-blocking script${blockingScripts.length>1?'s':''} in <head>`, 'Each synchronous script in <head> halts HTML parsing until it downloads and executes — often the single biggest first-paint killer on slow connections.', 'Add defer (or async for independent scripts like analytics).', { snippet: blockingScripts.map(s => `<script src="${s.getAttribute('src')}" defer><\/script>`).join('\n'), impact: 5, tags: ['performance','mobile'], effort: 'S' });
+
+  const noDims = imgs.filter(i => !i.getAttribute('width') && !i.getAttribute('height') && !/aspect-ratio/.test(css));
+  if (noDims.length >= 2)
+    add('dev', 2, `${noDims.length} images without width/height`, 'Images without intrinsic dimensions cause layout shift as they load (poor CLS) — content jumps around under the user\'s finger.', 'Set width and height attributes (or CSS aspect-ratio) so the browser reserves space.', { snippet: '<img src="shot1.png" alt="Dashboard screenshot" width="800" height="500" loading="lazy">', impact: 4, tags: ['performance','mobile'] });
+
+  if (imgs.length >= 3 && !imgs.some(i => i.getAttribute('loading') === 'lazy'))
+    add('dev', 1, 'No lazy loading on images', `${imgs.length} images all load eagerly. Below-the-fold images should be deferred, which is free with the loading attribute.`, 'Add loading="lazy" to below-the-fold images.', { snippet: '<img src="shot3.png" alt="…" loading="lazy">', impact: 3, tags: ['performance','mobile'] });
+
+  if (/document\.write\s*\(/.test(js))
+    add('dev', 2, 'document.write() usage', 'document.write blocks parsing, breaks entirely when called after load, and is disallowed by many browsers on slow connections. It is a legacy API with no modern use case.', 'Build DOM nodes and append them instead.', { snippet: "const p = document.createElement('p');\np.textContent = 'loaded';\ndocument.body.append(p);", impact: 3, tags: ['correctness','performance'] });
+
+  if (/console\.(log|debug|info)\s*\(/.test(js))
+    add('dev', 0, 'console.log left in production code', 'Debug logging leaks implementation details, adds noise, and in hot paths can measurably slow execution.', 'Strip logs in your build step or remove them before shipping.', { snippet: "// esbuild: drop: ['console'] · terser: drop_console: true", impact: 1, tags: ['polish'] });
+
+  if (/\bvar\s+\w/.test(js))
+    add('dev', 0, 'var declarations (pre-ES6)', 'var is function-scoped and hoisted, a classic source of subtle bugs. Every modern browser supports let and const.', 'Use const by default; let when reassignment is needed.', { snippet: 'let count = 0;', impact: 1, tags: ['polish'] });
+
+  const inlineHandlers = rawHtml.match(/\son(click|load|change|submit|mouseover)=/gi) || [];
+  if (inlineHandlers.length)
+    add('dev', 1, `${inlineHandlers.length} inline event handler${inlineHandlers.length>1?'s':''} (onclick=…)`, 'Inline handlers mix behavior into markup, break Content-Security-Policy (unsafe-inline), and are hard to test or remove.', 'Attach listeners in JS with addEventListener.', { snippet: "document.querySelector('.cta').addEventListener('click', track);", impact: 2, tags: ['security','polish'] });
+
+  const httpRefs = (rawHtml.match(/(?:src|href|action)=["']http:\/\//gi) || []).length;
+  if (httpRefs)
+    add('dev', 3, `${httpRefs} insecure http:// reference${httpRefs>1?'s':''}`, 'Mixed content is blocked by modern browsers, and a form posting to http:// sends user data (here: signup details) in cleartext — a genuine security issue.', 'Serve every resource and endpoint over HTTPS.', { snippet: '<form action="https://api.example.com/signup" method="post">', impact: 5, tags: ['security'], effort: 'S' });
+
+  const blankNoRel = [...doc.querySelectorAll('a[target="_blank"]')].filter(a => !/noopener|noreferrer/.test(a.getAttribute('rel') || ''));
+  if (blankNoRel.length)
+    add('dev', 1, 'target="_blank" without rel="noopener"', 'The opened page gets a window.opener reference to your tab — a tabnabbing phishing vector — and shares your process on some browsers.', 'Add rel="noopener" to every external _blank link.', { snippet: '<a href="https://twitter.com/app" target="_blank" rel="noopener">Twitter</a>', impact: 3, tags: ['security'] });
+
+  const ids = [...doc.querySelectorAll('[id]')].map(e => e.id);
+  const dupes = [...new Set(ids.filter((v, i) => ids.indexOf(v) !== i))];
+  if (dupes.length)
+    add('dev', 2, `Duplicate id${dupes.length>1?'s':''}: ${dupes.join(', ')}`, 'Duplicate IDs break getElementById, label associations, anchor links, and ARIA references — and the failures are silent.', 'Make every id unique; use classes for repeated styling hooks.', { impact: 3, tags: ['correctness','a11y'], wcag: 'WCAG 4.1.1' });
+
+  const deprecated = ['center','font','marquee','blink','big'].filter(t => doc.querySelector(t));
+  if (deprecated.length)
+    add('dev', 1, `Deprecated HTML tags: <${deprecated.join('>, <')}>`, 'These elements were removed from the HTML spec; rendering is inconsistent and they signal unmaintained code to any engineer reading it.', 'Replace with semantic elements plus CSS.', { snippet: '<header class="site-header">…</header>\n/* CSS */ .site-header { text-align: center; }', impact: 2, tags: ['polish'] });
+
+  const importantCount = (css.match(/!important/g) || []).length;
+  if (importantCount >= 2)
+    add('dev', 1, `${importantCount} uses of !important`, 'Heavy !important usage means the cascade is already losing — every future override gets harder, compounding tech debt.', 'Fix specificity at the source; reserve !important for utility overrides only.', { impact: 2, tags: ['polish'], effort: 'M' });
+
+  const inlineStyles = [...doc.querySelectorAll('[style]')].length;
+  if (inlineStyles >= 3)
+    add('dev', 0, `${inlineStyles} elements with inline styles`, 'Inline styles defeat caching, block CSP style-src hardening, and scatter design decisions across markup.', 'Move styles into classes in your stylesheet.', { impact: 2, tags: ['polish'], effort: 'M' });
+
+  if (!doc.querySelector('meta[name="description"]') && rawHtml.length > 200)
+    add('dev', 1, 'Missing meta description', 'Search engines write their own (often bad) snippet without it. This is your one free line of ad copy in every search result.', 'Add a 150-character benefit-led description.', { snippet: '<meta name="description" content="Do stuff faster with VibeApp — the tool 12,000 teams use to ship in half the time.">', impact: 3, tags: ['seo','conversion'] });
+
+  if (nodeCount > 1500)
+    add('dev', 2, `Very large DOM (${nodeCount.toLocaleString()} nodes)`, 'DOMs beyond roughly 1,500 nodes slow style recalculation, layout, and memory usage — Lighthouse flags this directly.', 'Virtualize long lists and remove wrapper divs.', { impact: 4, tags: ['performance'], effort: 'L' });
+
+  /* ========== GROWTH LENS ========== */
+  const ctaWords = /sign\s?up|get started|start (free|trial|now)|try (it|free|now)|book a demo|join|subscribe|buy|download|create (my|your|an)? ?account/i;
+  const ctas = [...doc.querySelectorAll('a,button')].filter(el => ctaWords.test(el.textContent));
+  if (!ctas.length && doc.body && doc.body.textContent.trim().length > 40)
+    add('gtm', 2, 'No clear call-to-action found', 'No button or link uses action language (sign up, get started, try free). Visitors who are convinced still need to be told exactly what to do next.', 'Add one primary, visually dominant CTA above the fold with benefit-led copy.', { snippet: '<a class="btn-primary" href="/signup">Start free — no credit card</a>', impact: 5, tags: ['conversion'], effort: 'S' });
+
+  const formFields = inputs.filter(i => i.closest('form')).length;
+  if (formFields >= 6)
+    add('gtm', 2, `Signup form asks for ${formFields} fields`, 'Every added field cuts completion measurably — each field costs roughly 5 to 10 percent of completions. Seven fields before a user has seen any value is a conversion killer.', 'Collect email only at signup; progressive-profile the rest after activation.', { snippet: '<form method="post" action="/signup">\n  <label for="email">Work email</label>\n  <input id="email" type="email" autocomplete="email" required>\n  <button>Start free trial</button>\n</form>', impact: 5, tags: ['conversion','onboarding'], effort: 'M' });
+
+  if (!doc.querySelector('meta[property^="og:"]') && rawHtml.length > 200)
+    add('gtm', 1, 'No Open Graph tags — shares will look broken', 'When anyone shares your link on Slack, X, LinkedIn, or iMessage, it renders with no image and an auto-scraped title. Social sharing is a free acquisition channel you are forfeiting.', 'Add og:title, og:description, and a 1200 by 630 og:image.', { snippet: '<meta property="og:title" content="VibeApp — ship in half the time">\n<meta property="og:description" content="The tool 12,000 teams rely on.">\n<meta property="og:image" content="https://vibeapp.com/og.png">', impact: 4, tags: ['growth'] });
+
+  const bodyText = doc.body ? doc.body.textContent : '';
+  const hasProof = /customers|users|teams|rated|reviews|trusted|testimonial|\d{2,3}%|\d+[km]?\+ /i.test(bodyText);
+  if (!hasProof && bodyText.trim().length > 60)
+    add('gtm', 1, 'No social proof on the page', 'No customer counts, logos, ratings, or testimonials detected. Social proof is the highest-leverage trust element for cold traffic — often worth 10 to 30 percent on conversion.', 'Add a proof strip near the primary CTA: logos, a user count, or one strong quote — real numbers only; invented proof destroys trust when discovered.', { snippet: '<p class="proof">Trusted by [your real count]+ teams · [a real customer quote]</p>', impact: 4, tags: ['conversion'], effort: 'M' });
+
+  const valueProp = doc.querySelector('h1');
+  if (valueProp && valueProp.textContent.trim().split(/\s+/).length <= 4 && /best|welcome|home/i.test(valueProp.textContent))
+    add('gtm', 1, `Generic headline: "${valueProp.textContent.trim()}"`, 'Superlatives ("the best app ever") carry zero information. Visitors decide in about five seconds whether the page is for them — the headline must state who it is for and what outcome it delivers.', 'Rewrite as outcome plus audience.', { snippet: '<h1>Ship your side project twice as fast — without hiring</h1>', impact: 5, tags: ['conversion'], effort: 'S' });
+
+  const hasAnalytics = /gtag|analytics|plausible|posthog|mixpanel|amplitude|segment|fathom/i.test(rawHtml + js);
+  if (!hasAnalytics && rawHtml.length > 300)
+    add('gtm', 1, 'No analytics detected — you are flying blind', 'Without measurement you cannot know your activation rate, where users drop off, or whether any change helped. Retention work starts with instrumentation.', 'Add a lightweight, privacy-friendly analytics snippet and define three core events: visit, signup, first value moment.', { snippet: "<script defer data-domain=\"vibeapp.com\" src=\"https://plausible.io/js/script.js\"><\/script>", impact: 4, tags: ['growth'], effort: 'S' });
+
+  const urgencySpam = /limited time|act now|hurry|last chance/i.test(bodyText);
+  if (urgencySpam)
+    add('gtm', 1, 'False-urgency copy erodes trust', 'Generic "limited time" banners pattern-match to spam for most audiences and are a dark pattern regulators increasingly scrutinize. Trust is the currency of first-visit conversion.', 'Replace with honest, specific value; if scarcity is real, make it concrete ("Beta: 42 of 100 seats left").', { impact: 3, tags: ['conversion','trust'] });
+
+  if (!/privacy|terms/i.test(bodyText) && formFields > 0)
+    add('gtm', 0, 'Form collects data with no privacy link in sight', 'Users hesitate to hand over emails without trust signals; regulators (GDPR and CCPA) expect notice at collection.', 'Link your privacy policy near the form.', { snippet: '<small>We never share your email. <a href="/privacy">Privacy</a></small>', impact: 2, tags: ['trust','conversion'] });
+
+  /* ---------- persona re-weighting ---------- */
+  const personaBoost = {
+    genz:      { mobile: 1.6, performance: 1.5, animation: 1.1, conversion: 1.2 },
+    enterprise:{ security: 1.7, a11y: 1.4, trust: 1.5, polish: 1.2 },
+    seniors:   { a11y: 1.8, contrast: 1.8, mobile: 1.2 },
+    devs:      { performance: 1.4, correctness: 1.4, polish: 1.3, seo: .8 },
+    general:   {}
+  }[opts.persona] || {};
+  findings.forEach(f => {
+    let boost = 1;
+    f.tags.forEach(t => { if (personaBoost[t]) boost = Math.max(boost, personaBoost[t]); });
+    if (opts.mobileFirst && f.tags.includes('mobile')) boost = Math.max(boost, 1.5);
+    f.weight = (f.sev + 1) * f.impact * boost;
+    f.boosted = boost > 1.2;
+  });
+  findings.sort((a, b) => b.weight - a.weight || b.sev - a.sev);
+
+  /* ---------- scores ---------- */
+  const scores = computeScores(findings);
+
+  const stats = {
+    nodes: nodeCount, images: imgs.length,
+    scripts: doc.querySelectorAll('script').length,
+    words: (doc.body ? doc.body.textContent.trim().split(/\s+/).filter(Boolean).length : 0),
+    kb: (new Blob([rawHtml + css + js]).size / 1024).toFixed(1)
+  };
+  return { findings, scores, stats };
+}
+
+/* ---------- contrast helpers ---------- */
+function parseColor(s) {
+  s = s.trim().toLowerCase();
+  const named = { white:'#ffffff', black:'#000000', red:'#ff0000', gray:'#808080', grey:'#808080', silver:'#c0c0c0' };
+  if (named[s]) s = named[s];
+  let m = s.match(/^#([0-9a-f]{3})$/); if (m) s = '#' + [...m[1]].map(c => c + c).join('');
+  m = s.match(/^#([0-9a-f]{6})$/);
+  if (m) return [parseInt(m[1].slice(0,2),16), parseInt(m[1].slice(2,4),16), parseInt(m[1].slice(4,6),16)];
+  m = s.match(/^rgba?\((\d+)[,\s]+(\d+)[,\s]+(\d+)/); if (m) return [+m[1], +m[2], +m[3]];
+  return null;
+}
+function luminance([r,g,b]) {
+  const f = v => { v /= 255; return v <= .03928 ? v/12.92 : Math.pow((v+.055)/1.055, 2.4); };
+  return .2126*f(r) + .7152*f(g) + .0722*f(b);
+}
+function ratio(a, b) { const [l1,l2] = [luminance(a), luminance(b)].sort((x,y)=>y-x); return (l1+.05)/(l2+.05); }
+function findContrastIssues(css, html, threshold) {
+  const issues = [], seen = new Set();
+  const scan = (block, where) => {
+    const fg = block.match(/(?:^|[;{\s])color:\s*([^;}\s]+)/), bg = block.match(/background(?:-color)?:\s*([^;}\s]+)/);
+    if (!fg || !bg) return;
+    const c1 = parseColor(fg[1]), c2 = parseColor(bg[1]);
+    if (!c1 || !c2) return;
+    const r = ratio(c1, c2);
+    const key = fg[1] + bg[1];
+    if (r < threshold && !seen.has(key)) { seen.add(key); issues.push({ ratio: r.toFixed(1), fg: fg[1], bg: bg[1], where }); }
+  };
+  (css.match(/([^{}]+)\{([^}]*)\}/g) || []).forEach(rule => {
+    const sel = rule.split('{')[0].trim().slice(0, 40);
+    scan(rule.split('{')[1] || '', `selector "${sel}"`);
+  });
+  (html.match(/style="([^"]*)"/g) || []).forEach(s => scan(s, 'inline style'));
+  return issues;
+}
+
+/* ---------- expertise skills ---------- */
+state.skills = [];
+
+const SKILL_TEMPLATES = {
+  telco: { name: 'Telco BSS — Finance Collections agent', text:
+`Domain: Telecom Business Support Systems (BSS) — billing, accounts receivable, dunning, and collections.
+
+Primary user: Finance Collections agents working queues of delinquent accounts 6-8 hours a day, measured on promise-to-pay conversion, right-party contact rate, and average handle time.
+
+Research and validate: Screens must surface account context instantly — outstanding balance, aging buckets (30/60/90+), dunning stage, last payment, dispute flags, and regulatory contact windows. Validate that workflows match collections reality: promise-to-pay capture, payment-arrangement setup, hardship flags, and escalation paths must be reachable in one or two clicks from the account view. Terminology must match industry usage (dunning, aging, write-off, PTP); mislabeled fields cause costly agent errors.
+
+Design standards: Dense, keyboard-friendly layouts beat whitespace-heavy marketing aesthetics — agents live in tables and queues. Prioritize scan speed, status color-coding with redundant text labels, and zero data loss on navigation. Flag anything that adds clicks to high-frequency tasks.
+
+Red flags: balance or aging data below the fold; modal-heavy flows that block queue work; missing audit trails on payment promises; consumer-style onboarding patterns aimed at the wrong user.` },
+  health: { name: 'Healthcare — patient portal', text:
+`Domain: Patient-facing healthcare portals — appointments, results, messaging, billing.
+
+Primary user: Patients of all ages and abilities, often anxious, on mobile, in low-bandwidth settings. Accessibility is non-negotiable: audit to WCAG AA minimum, and treat plain-language failures as high severity — medical jargon without explanation excludes the very people the portal serves.
+
+Research and validate: Verify that critical tasks (view results, message a clinician, pay a bill, find what to do next) are reachable within two taps of landing. Health information must never be ambiguous; validate that dates, dosages, and statuses are explicit. Privacy trust signals (HIPAA notices, clear session handling) must be visible near any data entry.
+
+Red flags: low contrast; small touch targets; auto-logout without warning; alarming language around results without context or a next step.` },
+  fintech: { name: 'Fintech — B2B analytics dashboard', text:
+`Domain: B2B financial analytics — dashboards, reporting, reconciliation.
+
+Primary user: Financial analysts and operations teams who open this product dozens of times a day and judge it on data density, accuracy cues, and export quality.
+
+Research and validate: Numbers are the product. Validate formatting rigor — thousands separators, consistent decimal places, explicit currencies and time zones, and visible as-of timestamps on every dataset. Tables need sort, filter, and export; charts need accessible labels, not color alone. Trust erodes on the first inconsistent figure, so flag any place where totals could disagree between views.
+
+Design standards: Information density over decoration; predictable navigation over novelty. Loading and empty states must state what is happening to the data. Audit keyboard operability throughout — power users do not reach for the mouse.` },
+  ecom: { name: 'E-commerce — mobile-first shoppers', text:
+`Domain: Consumer e-commerce, mobile-first.
+
+Primary user: Shoppers on phones, often on slow connections, with seconds of patience. The majority of traffic and revenue is mobile; audit mobile behavior first and desktop second.
+
+Research and validate: Speed is revenue — flag every render-blocking resource, unsized image, and layout shift near buy buttons. Validate the purchase path end to end: product findability, variant selection, cart persistence, guest checkout, and payment trust signals. Every extra checkout field measurably cuts conversion.
+
+Design standards: Thumb-reachable primary actions, 44px minimum touch targets, prices and shipping costs visible before commitment. Red flags: hidden costs revealed late, forced account creation, dark-pattern urgency, and carousels hiding key products.` }
+};
+
+function renderSkills() {
+  $('skilllist').innerHTML = state.skills.map((s, i) =>
+    `<div class="f"><b>${esc(s.name)}</b><span>${(s.text.length/1024).toFixed(1)} KB <span class="rm" role="button" aria-label="Remove skill" onclick="removeSkill(${i})">&times;</span></span></div>`).join('');
+}
+function removeSkill(i) { state.skills.splice(i, 1); renderSkills(); }
+
+function addTemplateSkill(sel) {
+  const key = sel.value; sel.value = '';
+  if (!key) return;
+  const tpl = SKILL_TEMPLATES[key];
+  if (state.skills.some(s => s.name === tpl.name)) { toast('That skill is already loaded.'); return; }
+  state.skills.push({ ...tpl });
+  renderSkills();
+  track('Skill Added', { kind: 'template', name: tpl.name });
+  toast('Skill loaded — the reviewer now audits as an expert in this domain.');
+}
+
+$('skillfile').addEventListener('change', function () {
+  [...this.files].forEach(f => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      state.skills.push({ name: f.name, text: String(reader.result) });
+      renderSkills();
+      track('Skill Added', { kind: 'file' });
+      toast('Skill loaded — the reviewer now audits as an expert in this domain.');
+    };
+    reader.readAsText(f);
+  });
+  this.value = '';
+});
+
+function toggleComposer(show) {
+  const c = $('composer');
+  const on = show !== undefined ? show : !c.classList.contains('show');
+  c.classList.toggle('show', on);
+  if (on) $('skilltext').focus();
+}
+function addCustomSkill() {
+  const t = $('skilltext').value.trim();
+  if (t.length < 40) { toast('Describe the domain in a little more detail — a few sentences minimum.'); return; }
+  const firstLine = t.split('\n')[0].slice(0, 42);
+  state.skills.push({ name: 'Custom skill — ' + firstLine + (t.length > 42 ? '…' : ''), text: t });
+  $('skilltext').value = '';
+  toggleComposer(false);
+  renderSkills();
+  track('Skill Added', { kind: 'custom' });
+  toast('Skill loaded — the reviewer now audits as an expert in this domain.');
+}
+
+/* ---------- Claude AI engine ---------- */
+const AI_SYSTEM = `You are UXexpert, an expert product-audit panel combining three reviewers:
+- A Principal UX Designer: usability, accessibility (cite specific WCAG success criteria), information hierarchy, visual polish, micro-interactions.
+- A Full-Stack Engineer: performance, correctness, security, SEO fundamentals, maintainability. Provide fixed code snippets that can be pasted in as-is.
+- A Growth Strategist: onboarding friction, trust signals, conversion, retention, copywriting. Ground every recommendation in what is actually on the page.
+
+Audit the provided web app source exhaustively. Report every issue you find, including ones you are uncertain about or consider low-severity — do not filter for importance; severity and impact scores let the reader rank them. Weight severity and impact for the stated audience, and treat any stated custom rules as hard requirements whose violations are at least high severity. Titles are one short sentence; details explain why it matters to a user or the business; fixes are concrete actions.
+
+Calibration rules:
+- Contrast: judge against WCAG AA (1.4.3 — 4.5:1 for body text, 3:1 for large text) by default. Hold to AAA (1.4.6, 7:1) only when a custom rule explicitly demands high contrast, and cite the criterion you actually applied.
+- Severity: reserve "critical" for findings that block the user's primary task, create a legal or safety violation (seizure-inducing motion, data transmitted insecurely, discriminatory exclusion), or pose a security risk. Everything else is at most "high". A competently built page should produce few or no criticals — do not inflate.
+- Consolidate findings that share a root cause into ONE finding listing every affected element (one palette-wide contrast problem is one finding; one form-labeling pattern is one finding). Real auditors report causes, not instances.
+- Audit only what is actually in the provided source. Never report a problem on an element that is implemented correctly, and never describe elements that do not appear in the source.
+
+When expertise skills are provided, adopt them completely: they are authoritative context about the domain, the real users, and their working conditions. Research the app through that lens, validate terminology, workflows, data presentation, and compliance expectations against the skill, and judge design by the skill's standards rather than generic consumer-web taste. Findings that violate a skill's stated expectations are at least high severity.`;
+
+const AI_SCHEMA = {
+  type: 'object',
+  properties: {
+    findings: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          lens: { type: 'string', enum: ['ux', 'dev', 'gtm'] },
+          severity: { type: 'string', enum: ['critical', 'high', 'medium', 'low'] },
+          title: { type: 'string' },
+          detail: { type: 'string' },
+          fix: { type: 'string' },
+          snippet: { anyOf: [{ type: 'string' }, { type: 'null' }] },
+          effort: { type: 'string', enum: ['S', 'M', 'L'] },
+          impact: { type: 'integer', enum: [1, 2, 3, 4, 5] },
+          wcag: { anyOf: [{ type: 'string' }, { type: 'null' }] }
+        },
+        required: ['lens', 'severity', 'title', 'detail', 'fix', 'snippet', 'effort', 'impact', 'wcag'],
+        additionalProperties: false
+      }
+    }
+  },
+  required: ['findings'],
+  additionalProperties: false
+};
+
+function getApiKey() {
+  // Strip whitespace (including line-wraps and non-breaking spaces from copy-paste)
+  const key = $('apikey').value.replace(/\s+/g, '');
+  if (!key) throw new Error('Enter your Anthropic API key, or switch to the local engine.');
+  if (!/^[\x21-\x7E]+$/.test(key)) throw new Error('Your API key contains hidden or non-standard characters — this usually happens when copying from a truncated display. Re-copy the full key from console.anthropic.com and paste it again.');
+  if ($('rememberkey').checked) localStorage.setItem('uxexpert_api_key', key);
+  else localStorage.removeItem('uxexpert_api_key');
+  return key;
+}
+
+// Shared streaming call to the Anthropic API: returns the accumulated text of a
+// schema-constrained response. Streaming keeps long generations alive; hard
+// abort at 4 minutes.
+async function claudeRequest(key, system, userContent, schema, maxTokens) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 240000);
+
+  let res;
+  try {
+    res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      signal: controller.signal,
+      headers: {
+        'content-type': 'application/json',
+        'x-api-key': key,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-opus-4-8',
+        max_tokens: maxTokens,
+        stream: true,
+        thinking: { type: 'adaptive' },
+        system,
+        messages: [{ role: 'user', content: userContent }],
+        output_config: { format: { type: 'json_schema', schema } }
+      })
+    });
+  } catch (e) {
+    clearTimeout(timer);
+    if (e.name === 'AbortError') throw new Error('The request ran past 4 minutes and was stopped — retry, or reduce the input.');
+    if (e instanceof TypeError) throw new Error('Could not reach the Anthropic API from this environment — the hosted demo blocks external requests; use the full site, or check your connection.');
+    throw e;
+  }
+
+  if (!res.ok) {
+    clearTimeout(timer);
+    const err = await res.json().catch(() => null);
+    if (res.status === 401) throw new Error('That API key was rejected — check it at console.anthropic.com.');
+    if (res.status === 429) throw new Error('Rate limited by the Anthropic API — wait a moment and retry.');
+    if (res.status === 529) throw new Error('The Anthropic API is temporarily overloaded — retry in a minute.');
+    throw new Error('Anthropic API error: ' + (err?.error?.message || res.status + ' ' + res.statusText));
+  }
+
+  let text = '', stopReason = null, streamErr = null;
+  try {
+    const reader = res.body.getReader();
+    const dec = new TextDecoder();
+    let buf = '';
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buf += dec.decode(value, { stream: true });
+      const lines = buf.split('\n');
+      buf = lines.pop();
+      for (const line of lines) {
+        if (!line.startsWith('data:')) continue;
+        let ev; try { ev = JSON.parse(line.slice(5).trim()); } catch { continue; }
+        if (ev.type === 'content_block_delta' && ev.delta?.type === 'text_delta') text += ev.delta.text;
+        else if (ev.type === 'message_delta' && ev.delta?.stop_reason) stopReason = ev.delta.stop_reason;
+        else if (ev.type === 'error') streamErr = ev.error?.message || 'stream error';
+      }
+    }
+  } catch (e) {
+    if (e.name === 'AbortError') throw new Error('The request ran past 4 minutes and was stopped — retry, or reduce the input.');
+    throw new Error('The connection dropped mid-generation — retry.');
+  } finally {
+    clearTimeout(timer);
+  }
+
+  if (streamErr) throw new Error('Anthropic API error: ' + streamErr);
+  if (stopReason === 'refusal') throw new Error('Claude declined to process this content.');
+  if (stopReason === 'max_tokens') throw new Error('The response hit its size limit — reduce the input and retry.');
+  if (!text) throw new Error('The model returned nothing — try again.');
+  return text;
+}
+
+async function analyzeWithClaude(src, opts, personaLabel) {
+  const key = getApiKey();
+
+  const rules = [
+    opts.contrastAAA && 'enforce WCAG AAA (7:1) contrast',
+    opts.minAnim && 'prefer minimal animation',
+    opts.darkMode && 'dark-mode support is required',
+    opts.mobileFirst && 'apply mobile-first strictness'
+  ].filter(Boolean);
+
+  const source = (src.html
+    + (src.css ? '\n\n/* ---- uploaded CSS ---- */\n' + src.css : '')
+    + (src.js ? '\n\n/* ---- uploaded JS ---- */\n' + src.js : '')).slice(0, 120000);
+
+  const skillBlock = state.skills.length
+    ? '\n\nExpertise skills (authoritative domain context — audit as an expert in this domain):\n\n'
+      + state.skills.map(s => `--- SKILL: ${s.name} ---\n${s.text.slice(0, 24000)}`).join('\n\n').slice(0, 60000)
+    : '';
+
+  const text = await claudeRequest(
+    key, AI_SYSTEM,
+    `Audience to evaluate for: ${personaLabel}\nCustom rules: ${rules.join('; ') || 'none'}${skillBlock}\n\nWeb app source to audit:\n\n${source}`,
+    AI_SCHEMA, 8000
+  );
+
+  const SEVN = { critical: 3, high: 2, medium: 1, low: 0 };
+  const findings = JSON.parse(text).findings.map(f => ({
+    lens: f.lens, sev: SEVN[f.severity] ?? 1, title: f.title, detail: f.detail, fix: f.fix,
+    snippet: f.snippet || null, effort: f.effort, impact: f.impact, tags: [], wcag: f.wcag || null, boosted: false
+  }));
+  findings.sort((a, b) => (b.sev + 1) * b.impact - (a.sev + 1) * a.impact || b.sev - a.sev);
+
+  const scores = computeScores(findings);
+
+  const doc = new DOMParser().parseFromString(src.html, 'text/html');
+  const stats = {
+    nodes: doc.querySelectorAll('*').length,
+    images: doc.querySelectorAll('img').length,
+    scripts: doc.querySelectorAll('script').length,
+    kb: (new Blob([src.html + src.css + src.js]).size / 1024).toFixed(1)
+  };
+  return { findings, scores, stats };
+}
+
+/* ---------- user stories (Pro) ---------- */
+const STORY_SYSTEM = `You are a principal product manager turning audit findings into a development-ready backlog. Consolidate related findings into single stories (one story per root cause, not per instance). Write each story in the standard format "As a <specific user>, I want <capability>, so that <outcome>" — the user is whoever benefits (an end user of the audited product, or where appropriate the business). Acceptance criteria are 3 to 6 testable statements per story, written as Given/When/Then or verifiable checks a reviewer could confirm; include the measurable bar where one exists (contrast ratios, tap-target sizes, load behavior). Priorities: P0 for critical or task-blocking findings, P1 for high-impact improvements, P2 for polish. Effort is the implementation size (S under a day, M a few days, L a week or more). Order the backlog P0 first.`;
+
+const STORY_SCHEMA = {
+  type: 'object',
+  properties: {
+    stories: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          title: { type: 'string' },
+          story: { type: 'string' },
+          acceptance_criteria: { type: 'array', items: { type: 'string' } },
+          priority: { type: 'string', enum: ['P0', 'P1', 'P2'] },
+          effort: { type: 'string', enum: ['S', 'M', 'L'] },
+          lens: { type: 'string', enum: ['ux', 'dev', 'gtm'] }
+        },
+        required: ['title', 'story', 'acceptance_criteria', 'priority', 'effort', 'lens'],
+        additionalProperties: false
+      }
+    }
+  },
+  required: ['stories'],
+  additionalProperties: false
+};
+
+async function generateStories() {
+  if (!state.last) { toast('Run an audit first — stories are written from its findings.'); return; }
+  let key;
+  try { key = getApiKey(); }
+  catch (e) {
+    toast('User stories are a Pro capability — during beta, preview them by adding your Anthropic API key in step 03.');
+    setEngine('ai');
+    return;
+  }
+  const btn = $('storybtn');
+  btn.disabled = true; btn.textContent = 'Writing stories…';
+  try {
+    const sevName = ['low', 'medium', 'high', 'critical'];
+    const findings = state.last.result.findings.map(f =>
+      ({ lens: f.lens, severity: sevName[f.sev], title: f.title, detail: f.detail, fix: f.fix }));
+    const userContent =
+      `Audience: ${$('persona').selectedOptions[0].textContent}\n`
+      + (state.last.skills.length ? `Domain skills applied: ${state.last.skills.join('; ')}\n` : '')
+      + `\nAudit findings to convert into a backlog:\n${JSON.stringify(findings, null, 1)}`;
+    const text = await claudeRequest(key, STORY_SYSTEM, userContent, STORY_SCHEMA, 6000);
+    state.last.stories = JSON.parse(text).stories;
+    renderStories();
+    track('Stories Generated', { count: state.last.stories.length });
+    toast(`${state.last.stories.length} user stories ready — a Pro feature, free to preview during beta.`);
+  } catch (e) { toast(e.message); }
+  finally { btn.disabled = false; btn.textContent = 'User stories — Pro'; }
+}
+
+function renderStories() {
+  const host = $('stories');
+  if (!host || !state.last?.stories) return;
+  const P = { P0: 'var(--red)', P1: '#B45309', P2: 'var(--slate-500)' };
+  host.innerHTML = `<h4 class="storyhead">Development backlog — user stories</h4>`
+    + state.last.stories.map(s => `
+      <div class="story">
+        <div class="top">
+          <span class="pill" style="color:${P[s.priority]};border-color:currentColor;font-weight:700">${s.priority}</span>
+          <span class="pill">Effort ${s.effort}</span>
+          <span class="pill">${LENS[s.lens]?.label || s.lens}</span>
+        </div>
+        <h4>${esc(s.title)}</h4>
+        <p class="narr">${esc(s.story)}</p>
+        <ul class="ac">${s.acceptance_criteria.map(a => `<li>${esc(a)}</li>`).join('')}</ul>
+      </div>`).join('')
+    + `<div class="export-row" style="margin-top:12px"><button class="btn btn-quiet btn-sm" onclick="exportStories()">Download backlog (Markdown)</button></div>`;
+  host.style.display = 'block';
+  host.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function buildStoriesMarkdown() {
+  let md = `# UXexpert Development Backlog\n\n_Generated from the audit of ${state.last.when} · ${state.last.stories.length} stories_\n\n`;
+  state.last.stories.forEach((s, i) => {
+    md += `## ${i + 1}. [${s.priority}] ${s.title}\n\n${s.story}\n\n**Lens:** ${LENS[s.lens]?.label || s.lens} · **Effort:** ${s.effort}\n\n**Acceptance criteria:**\n`;
+    s.acceptance_criteria.forEach(a => md += `- [ ] ${a}\n`);
+    md += '\n';
+  });
+  return md;
+}
+function exportStories() {
+  if (!state.last?.stories) return;
+  const blob = new Blob([buildStoriesMarkdown()], { type: 'text/markdown' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = 'uxexpert-backlog.md'; a.click();
+  URL.revokeObjectURL(a.href);
+  toast('Backlog downloaded as Markdown — checkbox format pastes cleanly into Jira, Linear, and Notion.');
+}
+
+/* ---------- GitHub repo input ---------- */
+async function fetchGitHubRepo(url) {
+  const m = url.match(/^https?:\/\/(?:www\.)?github\.com\/([^\/]+)\/([^\/#?]+)(?:\/(tree|blob)\/([^\/]+)(?:\/([^#?]*))?)?/);
+  if (!m) throw new Error('That does not look like a GitHub repository URL.');
+  const [, owner, repoRaw, kind, branchIn, sub] = m;
+  const repo = repoRaw.replace(/\.git$/, '');
+  toast(`Fetching ${owner}/${repo} from GitHub…`);
+
+  const gh = async path => {
+    let r;
+    try { r = await fetch(`https://api.github.com/${path}`, { headers: { accept: 'application/vnd.github+json' } }); }
+    catch (e) { throw new Error('Could not reach GitHub from this environment. The hosted demo blocks external requests — use the local version, or check your connection.'); }
+    if (r.status === 403 || r.status === 429) throw new Error('GitHub rate limit reached for your network — wait a few minutes and retry.');
+    if (r.status === 404) throw new Error('Repository not found. Check the URL — a just-published repo can take a moment; private repos are not supported in the playground.');
+    if (!r.ok) throw new Error('GitHub returned an error (' + r.status + ').');
+    return r.json();
+  };
+  const raw = (branch, path) => fetch(`https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${path}`);
+
+  const branch = branchIn || (await gh(`repos/${owner}/${repo}`)).default_branch;
+
+  // Single-file link (github.com/.../blob/branch/path)
+  if (kind === 'blob' && sub) {
+    const r = await raw(branch, sub);
+    if (!r.ok) throw new Error('Could not fetch that file from GitHub.');
+    const text = await r.text();
+    state.files.push({ name: sub.split('/').pop(), size: text.length, text });
+    renderFiles();
+    toast(`Loaded 1 file from ${owner}/${repo}.`);
+    return;
+  }
+
+  const tree = await gh(`repos/${owner}/${repo}/git/trees/${encodeURIComponent(branch)}?recursive=1`);
+  const EXCLUDE = /(^|\/)(node_modules|vendor|dist|build|out|coverage|third_party|\.next)\//;
+  const ORDER = { html: 0, htm: 0, css: 1, js: 2 };
+  const blobs = (tree.tree || []).filter(f => f.type === 'blob'
+    && (!sub || f.path === sub || f.path.startsWith(sub.replace(/\/$/, '') + '/')));
+  const webFiles = blobs.filter(f => /\.(html?|css|js)$/i.test(f.path));
+  const candidates = webFiles
+    .filter(f => !/\.(min|bundle)\.(js|css)$/i.test(f.path) && !EXCLUDE.test(f.path))
+    .sort((a, b) => {
+      const ea = ORDER[a.path.split('.').pop().toLowerCase()], eb = ORDER[b.path.split('.').pop().toLowerCase()];
+      return ea - eb || a.path.split('/').length - b.path.split('/').length;
+    });
+  if (!candidates.length) {
+    const hint = webFiles.length
+      ? 'the only HTML/CSS/JS files are minified bundles or build output, which are excluded'
+      : blobs.some(f => /\.(jsx|tsx|vue|svelte)$/i.test(f.path))
+        ? 'this looks like a framework app (JSX/TSX source) — build it and audit the rendered HTML, or paste the served pages'
+        : 'it contains no HTML, CSS, or JS files';
+    throw new Error(`Nothing auditable in that repository — ${hint}.`);
+  }
+
+  // Keep the playground fast: up to 25 files within a ~400 KB budget
+  let budget = 400000; const picked = [];
+  for (const f of candidates) {
+    if (picked.length >= 25) break;
+    if (f.size > 120000 || f.size > budget) continue;
+    budget -= f.size; picked.push(f);
+  }
+  if (!picked.length) throw new Error('The files in that repository are too large for the playground — paste the key pages instead.');
+
+  const loaded = (await Promise.all(picked.map(async f => {
+    const r = await raw(branch, f.path);
+    return r.ok ? { name: f.path, size: f.size, text: await r.text() } : null;
+  }))).filter(Boolean);
+  if (!loaded.length) throw new Error('Could not download files from that repository.');
+
+  state.files.push(...loaded);
+  renderFiles();
+
+  // Persistent accounting so "why only N files?" is answerable at a glance
+  const budgetSkipped = candidates.length - loaded.length;
+  const excluded = webFiles.length - candidates.length;
+  const nonWeb = blobs.length - webFiles.length;
+  const parts = [`Loaded ${loaded.length} of ${candidates.length} auditable file${candidates.length === 1 ? '' : 's'} from ${owner}/${repo}@${branch}`];
+  if (budgetSkipped > 0) parts.push(`${budgetSkipped} skipped by the 25-file / 400 KB playground budget`);
+  if (excluded > 0) parts.push(`${excluded} minified or build-output file${excluded === 1 ? '' : 's'} excluded`);
+  if (nonWeb > 0) parts.push(`${nonWeb} non-HTML/CSS/JS file${nonWeb === 1 ? '' : 's'} ignored`);
+  const sum = $('ghsummary');
+  sum.textContent = parts.join(' · ') + '.';
+  sum.style.display = 'block';
+
+  track('GitHub Fetch', { files: loaded.length });
+  toast(`Loaded ${loaded.length} file${loaded.length === 1 ? '' : 's'} from ${owner}/${repo}${budgetSkipped > 0 ? ` — ${budgetSkipped} more skipped to keep the audit fast` : ''}.`);
+}
+
+/* ---------- run + render ---------- */
+async function runEvaluation() {
+  let src = gatherSource();
+  let url = $('url').value.trim();
+  if (url && !/^https?:\/\//i.test(url)) url = 'https://' + url;
+
+  if (!src.html && !src.css && !src.js && url) {
+    if (/^https?:\/\/(www\.)?github\.com\//i.test(url)) {
+      try { await fetchGitHubRepo(url); } catch (e) { toast(e.message); return; }
+      src = gatherSource();
+    } else {
+      toast('Fetching URL…');
+      try {
+        const res = await fetch(url, { mode: 'cors' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        src.html = await res.text();
+      } catch (e) {
+        toast('Could not fetch that URL — most sites block cross-origin requests (CORS), a browser limitation. Paste the page HTML or use a GitHub link instead.');
+        return;
+      }
+    }
+  }
+  if (!src.html && !src.css && !src.js) { toast('Add some code first — or load the sample app.'); return; }
+
+  const opts = {
+    persona: $('persona').value,
+    contrastAAA: $('r-contrast').checked,
+    minAnim: $('r-anim').checked,
+    darkMode: $('r-dark').checked,
+    mobileFirst: $('r-mobile').checked
+  };
+
+  const useAI = state.engine === 'ai';
+  const personaLabel = $('persona').selectedOptions[0].textContent;
+  const prog = $('prog'), bar = prog.querySelector('i'), btn = $('runbtn');
+  const cleanup = () => {
+    clearInterval(prog._t); prog.style.display = 'none'; bar.style.width = '0';
+    btn.disabled = false; btn.textContent = 'Run audit';
+  };
+  btn.disabled = true; btn.textContent = useAI ? 'Claude is reviewing…' : 'Auditing…';
+  prog.style.display = 'block'; bar.style.width = '12%';
+  if (useAI) {
+    // creep toward 90% while the API call is in flight
+    let p = 12;
+    prog._t = setInterval(() => { p = Math.min(90, p + (90 - p) * 0.04); bar.style.width = p + '%'; }, 400);
+  } else {
+    await new Promise(r => setTimeout(r, 250)); bar.style.width = '55%';
+  }
+
+  let result;
+  try { result = useAI ? await analyzeWithClaude(src, opts, personaLabel) : analyze(src, opts); }
+  catch (e) { cleanup(); toast(e.message); return; }
+
+  clearInterval(prog._t);
+  bar.style.width = '100%';
+  await new Promise(r => setTimeout(r, 250));
+  cleanup();
+
+  state.last = { result, opts, engine: state.engine, skills: state.skills.map(s => s.name), when: new Date().toLocaleString() };
+  renderReport(result, opts);
+  track('Audit Run', {
+    engine: state.engine,
+    source: state.files.length ? 'files' : (state.sampleInEditor ? 'sample' : ($('code').value.trim() ? 'paste' : 'url')),
+    skills: state.skills.length
+  });
+  toast(`Audit complete — ${result.findings.length} findings across three lenses.`);
+}
+
+const LENS = {
+  ux:  { label: 'UX Design',   role: 'Principal UX Designer', color: 'var(--indigo)' },
+  dev: { label: 'Engineering', role: 'Full-Stack Engineer',   color: 'var(--teal)' },
+  gtm: { label: 'Growth',      role: 'Growth Strategist',     color: 'var(--emerald)' }
+};
+const SEVNAME = ['Low','Medium','High','Critical'];
+const scoreColor = s => s >= 80 ? 'var(--emerald)' : s >= 55 ? 'var(--amber)' : 'var(--red)';
+
+function renderReport(result, opts) {
+  $('placeholder').hidden = true;
+  const rep = $('report'); rep.hidden = false;
+  const { findings, scores, stats } = result;
+  const circ = 2 * Math.PI * 49;
+
+  const personaLabel = $('persona').selectedOptions[0].textContent;
+  const activeRules = ['r-contrast','r-anim','r-dark','r-mobile'].filter(id => $(id).checked).length;
+
+  rep.innerHTML = `
+    <div class="scorebar">
+      <div class="ring">
+        <svg width="112" height="112"><circle cx="56" cy="56" r="49" fill="none" stroke="var(--line)" stroke-width="8"/>
+        <circle cx="56" cy="56" r="49" fill="none" stroke="${scoreColor(scores.overall)}" stroke-width="8" stroke-linecap="round"
+          stroke-dasharray="${circ}" stroke-dashoffset="${circ * (1 - scores.overall/100)}"/></svg>
+        <div class="val">${scores.overall}<small>OVERALL</small></div>
+      </div>
+      ${['ux','dev','gtm'].map(l => `
+        <div class="lens-score"><div class="lbl">${LENS[l].label}</div>
+        <div class="n" style="color:${scoreColor(scores[l])}">${scores[l]}</div>
+        <div class="bar"><i style="width:${scores[l]}%;background:${LENS[l].color}"></i></div></div>`).join('')}
+    </div>
+    <p class="metaline">Audited by <b>${state.last?.engine === 'ai' ? 'Claude Opus 4.8' : 'the local engine'}</b> for <b>${esc(personaLabel)}</b> with <b>${activeRules}</b> custom rule${activeRules===1?'':'s'} and <b>${state.last?.skills.length || 0}</b> expertise skill${state.last?.skills.length===1?'':'s'} · ${stats.nodes} DOM nodes · ${stats.images} images · ${stats.scripts} scripts · ${stats.kb} KB source</p>
+    ${!state.last?.skills.length ? `<div class="callout"><b>Make this audit domain-expert.</b> Add an expertise skill describing your industry and your real users — say, a Finance Collections agent inside a telco BSS suite — and the reviewer will research, validate, and judge design against that world instead of generic web standards. <a href="#skills-block" onclick="document.getElementById('skills-block').scrollIntoView({behavior:'smooth',block:'center'});return false">Add a skill</a></div>` : ''}
+    <div class="tabs">
+      <button class="tab active" data-lens="all" onclick="filterLens(this)">All findings (${findings.length})</button>
+      ${['ux','dev','gtm'].map(l => `<button class="tab" data-lens="${l}" onclick="filterLens(this)">${LENS[l].label} (${findings.filter(f=>f.lens===l).length})</button>`).join('')}
+    </div>
+    <div id="findings">${findings.map(renderFinding).join('') || '<div class="empty-lens">No issues found — remarkably clean.</div>'}</div>
+    ${renderPlaybook(findings)}
+    <div id="stories" style="display:none"></div>
+    <div class="export-row">
+      <button class="btn btn-primary btn-sm" id="storybtn" onclick="generateStories()">User stories — Pro</button>
+      <button class="btn btn-quiet btn-sm" onclick="exportMarkdown()">Download Markdown</button>
+      <button class="btn btn-quiet btn-sm" onclick="copyReport()">Copy report</button>
+      <button class="btn btn-quiet btn-sm" onclick="toast('Shareable links, PDF, Jira, and Figma exports are coming soon — for now, everything stays local.')">Share link — soon</button>
+    </div>`;
+  $('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function renderFinding(f, i) {
+  return `<div class="finding s${f.sev}" data-lens="${f.lens}">
+    <div class="top">
+      <span class="sev sev-${f.sev}">${SEVNAME[f.sev]}</span>
+      <span class="pill">${LENS[f.lens].role}</span>
+      <span class="pill">Effort ${f.effort}</span>
+      <span class="pill">Impact ${f.impact}/5</span>
+      ${f.wcag ? `<span class="pill">${f.wcag}</span>` : ''}
+      ${f.boosted ? `<span class="pill up">Raised for your audience</span>` : ''}
+    </div>
+    <h4>${i+1}. ${esc(f.title)}</h4>
+    <p>${esc(f.detail)}</p>
+    <div class="fix"><b>Fix</b> — ${esc(f.fix)}</div>
+    ${f.snippet ? `<pre>${esc(f.snippet)}</pre>` : ''}
+  </div>`;
+}
+
+function renderPlaybook(findings) {
+  const conv = findings.filter(f => f.lens === 'gtm').slice(0, 3);
+  const quick = findings.filter(f => f.effort === 'S' && f.sev >= 2).slice(0, 3);
+  return `<div class="playbook">
+    <h4>Growth playbook — where to start</h4>
+    <ul>
+      <li><b>This week (quick wins):</b> ${quick.length ? quick.map(f => esc(f.title)).join(' · ') : 'No critical quick wins — polish the medium-severity items.'}</li>
+      <li><b>First A/B hypothesis:</b> ${conv[0] ? `Fixing "${esc(conv[0].title)}" — measure signup-start rate before and after.` : 'Test a benefit-led headline variant against the current one.'}</li>
+      <li><b>Retention loop:</b> Instrument visit, signup, and first-value-moment events, then reach out to users who stall between the last two within 24 hours.</li>
+      <li><b>Next iteration:</b> Re-run this audit after your fixes and compare the scores.</li>
+    </ul>
+  </div>`;
+}
+
+function filterLens(btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  const lens = btn.dataset.lens;
+  let shown = 0;
+  document.querySelectorAll('#findings .finding').forEach(el => {
+    const show = lens === 'all' || el.dataset.lens === lens;
+    el.style.display = show ? '' : 'none'; if (show) shown++;
+  });
+  let empty = document.querySelector('#findings .empty-lens');
+  if (!shown) {
+    if (!empty) { empty = document.createElement('div'); empty.className = 'empty-lens'; $('findings').append(empty); }
+    empty.textContent = 'No issues from this lens — nice work.'; empty.style.display = '';
+  } else if (empty) empty.style.display = 'none';
+}
+
+/* ---------- exports ---------- */
+function buildMarkdown() {
+  const { result, opts, when } = state.last;
+  const { findings, scores, stats } = result;
+  let md = `# UXexpert Audit Report\n\n_Generated ${when} · engine: ${state.last.engine === 'ai' ? 'Claude Opus 4.8' : 'local'} · audience: ${$('persona').selectedOptions[0].textContent}_\n\n`;
+  if (state.last.skills.length) md += `_Expertise skills: ${state.last.skills.join(' · ')}_\n\n`;
+  md += `## Scores\n\n| Lens | Score |\n|---|---|\n| **Overall** | **${scores.overall}/100** |\n| UX Design | ${scores.ux}/100 |\n| Engineering | ${scores.dev}/100 |\n| Growth | ${scores.gtm}/100 |\n\n`;
+  md += `_${stats.nodes} DOM nodes · ${stats.images} images · ${stats.scripts} scripts · ${stats.kb} KB source_\n\n## Findings (${findings.length})\n\n`;
+  findings.forEach((f, i) => {
+    md += `### ${i+1}. [${SEVNAME[f.sev].toUpperCase()}] ${f.title}\n`;
+    md += `**Lens:** ${LENS[f.lens].role} · **Effort:** ${f.effort} · **Impact:** ${f.impact}/5${f.wcag ? ' · ' + f.wcag : ''}\n\n${f.detail}\n\n**Fix:** ${f.fix}\n`;
+    if (f.snippet) md += `\n\`\`\`\n${f.snippet}\n\`\`\`\n`;
+    md += '\n';
+  });
+  if (state.last.stories?.length) md += '\n---\n\n' + buildStoriesMarkdown().split('\n').slice(2).join('\n');
+  return md;
+}
+function exportMarkdown() {
+  if (!state.last) return;
+  const blob = new Blob([buildMarkdown()], { type: 'text/markdown' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = 'uxexpert-report.md'; a.click();
+  URL.revokeObjectURL(a.href);
+  track('Export', { format: 'markdown' });
+  toast('Report downloaded as Markdown.');
+}
+function copyReport() {
+  if (!state.last) return;
+  navigator.clipboard.writeText(buildMarkdown()).then(() => toast('Report copied to clipboard.'));
+}
+</script>
+</body>
+</html>

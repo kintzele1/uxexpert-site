@@ -456,7 +456,7 @@
 
 <footer>
   <div class="wrap">
-    <div>UXexpert.ai — your instant principal UX expert.</div>
+    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert.</div>
     <div><a href="https://uxexpert.ai/privacy/">Privacy</a><a href="https://uxexpert.ai/terms/">Terms</a><a href="mailto:hello@uxexpert.ai">Contact</a></div>
   </div>
 </footer>
@@ -557,6 +557,41 @@ function track(name, props) {
   try { if (window.plausible) plausible(name, props ? { props } : undefined); } catch (e) {}
 }
 
+/* ---------- session persistence ---------- */
+// A reload must never destroy a report (an AI run costs real money and minutes).
+// Persists the last report, skills, and settings — never uploaded file contents.
+function saveState() {
+  try {
+    localStorage.setItem('uxexpert_state', JSON.stringify({
+      v: 1,
+      last: state.last || null,
+      skills: state.skills,
+      persona: $('persona').value,
+      engine: state.engine,
+      rules: { c: $('r-contrast').checked, a: $('r-anim').checked, d: $('r-dark').checked, m: $('r-mobile').checked }
+    }));
+  } catch (e) {}
+}
+function restoreState() {
+  try {
+    const s = JSON.parse(localStorage.getItem('uxexpert_state') || 'null');
+    if (!s || s.v !== 1) return;
+    state.restoring = true;
+    state.skills = s.skills || [];
+    renderSkills();
+    if (s.persona) $('persona').value = s.persona;
+    $('r-contrast').checked = !!s.rules?.c; $('r-anim').checked = !!s.rules?.a;
+    $('r-dark').checked = !!s.rules?.d; $('r-mobile').checked = !!s.rules?.m;
+    if (s.engine === 'ai') { document.querySelector('#eng-ai input').checked = true; setEngine('ai'); }
+    if (s.last) {
+      state.last = s.last;
+      renderReport(s.last.result, s.last.opts);
+      if (s.last.stories) renderStories();
+    }
+  } catch (e) {}
+  finally { state.restoring = false; }
+}
+
 /* ---------- waitlist (Formspree) ---------- */
 const FORMSPREE_ID = 'mjgndlwd';
 let wlPlan = 'pro';
@@ -600,7 +635,8 @@ function setEngine(engine) {
   $('eng-local').classList.toggle('active', engine === 'local');
   $('eng-ai').classList.toggle('active', engine === 'ai');
   $('keywrap').classList.toggle('show', engine === 'ai');
-  if (engine === 'ai' && !$('apikey').value) $('apikey').focus();
+  if (engine === 'ai' && !$('apikey').value && !state.restoring) $('apikey').focus();
+  if (!state.restoring) saveState();
 }
 (() => {
   const saved = localStorage.getItem('uxexpert_api_key');
@@ -1002,6 +1038,7 @@ Design standards: Thumb-reachable primary actions, 44px minimum touch targets, p
 function renderSkills() {
   $('skilllist').innerHTML = state.skills.map((s, i) =>
     `<div class="f"><b>${esc(s.name)}</b><span>${(s.text.length/1024).toFixed(1)} KB <span class="rm" role="button" aria-label="Remove skill" onclick="removeSkill(${i})">&times;</span></span></div>`).join('');
+  if (!state.restoring) saveState();
 }
 function removeSkill(i) { state.skills.splice(i, 1); renderSkills(); }
 
@@ -1272,6 +1309,7 @@ async function generateStories() {
     state.last.stories = JSON.parse(text).stories;
     renderStories();
     track('Stories Generated', { count: state.last.stories.length });
+    saveState();
     toast(`${state.last.stories.length} user stories ready — a Pro feature, free to preview during beta.`);
   } catch (e) { toast(e.message); }
   finally { btn.disabled = false; btn.textContent = 'User stories — Pro'; }
@@ -1468,6 +1506,7 @@ async function runEvaluation() {
     source: state.files.length ? 'files' : (state.sampleInEditor ? 'sample' : ($('code').value.trim() ? 'paste' : 'url')),
     skills: state.skills.length
   });
+  saveState();
   toast(`Audit complete — ${result.findings.length} findings across three lenses.`);
 }
 
@@ -1501,7 +1540,7 @@ function renderReport(result, opts) {
         <div class="n" style="color:${scoreColor(scores[l])}">${scores[l]}</div>
         <div class="bar"><i style="width:${scores[l]}%;background:${LENS[l].color}"></i></div></div>`).join('')}
     </div>
-    <p class="metaline">Audited by <b>${state.last?.engine === 'ai' ? 'Claude Opus 4.8' : 'the local engine'}</b> for <b>${esc(personaLabel)}</b> with <b>${activeRules}</b> custom rule${activeRules===1?'':'s'} and <b>${state.last?.skills.length || 0}</b> expertise skill${state.last?.skills.length===1?'':'s'} · ${stats.nodes} DOM nodes · ${stats.images} images · ${stats.scripts} scripts · ${stats.kb} KB source</p>
+    <p class="metaline">Audited by <b>${state.last?.engine === 'ai' ? 'Claude Opus 4.8' : 'the local engine'}</b> for <b>${esc(personaLabel)}</b> with <b>${activeRules}</b> custom rule${activeRules===1?'':'s'} and <b>${state.last?.skills.length || 0}</b> expertise skill${state.last?.skills.length===1?'':'s'} · ${stats.nodes} DOM nodes · ${stats.images} images · ${stats.scripts} scripts · ${stats.kb} KB source · ${esc(state.last?.when || '')}</p>
     ${!state.last?.skills.length ? `<div class="callout"><b>Make this audit domain-expert.</b> Add an expertise skill describing your industry and your real users — say, a Finance Collections agent inside a telco BSS suite — and the reviewer will research, validate, and judge design against that world instead of generic web standards. <a href="#skills-block" onclick="document.getElementById('skills-block').scrollIntoView({behavior:'smooth',block:'center'});return false">Add a skill</a></div>` : ''}
     <div class="tabs">
       <button class="tab active" data-lens="all" onclick="filterLens(this)">All findings (${findings.length})</button>
@@ -1516,7 +1555,7 @@ function renderReport(result, opts) {
       <button class="btn btn-quiet btn-sm" onclick="copyReport()">Copy report</button>
       <button class="btn btn-quiet btn-sm" onclick="toast('Shareable links, PDF, Jira, and Figma exports are coming soon — for now, everything stays local.')">Share link — soon</button>
     </div>`;
-  $('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (!state.restoring) $('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function renderFinding(f, i) {
@@ -1596,6 +1635,12 @@ function copyReport() {
   if (!state.last) return;
   navigator.clipboard.writeText(buildMarkdown()).then(() => toast('Report copied to clipboard.'));
 }
+
+/* ---------- boot: restore the previous session ---------- */
+restoreState();
+updateReady();
+['persona', 'r-contrast', 'r-anim', 'r-dark', 'r-mobile'].forEach(id =>
+  $(id).addEventListener('change', saveState));
 </script>
 </body>
 </html>

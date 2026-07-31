@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — UXexpert.ai</title>
+<meta name="description" content="How UXexpert.ai handles your code, your API key, and your data. Short version: your code stays in your browser unless you choose the AI engine.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%234F46E5'/%3E%3Cpath d='M9 9l14 14M23 9L9 23' stroke='%23fff' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="canonical" href="https://uxexpert.ai/privacy/">
+<style>
+  :root{--indigo:#4F46E5;--slate:#0F172A;--slate-700:#334155;--slate-500:#5A6879;--paper:#F8FAFC;--white:#FFFFFF;--line:#E2E8F0;
+    --serif:"New York","Iowan Old Style",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--slate);font-family:var(--sans);line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased}
+  a{color:var(--indigo);text-decoration:none}
+  a:hover{text-decoration:underline}
+  nav{background:rgba(248,250,252,.85);border-bottom:1px solid var(--line)}
+  nav .wrap{max-width:760px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:var(--slate);letter-spacing:-.02em;text-decoration:none}
+  .logo:hover{text-decoration:none}
+  main{max-width:760px;margin:0 auto;padding:64px 28px 96px}
+  h1{font-family:var(--serif);font-weight:600;font-size:38px;letter-spacing:-.015em;margin-bottom:8px}
+  .updated{color:var(--slate-500);font-size:14px;margin-bottom:36px}
+  h2{font-family:var(--serif);font-weight:600;font-size:22px;margin:36px 0 10px}
+  p,li{color:var(--slate-700);font-size:15.5px;margin-bottom:12px}
+  ul{padding-left:22px;margin-bottom:12px}
+  li{margin-bottom:6px}
+  .tldr{background:var(--white);border:1px solid var(--line);border-left:3px solid var(--indigo);border-radius:10px;padding:18px 20px;margin-bottom:8px}
+  .tldr p{margin:0}
+  footer{border-top:1px solid var(--line);padding:40px 28px;color:var(--slate-500);font-size:13.5px;text-align:center;background:var(--white)}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="logo" href="https://uxexpert.ai/"><svg width="26" height="26" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#4F46E5"/><path d="M9 9l14 14M23 9L9 23" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/></svg><span>UXexpert<span style="color:#4F46E5">.ai</span></span></a>
+  <a href="https://uxexpert.ai/">Back to the app</a>
+</div></nav>
+<main>
+  <h1>Privacy Policy</h1>
+  <p class="updated">Effective July 31, 2026</p>
+
+  <div class="tldr"><p><strong>The short version:</strong> UXexpert.ai has no server of its own. Your code is analyzed in your browser unless you choose the Claude AI engine, in which case it goes directly from your browser to Anthropic using your own API key. We never see your code, and we never see your key. We collect an email address only if you join the waitlist, and we use cookieless, aggregate analytics.</p></div>
+
+  <h2>Who we are</h2>
+  <p>UXexpert.ai ("we") is a website-audit tool served as a static web page. There is no UXexpert backend server: the page you load is the entire product. Contact: <a href="mailto:hello@uxexpert.ai">hello@uxexpert.ai</a>.</p>
+
+  <h2>Your code</h2>
+  <ul>
+    <li><strong>Local engine (default):</strong> analysis runs entirely inside your browser. The code you upload, paste, or fetch never leaves your device and is never transmitted to us or anyone else.</li>
+    <li><strong>Claude AI engine (optional):</strong> if you choose it and provide your own Anthropic API key, your submitted code, selected expertise skills, and audit settings are sent directly from your browser to Anthropic's API (api.anthropic.com). We are not in that path and never receive the content. Anthropic's handling of API data is governed by <a href="https://www.anthropic.com/legal/privacy" rel="noopener">Anthropic's privacy policy</a> and your agreement with them.</li>
+    <li><strong>GitHub fetching (optional):</strong> if you audit a public repository, your browser requests files directly from GitHub (api.github.com and raw.githubusercontent.com), subject to <a href="https://docs.github.com/privacy" rel="noopener">GitHub's privacy statement</a>.</li>
+  </ul>
+
+  <h2>Your API key</h2>
+  <p>Your Anthropic API key is used only to make requests from your browser to api.anthropic.com. It is never sent to us or to any other party. If you check "Remember on this device," the key is stored in your browser's local storage on your device; unchecking it (or clearing your browser data) removes it. We recommend using a key with a spending limit.</p>
+
+  <h2>Analytics</h2>
+  <p>We use <a href="https://plausible.io/privacy-focused-web-analytics" rel="noopener">Plausible</a>, a privacy-first analytics service: no cookies, no cross-site tracking, no personal profiles, and data is aggregate. We record page views and feature-usage events (for example, "an audit ran with the local engine"). Event data never includes your code, your repository contents, your API key, or your email.</p>
+
+  <h2>Waitlist emails</h2>
+  <p>If you join the Pro or Enterprise waitlist, the email address you enter (with the tier you chose) is delivered to us via <a href="https://formspree.io/legal/privacy-policy/" rel="noopener">Formspree</a>, which acts as our form processor. We use it solely to contact you about UXexpert availability and product updates. We do not sell or share it. To be removed, email <a href="mailto:hello@uxexpert.ai">hello@uxexpert.ai</a> and we will delete it.</p>
+
+  <h2>Cookies and local storage</h2>
+  <p>We set no cookies. Browser local storage is used only for your own preferences on your own device (currently: your API key, if you ask us to remember it).</p>
+
+  <h2>Your rights</h2>
+  <p>Depending on where you live (including under GDPR and CCPA), you may have rights to access, correct, or delete personal data. The only personal data we hold is a waitlist email, if you provided one — email <a href="mailto:hello@uxexpert.ai">hello@uxexpert.ai</a> to exercise any right and we will respond promptly.</p>
+
+  <h2>Changes</h2>
+  <p>If our data practices change (for example, when hosted Pro accounts launch), we will update this page and its effective date before the change takes effect.</p>
+</main>
+<footer>UXexpert.ai — your instant principal UX expert. · <a href="https://uxexpert.ai/terms/">Terms</a> · <a href="mailto:hello@uxexpert.ai">Contact</a></footer>
+</body>
+</html>

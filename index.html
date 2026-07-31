@@ -234,6 +234,18 @@
 
   .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(90px);background:var(--slate);color:var(--paper);border-radius:9px;padding:12px 20px;font-size:14px;transition:transform .25s;z-index:99;max-width:min(560px,90vw);box-shadow:0 12px 40px rgba(15,23,42,.3)}
   .toast.show{transform:translateX(-50%) translateY(0)}
+
+  /* Waitlist modal */
+  .overlay{position:fixed;inset:0;background:rgba(15,23,42,.45);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+  .overlay.show{display:flex}
+  .modal{background:var(--white);border-radius:14px;padding:30px;max-width:420px;width:100%;box-shadow:0 24px 80px rgba(15,23,42,.3)}
+  .modal h3{font-size:18px;margin-bottom:6px}
+  .modal p{font-size:14px;color:var(--slate-500);margin-bottom:18px}
+  .modal input[type=email]{width:100%;background:var(--white);border:1px solid var(--line);border-radius:9px;color:var(--slate);font-size:15px;padding:12px 14px;margin-bottom:12px}
+  .modal .row{display:flex;gap:10px}
+  .modal .row .btn{flex:1}
+  .modal .ok{display:none;text-align:center;padding:12px 0 4px}
+  .modal .ok b{color:var(--emerald);font-size:16px;display:block;margin-bottom:6px}
 </style>
 </head>
 <body>
@@ -431,12 +443,12 @@
       <div class="plan">
         <h3>Pro</h3><div class="price">Coming soon</div><p class="for">For people who ship every week</p>
         <ul><li>User stories with acceptance criteria (preview it free in beta with your API key)</li><li>Hosted Claude reviews, no API key needed</li><li>Live URL crawling and screenshots</li><li>Version comparison and history</li><li>PDF, Jira, Figma, and Notion exports</li><li>Shareable report links</li></ul>
-        <a href="mailto:hello@uxexpert.ai?subject=UXexpert%20Pro%20waitlist" class="btn btn-quiet">Join the waitlist</a>
+        <button class="btn btn-quiet" onclick="openWaitlist('pro')">Join the waitlist</button>
       </div>
       <div class="plan">
         <h3>Enterprise</h3><div class="price">Coming soon</div><p class="for">For teams with standards to enforce</p>
         <ul><li>Team seats and SSO</li><li>API and CI integration</li><li>Custom models and rule packs</li><li>Data isolation and DPA</li></ul>
-        <a href="mailto:hello@uxexpert.ai?subject=UXexpert%20Enterprise" class="btn btn-quiet">Talk to us</a>
+        <button class="btn btn-quiet" onclick="openWaitlist('enterprise')">Talk to us</button>
       </div>
     </div>
   </div>
@@ -448,6 +460,25 @@
     <div><a href="mailto:hello@uxexpert.ai">Contact</a></div>
   </div>
 </footer>
+
+<div class="overlay" id="waitlist" role="dialog" aria-modal="true" aria-labelledby="wl-title">
+  <div class="modal">
+    <div id="wl-form">
+      <h3 id="wl-title">Join the waitlist</h3>
+      <p id="wl-copy">Leave your email and you'll be first to hear when this tier ships. No spam, no sharing.</p>
+      <input type="email" id="wl-email" placeholder="you@company.com" autocomplete="email" aria-label="Email address">
+      <div class="row">
+        <button class="btn btn-primary" onclick="submitWaitlist()" id="wl-submit">Join</button>
+        <button class="btn btn-quiet" onclick="closeWaitlist()">Cancel</button>
+      </div>
+    </div>
+    <div class="ok" id="wl-ok">
+      <b>You're on the list.</b>
+      <p style="margin:0">We'll email you the moment it's ready.</p>
+      <button class="btn btn-quiet btn-sm" style="margin-top:14px" onclick="closeWaitlist()">Close</button>
+    </div>
+  </div>
+</div>
 
 <div class="toast" id="toast" role="status"></div>
 
@@ -525,6 +556,42 @@ function esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&l
 function track(name, props) {
   try { if (window.plausible) plausible(name, props ? { props } : undefined); } catch (e) {}
 }
+
+/* ---------- waitlist (Formspree) ---------- */
+const FORMSPREE_ID = 'mjgndlwd';
+let wlPlan = 'pro';
+function openWaitlist(plan) {
+  wlPlan = plan;
+  if (!FORMSPREE_ID) { location.href = `mailto:hello@uxexpert.ai?subject=UXexpert%20${plan}%20waitlist`; return; }
+  $('wl-title').textContent = plan === 'enterprise' ? 'Talk to us about Enterprise' : 'Join the Pro waitlist';
+  $('wl-copy').textContent = plan === 'enterprise'
+    ? 'Leave your email and we will reach out about team seats, SSO, and custom rule packs.'
+    : "Leave your email and you'll be first to hear when Pro ships. No spam, no sharing.";
+  $('wl-form').style.display = 'block'; $('wl-ok').style.display = 'none';
+  $('waitlist').classList.add('show');
+  $('wl-email').focus();
+}
+function closeWaitlist() { $('waitlist').classList.remove('show'); }
+async function submitWaitlist() {
+  const email = $('wl-email').value.trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { toast('That email does not look right — check it and try again.'); return; }
+  const btn = $('wl-submit'); btn.disabled = true; btn.textContent = 'Joining…';
+  try {
+    const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', accept: 'application/json' },
+      body: JSON.stringify({ email, plan: wlPlan, source: 'uxexpert.ai' })
+    });
+    if (!res.ok) throw new Error('Signup failed (' + res.status + ') — try again, or email hello@uxexpert.ai.');
+    $('wl-form').style.display = 'none'; $('wl-ok').style.display = 'block';
+    track('Waitlist Joined', { plan: wlPlan });
+  } catch (e) {
+    toast(e.message.includes('fetch') ? 'Could not reach the signup service — check your connection or email hello@uxexpert.ai.' : e.message);
+  } finally {
+    btn.disabled = false; btn.textContent = 'Join';
+  }
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeWaitlist(); });
 
 /* ---------- engine selection ---------- */
 state.engine = 'local';

@@ -18,6 +18,10 @@
 <meta name="twitter:description" content="Upload your web app. Get an AI UX expert review of design, code, and growth with prioritized, actionable fixes.">
 <meta name="twitter:image" content="https://uxexpert.ai/og.png">
 <link rel="canonical" href="https://uxexpert.ai/">
+<!-- Defense-in-depth: even if script injection ever occurred, network egress is
+     limited to the APIs this app legitimately talks to — an injected script
+     cannot exfiltrate a pasted API key to an arbitrary host. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://plausible.io; connect-src 'self' https://api.anthropic.com https://api.github.com https://raw.githubusercontent.com https://formspree.io https://plausible.io; img-src 'self' data:; style-src 'unsafe-inline'; base-uri 'none'; object-src 'none'; form-action 'self' https://formspree.io">
 <!-- Privacy-friendly analytics by Plausible -->
 <script async src="https://plausible.io/js/pa-HuKnDbBb6VROp-Q7KzWUg.js"></script>
 <script>
@@ -43,6 +47,8 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
+  .skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--indigo);color:#fff;padding:10px 18px;border-radius:0 0 8px 0;font-weight:600;font-size:14px}
+  .skip:focus{left:0}
   body{background:var(--paper);color:var(--slate);font-family:var(--sans);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
   a{color:var(--indigo);text-decoration:none}
   .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
@@ -166,6 +172,11 @@
   .progress i{display:block;height:100%;width:0;background:var(--indigo);transition:width .3s}
 
   /* Results */
+  .errbox{background:#FEF2F2;border:1px solid #FECACA;border-left:3px solid var(--red);border-radius:10px;padding:14px 16px;margin-bottom:16px;display:flex;gap:12px;align-items:flex-start}
+  .errbox p{font-size:13.5px;color:var(--slate-700);flex:1;margin:0}
+  .errbox b{color:var(--red);display:block;font-size:13px;margin-bottom:2px}
+  .errbox .rm{color:var(--slate-400);cursor:pointer;font-size:16px;line-height:1;background:none;border:0;padding:2px}
+  .errbox .rm:hover{color:var(--red)}
   #results .placeholder{color:var(--slate-400);text-align:center;padding:80px 24px;font-size:15px}
   #results .placeholder .ph-title{font-family:var(--serif);font-size:19px;color:var(--slate-500);margin-bottom:8px}
   .scorebar{display:grid;grid-template-columns:auto 1fr 1fr 1fr;gap:14px;align-items:center;margin-bottom:18px}
@@ -173,7 +184,7 @@
   .ring{position:relative;width:112px;height:112px}
   .ring svg{transform:rotate(-90deg)}
   .ring .val{position:absolute;inset:0;display:grid;place-items:center;font-size:28px;font-weight:700;font-family:var(--serif)}
-  .ring .val small{display:block;font-size:10px;color:var(--slate-400);font-weight:600;text-align:center;letter-spacing:.12em;font-family:var(--sans)}
+  .ring .val small{display:block;font-size:11px;color:var(--slate-400);font-weight:600;text-align:center;letter-spacing:.12em;font-family:var(--sans)}
   .lens-score{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
   .lens-score .lbl{font-size:11.5px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;color:var(--slate-500);margin-bottom:2px}
   .lens-score .n{font-size:24px;font-weight:700;font-family:var(--serif)}
@@ -189,7 +200,7 @@
   .finding.s3{border-left-color:var(--red)} .finding.s2{border-left-color:var(--amber)}
   .finding.s1{border-left-color:var(--indigo-soft)} .finding.s0{border-left-color:var(--slate-400)}
   .finding .top{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
-  .sev{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:5px;padding:3px 8px}
+  .sev{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:5px;padding:3px 8px}
   .sev-3{background:#FEF2F2;color:var(--red)} .sev-2{background:#FFFBEB;color:#B45309}
   .sev-1{background:#EEF2FF;color:var(--indigo)} .sev-0{background:var(--line-soft);color:var(--slate-500)}
   .pill{font-size:11.5px;font-weight:550;border-radius:5px;padding:3px 8px;background:var(--paper);color:var(--slate-500);border:1px solid var(--line-soft)}
@@ -218,7 +229,7 @@
   @media(max-width:900px){.plans{grid-template-columns:1fr}}
   .plan{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column}
   .plan.hot{border-color:var(--indigo);box-shadow:0 0 0 1px var(--indigo),var(--shadow);position:relative}
-  .plan .tag{position:absolute;top:-11px;left:30px;background:var(--indigo);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:99px;padding:4px 12px}
+  .plan .tag{position:absolute;top:-11px;left:30px;background:var(--indigo);color:#fff;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:99px;padding:4px 12px}
   .plan h3{font-size:15px}
   .plan .price{font-family:var(--serif);font-size:40px;font-weight:600;margin:14px 0 2px}
   .plan .price small{font-size:14px;color:var(--slate-400);font-weight:400;font-family:var(--sans)}
@@ -249,6 +260,7 @@
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
 <nav>
   <div class="wrap">
@@ -266,7 +278,7 @@
   </div>
 </nav>
 
-<header class="hero">
+<header class="hero" id="main">
   <div class="wrap">
     <p class="eyebrow">Your instant principal UX expert</p>
     <h1>Your web app, reviewed like a <em>flagship product</em>.</h1>
@@ -401,6 +413,10 @@
       </div>
 
       <div class="card" id="results" aria-live="polite">
+        <div class="errbox" id="errbox" hidden>
+          <p><b>Something went wrong</b><span id="errmsg"></span></p>
+          <button class="rm" aria-label="Dismiss error" onclick="clearError()">&times;</button>
+        </div>
         <div class="placeholder" id="placeholder">
           <div class="ph-title">Your report will appear here</div>
           Findings from all three reviewers, scored and prioritized,<br>with fixes you can apply today.
@@ -551,6 +567,15 @@ function toast(msg) {
   clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('show'), 4200);
 }
 function esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+// Errors persist in the report panel until dismissed or a run succeeds —
+// a four-second toast is not enough for something that stopped your audit.
+function showError(msg) {
+  $('errmsg').textContent = ' ' + msg;
+  $('errbox').hidden = false;
+  toast(msg);
+}
+function clearError() { $('errbox').hidden = true; }
 
 // Funnel analytics — event names and coarse labels only, never code content.
 function track(name, props) {
@@ -833,7 +858,9 @@ function analyze(src, opts) {
     add('ux', 1, 'Touch targets likely below 44 by 44 pixels', 'Buttons with roughly 4px padding and 11px text land well under the 44px minimum recommended by Apple HIG and WCAG 2.5.8, causing mis-taps on mobile.', 'Increase padding and font size so interactive targets are at least 44 by 44 pixels.', { snippet: '.btn { padding: 12px 20px; font-size: 15px; min-height: 44px; }', impact: 4, tags: ['mobile','a11y'], wcag: 'WCAG 2.5.8' });
 
   const nodeCount = doc.querySelectorAll('*').length;
-  if (nodeCount > 60 && !/skip/i.test(rawHtml.slice(0, 2000)))
+  const firstBodyLink = doc.body ? doc.body.querySelector('a') : null;
+  const hasSkipLink = firstBodyLink && /^#./.test(firstBodyLink.getAttribute('href') || '');
+  if (nodeCount > 60 && !hasSkipLink)
     add('ux', 0, 'No skip-to-content link', 'Keyboard users must tab through every nav item on every page. A skip link is a one-line courtesy that WCAG expects.', 'Add a visually-hidden skip link as the first focusable element.', { snippet: '<a class="skip" href="#main">Skip to content</a>', impact: 2, tags: ['a11y'], wcag: 'WCAG 2.4.1' });
 
   if (opts.darkMode && !/prefers-color-scheme/.test(css))
@@ -1311,7 +1338,7 @@ async function generateStories() {
     track('Stories Generated', { count: state.last.stories.length });
     saveState();
     toast(`${state.last.stories.length} user stories ready — a Pro feature, free to preview during beta.`);
-  } catch (e) { toast(e.message); }
+  } catch (e) { showError(e.message); }
   finally { btn.disabled = false; btn.textContent = 'User stories — Pro'; }
 }
 
@@ -1449,7 +1476,7 @@ async function runEvaluation() {
 
   if (!src.html && !src.css && !src.js && url) {
     if (/^https?:\/\/(www\.)?github\.com\//i.test(url)) {
-      try { await fetchGitHubRepo(url); } catch (e) { toast(e.message); return; }
+      try { await fetchGitHubRepo(url); } catch (e) { showError(e.message); return; }
       src = gatherSource();
     } else {
       toast('Fetching URL…');
@@ -1458,7 +1485,7 @@ async function runEvaluation() {
         if (!res.ok) throw new Error('HTTP ' + res.status);
         src.html = await res.text();
       } catch (e) {
-        toast('Could not fetch that URL — most sites block cross-origin requests (CORS), a browser limitation. Paste the page HTML or use a GitHub link instead.');
+        showError('Could not fetch that URL — most sites block cross-origin requests (CORS), a browser limitation. Paste the page HTML or use a GitHub link instead.');
         return;
       }
     }
@@ -1492,7 +1519,7 @@ async function runEvaluation() {
 
   let result;
   try { result = useAI ? await analyzeWithClaude(src, opts, personaLabel) : analyze(src, opts); }
-  catch (e) { cleanup(); toast(e.message); return; }
+  catch (e) { cleanup(); showError(e.message); return; }
 
   clearInterval(prog._t);
   bar.style.width = '100%';
@@ -1519,6 +1546,7 @@ const SEVNAME = ['Low','Medium','High','Critical'];
 const scoreColor = s => s >= 80 ? 'var(--emerald)' : s >= 55 ? 'var(--amber)' : 'var(--red)';
 
 function renderReport(result, opts) {
+  clearError();
   $('placeholder').hidden = true;
   const rep = $('report'); rep.hidden = false;
   const { findings, scores, stats } = result;

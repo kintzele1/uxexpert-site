@@ -39,6 +39,8 @@
     --slate:#0F172A; --slate-700:#334155; --slate-500:#5A6879; --slate-400:#64748B;
     --paper:#F8FAFC; --white:#FFFFFF; --line:#E2E8F0; --line-soft:#EEF2F7;
     --emerald:#10B981; --amber:#F59E0B; --red:#DC2626;
+    /* text-safe accent variants: >=4.5:1 on paper/white for small text */
+    --emerald-text:#047857; --teal-text:#0F766E; --amber-text:#B45309;
     --serif:"New York","Iowan Old Style",Georgia,"Times New Roman",serif;
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;
     --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
@@ -95,8 +97,8 @@
   @media(max-width:720px){.lensline{flex-direction:column}.lensline .cell{border-left:0;border-top:1px solid var(--line-soft)}}
 
   .ico{width:34px;height:34px;border-radius:8px;display:grid;place-items:center;background:#EEF2FF;color:var(--indigo)}
-  .ico.teal{background:#F0FDFA;color:var(--teal)}
-  .ico.emerald{background:#ECFDF5;color:var(--emerald)}
+  .ico.teal{background:#F0FDFA;color:#0F766E}
+  .ico.emerald{background:#ECFDF5;color:#047857}
   .ico svg{width:18px;height:18px}
 
   /* How it works */
@@ -174,7 +176,7 @@
   /* Results */
   .errbox{background:#FEF2F2;border:1px solid #FECACA;border-left:3px solid var(--red);border-radius:10px;padding:14px 16px;margin-bottom:16px;display:flex;gap:12px;align-items:flex-start}
   .errbox p{font-size:13.5px;color:var(--slate-700);flex:1;margin:0}
-  .errbox b{color:var(--red);display:block;font-size:13px;margin-bottom:2px}
+  .errbox b{color:#B91C1C;display:block;font-size:13px;margin-bottom:2px}
   .errbox .rm{color:var(--slate-400);cursor:pointer;font-size:16px;line-height:1;background:none;border:0;padding:2px}
   .errbox .rm:hover{color:var(--red)}
   #results .placeholder{color:var(--slate-400);text-align:center;padding:80px 24px;font-size:15px}
@@ -201,14 +203,14 @@
   .finding.s1{border-left-color:var(--indigo-soft)} .finding.s0{border-left-color:var(--slate-400)}
   .finding .top{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
   .sev{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:5px;padding:3px 8px}
-  .sev-3{background:#FEF2F2;color:var(--red)} .sev-2{background:#FFFBEB;color:#B45309}
+  .sev-3{background:#FEF2F2;color:#B91C1C} .sev-2{background:#FFFBEB;color:#B45309}
   .sev-1{background:#EEF2FF;color:var(--indigo)} .sev-0{background:var(--line-soft);color:var(--slate-500)}
   .pill{font-size:11.5px;font-weight:550;border-radius:5px;padding:3px 8px;background:var(--paper);color:var(--slate-500);border:1px solid var(--line-soft)}
-  .pill.up{color:var(--teal);border-color:#99F6E4;background:#F0FDFA}
+  .pill.up{color:var(--teal-text);border-color:#99F6E4;background:#F0FDFA}
   .finding h4{font-size:15px;margin:2px 0 5px;font-weight:650;letter-spacing:-.01em}
   .finding p{font-size:13.5px;color:var(--slate-500)}
   .finding .fix{margin-top:9px;font-size:13.5px;color:var(--slate-700)}
-  .finding .fix b{color:var(--emerald);font-weight:650}
+  .finding .fix b{color:var(--emerald-text);font-weight:650}
   .finding pre{margin-top:10px;background:var(--slate);border-radius:8px;padding:13px 14px;font-size:12px;overflow-x:auto;color:#E2E8F0;font-family:var(--mono);line-height:1.55}
   .playbook{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:20px 22px;margin-top:10px}
   .playbook h4{font-size:14px;font-weight:650;margin-bottom:10px;letter-spacing:.02em}
@@ -256,7 +258,7 @@
   .modal .row{display:flex;gap:10px}
   .modal .row .btn{flex:1}
   .modal .ok{display:none;text-align:center;padding:12px 0 4px}
-  .modal .ok b{color:var(--emerald);font-size:16px;display:block;margin-bottom:6px}
+  .modal .ok b{color:var(--emerald-text);font-size:16px;display:block;margin-bottom:6px}
 </style>
 </head>
 <body>
@@ -345,6 +347,8 @@
         <div class="or">or audit a live URL / GitHub repo</div>
         <input type="url" id="url" aria-label="Live URL or GitHub repository" placeholder="https://your-app.com or github.com/owner/repo">
         <p class="fieldnote" style="margin-top:6px">Public GitHub repos are fetched right in your browser — a branch or folder link works too.</p>
+        <input type="password" id="ghtoken" class="key" placeholder="GitHub token (optional — unlocks private repos)" autocomplete="off" spellcheck="false" aria-label="GitHub access token" style="margin-top:8px">
+        <p class="fieldnote" style="margin-top:6px">A fine-grained token with repository read access unlocks private repos and a 5,000-requests-per-hour limit. Sent only to GitHub; stored only in this browser.</p>
 
         <div class="stephead"><span class="k">02</span><h3>Tune the review</h3><span class="hint">optional</span></div>
         <label for="persona" style="display:block;font-size:13px;color:var(--slate-500);margin-bottom:6px">Audience</label>
@@ -666,6 +670,8 @@ function setEngine(engine) {
 (() => {
   const saved = localStorage.getItem('uxexpert_api_key');
   if (saved) { $('apikey').value = saved; $('rememberkey').checked = true; }
+  const ghSaved = localStorage.getItem('uxexpert_gh_token');
+  if (ghSaved) $('ghtoken').value = ghSaved;
   // Any manual edit means the editor no longer holds the untouched sample
   $('code').addEventListener('input', () => { state.sampleInEditor = false; updateReady(); });
   $('url').addEventListener('input', updateReady);
@@ -773,6 +779,23 @@ function analyze(src, opts) {
   let js = src.js;
   doc.querySelectorAll('script:not([src])').forEach(s => js += '\n' + s.textContent);
 
+  // Pattern checks must not fire on string literals or comments inside scripts —
+  // a page that embeds sample code as data is not "using" document.write.
+  const jsClean = js
+    .replace(/`(?:\\[\s\S]|[^\\`])*`/g, '``')
+    .replace(/'(?:\\.|[^'\\\n])*'/g, "''")
+    .replace(/"(?:\\.|[^"\\\n])*"/g, '""')
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .replace(/(^|[^:"'\\])\/\/[^\n]*/g, '$1');
+
+  // Visible page copy only — script and style content is not user-facing text
+  let bodyText = '';
+  if (doc.body) {
+    const bodyClone = doc.body.cloneNode(true);
+    bodyClone.querySelectorAll('script,style').forEach(n => n.remove());
+    bodyText = bodyClone.textContent;
+  }
+
   const add = (lens, sev, title, detail, fix, opts2 = {}) =>
     findings.push({ lens, sev, title, detail, fix, snippet: opts2.snippet || null,
       effort: opts2.effort || 'S', impact: opts2.impact || 3, tags: opts2.tags || [], wcag: opts2.wcag || null });
@@ -828,14 +851,23 @@ function analyze(src, opts) {
   if (!doc.querySelector('meta[name="viewport"]'))
     add('ux', 2, 'Missing viewport meta tag', 'Without it, mobile browsers render the page at roughly 980px and scale it down — tiny text, horizontal panning, and pinch-zooming everywhere.', 'Add the responsive viewport tag.', { snippet: '<meta name="viewport" content="width=device-width, initial-scale=1">', impact: 5, tags: ['mobile'], effort: 'S' });
 
-  const tiny = (rawHtml + css).match(/font-size:\s*(\d+(?:\.\d+)?)px/g) || [];
+  const inlineStyleText = [...doc.querySelectorAll('[style]')].map(e => e.getAttribute('style')).join(';');
+  const tiny = (css + ';' + inlineStyleText).match(/font-size:\s*(\d+(?:\.\d+)?)px/g) || [];
   const tinyVals = tiny.map(m => parseFloat(m.match(/(\d+(?:\.\d+)?)/)[1])).filter(v => v < 12);
   if (tinyVals.length)
     add('ux', 1, `Font sizes below 12px detected (${tinyVals.join('px, ')}px)`, 'Sub-12px body text is hard to read for most users and effectively unreadable for older adults or low-vision users on mobile.', 'Use a 16px base with a modular scale; never go below 12px for meaningful text.', { impact: 4, tags: ['a11y','mobile'], wcag: 'WCAG 1.4.4' });
 
-  const contrastPairs = findContrastIssues(css, rawHtml, opts.contrastAAA ? 7 : 4.5);
-  contrastPairs.slice(0, 3).forEach(p =>
-    add('ux', 2, `Low text contrast (${p.ratio}:1) — ${p.where}`, `Text ${p.fg} on ${p.bg} is ${p.ratio}:1; the ${opts.contrastAAA ? 'AAA (your custom rule)' : 'AA'} requirement is ${opts.contrastAAA ? 7 : 4.5}:1 for body text. Low contrast is the most commonly reported accessibility complaint.`, 'Darken the text or lighten the background until the ratio passes.', { snippet: `/* before */ color: ${p.fg}; background: ${p.bg};\n/* after  */ color: #333; background: ${p.bg};`, impact: 4, tags: ['a11y','contrast'], wcag: opts.contrastAAA ? 'WCAG 1.4.6 (AAA)' : 'WCAG 1.4.3' }));
+  const contrastIssues = findContrastIssues(css, doc, opts.contrastAAA ? 7 : 4.5);
+  if (contrastIssues.length) {
+    const thr = opts.contrastAAA ? 7 : 4.5;
+    const listed = contrastIssues.slice(0, 5).map(p => `${p.fg} on ${p.bg} at ${p.ratio}:1 (${p.where})`).join('; ');
+    const first = contrastIssues[0];
+    add('ux', 2,
+      `Low text contrast — ${contrastIssues.length} failing color pair${contrastIssues.length > 1 ? 's' : ''}`,
+      `The ${opts.contrastAAA ? 'AAA (your custom rule)' : 'AA'} requirement is ${thr}:1 for body text, and these declared pairs fall short: ${listed}${contrastIssues.length > 5 ? '; and more' : ''}. Low contrast is the most commonly reported accessibility complaint.`,
+      'Darken the failing text colors (or lighten their backgrounds) until every pair passes.',
+      { snippet: `/* before */ color: ${first.fg};\n/* after  */ color: #333; /* or darken until ≥ ${thr}:1 on ${first.bg} */`, impact: 4, tags: ['a11y', 'contrast'], wcag: opts.contrastAAA ? 'WCAG 1.4.6 (AAA)' : 'WCAG 1.4.3' });
+  }
 
   const badTab = [...doc.querySelectorAll('[tabindex]')].filter(el => +el.getAttribute('tabindex') > 0);
   if (badTab.length)
@@ -881,20 +913,21 @@ function analyze(src, opts) {
   if (imgs.length >= 3 && !imgs.some(i => i.getAttribute('loading') === 'lazy'))
     add('dev', 1, 'No lazy loading on images', `${imgs.length} images all load eagerly. Below-the-fold images should be deferred, which is free with the loading attribute.`, 'Add loading="lazy" to below-the-fold images.', { snippet: '<img src="shot3.png" alt="…" loading="lazy">', impact: 3, tags: ['performance','mobile'] });
 
-  if (/document\.write\s*\(/.test(js))
+  if (/document\.write\s*\(/.test(jsClean))
     add('dev', 2, 'document.write() usage', 'document.write blocks parsing, breaks entirely when called after load, and is disallowed by many browsers on slow connections. It is a legacy API with no modern use case.', 'Build DOM nodes and append them instead.', { snippet: "const p = document.createElement('p');\np.textContent = 'loaded';\ndocument.body.append(p);", impact: 3, tags: ['correctness','performance'] });
 
-  if (/console\.(log|debug|info)\s*\(/.test(js))
+  if (/console\.(log|debug|info)\s*\(/.test(jsClean))
     add('dev', 0, 'console.log left in production code', 'Debug logging leaks implementation details, adds noise, and in hot paths can measurably slow execution.', 'Strip logs in your build step or remove them before shipping.', { snippet: "// esbuild: drop: ['console'] · terser: drop_console: true", impact: 1, tags: ['polish'] });
 
-  if (/\bvar\s+\w/.test(js))
+  if (/\bvar\s+\w/.test(jsClean))
     add('dev', 0, 'var declarations (pre-ES6)', 'var is function-scoped and hoisted, a classic source of subtle bugs. Every modern browser supports let and const.', 'Use const by default; let when reassignment is needed.', { snippet: 'let count = 0;', impact: 1, tags: ['polish'] });
 
-  const inlineHandlers = rawHtml.match(/\son(click|load|change|submit|mouseover)=/gi) || [];
-  if (inlineHandlers.length)
-    add('dev', 1, `${inlineHandlers.length} inline event handler${inlineHandlers.length>1?'s':''} (onclick=…)`, 'Inline handlers mix behavior into markup, break Content-Security-Policy (unsafe-inline), and are hard to test or remove.', 'Attach listeners in JS with addEventListener.', { snippet: "document.querySelector('.cta').addEventListener('click', track);", impact: 2, tags: ['security','polish'] });
+  const inlineHandlers = doc.querySelectorAll('[onclick],[onload],[onchange],[onsubmit],[onmouseover]').length;
+  if (inlineHandlers)
+    add('dev', 1, `${inlineHandlers} inline event handler${inlineHandlers>1?'s':''} (onclick=…)`, 'Inline handlers mix behavior into markup, break Content-Security-Policy (unsafe-inline), and are hard to test or remove.', 'Attach listeners in JS with addEventListener.', { snippet: "document.querySelector('.cta').addEventListener('click', track);", impact: 2, tags: ['security','polish'] });
 
-  const httpRefs = (rawHtml.match(/(?:src|href|action)=["']http:\/\//gi) || []).length;
+  const httpRefs = [...doc.querySelectorAll('[src],[href],[action]')].filter(el =>
+    ['src', 'href', 'action'].some(a => /^http:\/\//i.test(el.getAttribute(a) || ''))).length;
   if (httpRefs)
     add('dev', 3, `${httpRefs} insecure http:// reference${httpRefs>1?'s':''}`, 'Mixed content is blocked by modern browsers, and a form posting to http:// sends user data (here: signup details) in cleartext — a genuine security issue.', 'Serve every resource and endpoint over HTTPS.', { snippet: '<form action="https://api.example.com/signup" method="post">', impact: 5, tags: ['security'], effort: 'S' });
 
@@ -935,10 +968,14 @@ function analyze(src, opts) {
   if (formFields >= 6)
     add('gtm', 2, `Signup form asks for ${formFields} fields`, 'Every added field cuts completion measurably — each field costs roughly 5 to 10 percent of completions. Seven fields before a user has seen any value is a conversion killer.', 'Collect email only at signup; progressive-profile the rest after activation.', { snippet: '<form method="post" action="/signup">\n  <label for="email">Work email</label>\n  <input id="email" type="email" autocomplete="email" required>\n  <button>Start free trial</button>\n</form>', impact: 5, tags: ['conversion','onboarding'], effort: 'M' });
 
-  if (!doc.querySelector('meta[property^="og:"]') && rawHtml.length > 200)
-    add('gtm', 1, 'No Open Graph tags — shares will look broken', 'When anyone shares your link on Slack, X, LinkedIn, or iMessage, it renders with no image and an auto-scraped title. Social sharing is a free acquisition channel you are forfeiting.', 'Add og:title, og:description, and a 1200 by 630 og:image.', { snippet: '<meta property="og:title" content="VibeApp — ship in half the time">\n<meta property="og:description" content="The tool 12,000 teams rely on.">\n<meta property="og:image" content="https://vibeapp.com/og.png">', impact: 4, tags: ['growth'] });
+  if (rawHtml.length > 200) {
+    const ogMissing = ['og:title', 'og:description', 'og:image'].filter(p => !doc.querySelector(`meta[property="${p}"]`));
+    if (ogMissing.length === 3)
+      add('gtm', 1, 'No Open Graph tags — shares will look broken', 'When anyone shares your link on Slack, X, LinkedIn, or iMessage, it renders with no image and an auto-scraped title. Social sharing is a free acquisition channel you are forfeiting.', 'Add og:title, og:description, and a 1200 by 630 og:image.', { snippet: '<meta property="og:title" content="VibeApp — ship in half the time">\n<meta property="og:description" content="The tool 12,000 teams rely on.">\n<meta property="og:image" content="https://vibeapp.com/og.png">', impact: 4, tags: ['growth'] });
+    else if (ogMissing.length)
+      add('gtm', 1, `Open Graph incomplete — missing ${ogMissing.join(' and ')}`, 'Partial Open Graph tags still produce broken-looking shares: without og:image the link unfurls as bare text, and without og:description platforms auto-scrape whatever they find. A share card only works when all three are present.', 'Add the missing tag(s); og:image should be a 1200 by 630 PNG or JPG at an absolute URL.', { snippet: ogMissing.map(p => `<meta property="${p}" content="…">`).join('\n'), impact: 3, tags: ['growth'] });
+  }
 
-  const bodyText = doc.body ? doc.body.textContent : '';
   const hasProof = /customers|users|teams|rated|reviews|trusted|testimonial|\d{2,3}%|\d+[km]?\+ /i.test(bodyText);
   if (!hasProof && bodyText.trim().length > 60)
     add('gtm', 1, 'No social proof on the page', 'No customer counts, logos, ratings, or testimonials detected. Social proof is the highest-leverage trust element for cold traffic — often worth 10 to 30 percent on conversion.', 'Add a proof strip near the primary CTA: logos, a user count, or one strong quote — real numbers only; invented proof destroys trust when discovered.', { snippet: '<p class="proof">Trusted by [your real count]+ teams · [a real customer quote]</p>', impact: 4, tags: ['conversion'], effort: 'M' });
@@ -981,7 +1018,7 @@ function analyze(src, opts) {
   const stats = {
     nodes: nodeCount, images: imgs.length,
     scripts: doc.querySelectorAll('script').length,
-    words: (doc.body ? doc.body.textContent.trim().split(/\s+/).filter(Boolean).length : 0),
+    words: bodyText.trim().split(/\s+/).filter(Boolean).length,
     kb: (new Blob([rawHtml + css + js]).size / 1024).toFixed(1)
   };
   return { findings, scores, stats };
@@ -1003,22 +1040,62 @@ function luminance([r,g,b]) {
   return .2126*f(r) + .7152*f(g) + .0722*f(b);
 }
 function ratio(a, b) { const [l1,l2] = [luminance(a), luminance(b)].sort((x,y)=>y-x); return (l1+.05)/(l2+.05); }
-function findContrastIssues(css, html, threshold) {
+// Cross-rule contrast: resolves CSS custom properties and checks text colors
+// against the page background when a rule declares no background of its own —
+// the most common real-world contrast failure (e.g. a muted .hint class on a
+// white body). Base-theme only: @media blocks are excluded so dark-mode
+// overrides don't cross-contaminate the light-theme analysis.
+function findContrastIssues(css, doc, threshold) {
   const issues = [], seen = new Set();
+  const baseCss = css.replace(/@media[^{]*\{(?:[^{}]*\{[^}]*\})*[^{}]*\}/g, '');
+  const rules = baseCss.match(/([^{}]+)\{([^}]*)\}/g) || [];
+
+  // Custom properties (last definition wins), with one-level-deep resolution
+  const vars = {};
+  rules.forEach(r => {
+    (r.split('{')[1] || '').split(';').forEach(d => {
+      const m = d.match(/^\s*(--[\w-]+)\s*:\s*(.+)\s*$/);
+      if (m) vars[m[1]] = m[2].trim();
+    });
+  });
+  const resolve = (v, depth = 0) => {
+    if (!v || depth > 3) return v;
+    const m = v.match(/^var\(\s*(--[\w-]+)\s*(?:,\s*([^)]+))?\)$/);
+    return m ? resolve((vars[m[1]] || m[2] || '').trim(), depth + 1) : v;
+  };
+  const firstVal = s => resolve(s.trim().split(/\s+/)[0]);
+
+  // Page background: the last html/body/:root rule that declares one
+  let pageBg = '#ffffff';
+  rules.forEach(r => {
+    const sel = (r.split('{')[0] || '').trim();
+    if (!/(^|,)\s*(html|body|:root)\s*(,|$)/.test(sel)) return;
+    const bg = (r.split('{')[1] || '').match(/background(?:-color)?\s*:\s*([^;}]+)/);
+    if (bg && parseColor(firstVal(bg[1]))) pageBg = firstVal(bg[1]);
+  });
+
   const scan = (block, where) => {
-    const fg = block.match(/(?:^|[;{\s])color:\s*([^;}\s]+)/), bg = block.match(/background(?:-color)?:\s*([^;}\s]+)/);
-    if (!fg || !bg) return;
-    const c1 = parseColor(fg[1]), c2 = parseColor(bg[1]);
+    const fg = block.match(/(?:^|[;{\s])color\s*:\s*([^;}]+)/);
+    if (!fg) return;
+    const bgm = block.match(/background(?:-color)?\s*:\s*([^;}]+)/);
+    const fgv = firstVal(fg[1]);
+    const bgv = bgm ? firstVal(bgm[1]) : pageBg;
+    const c1 = parseColor(fgv), c2 = parseColor(bgv);
     if (!c1 || !c2) return;
     const r = ratio(c1, c2);
-    const key = fg[1] + bg[1];
-    if (r < threshold && !seen.has(key)) { seen.add(key); issues.push({ ratio: r.toFixed(1), fg: fg[1], bg: bg[1], where }); }
+    const key = fgv + '|' + bgv;
+    if (r < threshold && !seen.has(key)) {
+      seen.add(key);
+      issues.push({ ratio: r.toFixed(1), fg: fgv, bg: bgv, where: where + (bgm ? '' : ' vs page background') });
+    }
   };
-  (css.match(/([^{}]+)\{([^}]*)\}/g) || []).forEach(rule => {
-    const sel = rule.split('{')[0].trim().slice(0, 40);
-    scan(rule.split('{')[1] || '', `selector "${sel}"`);
+
+  rules.forEach(rule => {
+    const sel = (rule.split('{')[0] || '').trim().slice(0, 40);
+    if (sel.startsWith('@') || sel.startsWith('--')) return;
+    scan(rule.split('{')[1] || '', `"${sel}"`);
   });
-  (html.match(/style="([^"]*)"/g) || []).forEach(s => scan(s, 'inline style'));
+  [...doc.querySelectorAll('[style]')].forEach(el => scan(';' + (el.getAttribute('style') || ''), 'inline style'));
   return issues;
 }
 
@@ -1166,11 +1243,24 @@ function getApiKey() {
 }
 
 // Shared streaming call to the Anthropic API: returns the accumulated text of a
-// schema-constrained response. Streaming keeps long generations alive; hard
-// abort at 4 minutes.
+// schema-constrained response. Deep reviews legitimately run for many minutes,
+// so the ceiling is 10 minutes — but a 90-second stall detector catches dead
+// connections fast (a healthy run streams thinking bytes continuously).
 async function claudeRequest(key, system, userContent, schema, maxTokens) {
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), 240000);
+  let abortReason = '';
+  let lastByte = Date.now();
+  const hardTimer = setTimeout(() => {
+    abortReason = 'The review was stopped after 10 minutes — audit fewer files at once (remove some chips) and retry.';
+    controller.abort();
+  }, 600000);
+  const stallTimer = setInterval(() => {
+    if (Date.now() - lastByte > 90000) {
+      abortReason = 'The connection went quiet for 90 seconds and was stopped — check your network and retry.';
+      controller.abort();
+    }
+  }, 5000);
+  const stopTimers = () => { clearTimeout(hardTimer); clearInterval(stallTimer); };
 
   let res;
   try {
@@ -1194,14 +1284,14 @@ async function claudeRequest(key, system, userContent, schema, maxTokens) {
       })
     });
   } catch (e) {
-    clearTimeout(timer);
-    if (e.name === 'AbortError') throw new Error('The request ran past 4 minutes and was stopped — retry, or reduce the input.');
+    stopTimers();
+    if (e.name === 'AbortError') throw new Error(abortReason || 'The request was stopped — retry.');
     if (e instanceof TypeError) throw new Error('Could not reach the Anthropic API from this environment — the hosted demo blocks external requests; use the full site, or check your connection.');
     throw e;
   }
 
   if (!res.ok) {
-    clearTimeout(timer);
+    stopTimers();
     const err = await res.json().catch(() => null);
     if (res.status === 401) throw new Error('That API key was rejected — check it at console.anthropic.com.');
     if (res.status === 429) throw new Error('Rate limited by the Anthropic API — wait a moment and retry.');
@@ -1217,6 +1307,7 @@ async function claudeRequest(key, system, userContent, schema, maxTokens) {
     while (true) {
       const { done, value } = await reader.read();
       if (done) break;
+      lastByte = Date.now();
       buf += dec.decode(value, { stream: true });
       const lines = buf.split('\n');
       buf = lines.pop();
@@ -1229,10 +1320,10 @@ async function claudeRequest(key, system, userContent, schema, maxTokens) {
       }
     }
   } catch (e) {
-    if (e.name === 'AbortError') throw new Error('The request ran past 4 minutes and was stopped — retry, or reduce the input.');
+    if (e.name === 'AbortError') throw new Error(abortReason || 'The request was stopped — retry.');
     throw new Error('The connection dropped mid-generation — retry.');
   } finally {
-    clearTimeout(timer);
+    stopTimers();
   }
 
   if (streamErr) throw new Error('Anthropic API error: ' + streamErr);
@@ -1387,26 +1478,44 @@ async function fetchGitHubRepo(url) {
   if (!m) throw new Error('That does not look like a GitHub repository URL.');
   const [, owner, repoRaw, kind, branchIn, sub] = m;
   const repo = repoRaw.replace(/\.git$/, '');
+  const token = $('ghtoken').value.replace(/\s+/g, '');
+  try { token ? localStorage.setItem('uxexpert_gh_token', token) : localStorage.removeItem('uxexpert_gh_token'); } catch (e) {}
   toast(`Fetching ${owner}/${repo} from GitHub…`);
 
   const gh = async path => {
     let r;
-    try { r = await fetch(`https://api.github.com/${path}`, { headers: { accept: 'application/vnd.github+json' } }); }
-    catch (e) { throw new Error('Could not reach GitHub from this environment. The hosted demo blocks external requests — use the local version, or check your connection.'); }
-    if (r.status === 403 || r.status === 429) throw new Error('GitHub rate limit reached for your network — wait a few minutes and retry.');
-    if (r.status === 404) throw new Error('Repository not found. Check the URL — a just-published repo can take a moment; private repos are not supported in the playground.');
+    try {
+      r = await fetch(`https://api.github.com/${path}`, {
+        headers: { accept: 'application/vnd.github+json', ...(token ? { authorization: 'Bearer ' + token } : {}) }
+      });
+    }
+    catch (e) { throw new Error('Could not reach GitHub from this environment. The hosted demo blocks external requests — use the full site, or check your connection.'); }
+    if (r.status === 401) throw new Error('GitHub rejected that token — check it has repository read access and has not expired.');
+    if (r.status === 403 || r.status === 429) throw new Error(token ? 'GitHub rate limit reached — wait a few minutes and retry.' : 'GitHub rate limit reached for your network (60/hour without a token) — add a GitHub token below the URL field, or wait a few minutes.');
+    if (r.status === 404) throw new Error(token ? 'Repository not found — check the URL and that your token can read this repo.' : 'Repository not found. Check the URL — and for private repos, add a GitHub token below the URL field.');
     if (!r.ok) throw new Error('GitHub returned an error (' + r.status + ').');
     return r.json();
   };
-  const raw = (branch, path) => fetch(`https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${path}`);
+
+  // With a token, fetch file contents through the API (works for private repos);
+  // without one, the public raw endpoint is faster and spends no API quota.
+  const fetchFile = async (branch, path) => {
+    if (token) {
+      const d = await gh(`repos/${owner}/${repo}/contents/${path.split('/').map(encodeURIComponent).join('/')}?ref=${encodeURIComponent(branch)}`);
+      if (!d.content) return null;
+      const bytes = Uint8Array.from(atob(d.content.replace(/\n/g, '')), c => c.charCodeAt(0));
+      return new TextDecoder().decode(bytes);
+    }
+    const r = await fetch(`https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${path}`);
+    return r.ok ? r.text() : null;
+  };
 
   const branch = branchIn || (await gh(`repos/${owner}/${repo}`)).default_branch;
 
   // Single-file link (github.com/.../blob/branch/path)
   if (kind === 'blob' && sub) {
-    const r = await raw(branch, sub);
-    if (!r.ok) throw new Error('Could not fetch that file from GitHub.');
-    const text = await r.text();
+    const text = await fetchFile(branch, sub);
+    if (text === null) throw new Error('Could not fetch that file from GitHub.');
     state.files.push({ name: sub.split('/').pop(), size: text.length, text });
     renderFiles();
     toast(`Loaded 1 file from ${owner}/${repo}.`);
@@ -1444,8 +1553,8 @@ async function fetchGitHubRepo(url) {
   if (!picked.length) throw new Error('The files in that repository are too large for the playground — paste the key pages instead.');
 
   const loaded = (await Promise.all(picked.map(async f => {
-    const r = await raw(branch, f.path);
-    return r.ok ? { name: f.path, size: f.size, text: await r.text() } : null;
+    const text = await fetchFile(branch, f.path).catch(() => null);
+    return text !== null ? { name: f.path, size: f.size, text } : null;
   }))).filter(Boolean);
   if (!loaded.length) throw new Error('Could not download files from that repository.');
 
@@ -1504,15 +1613,22 @@ async function runEvaluation() {
   const personaLabel = $('persona').selectedOptions[0].textContent;
   const prog = $('prog'), bar = prog.querySelector('i'), btn = $('runbtn');
   const cleanup = () => {
-    clearInterval(prog._t); prog.style.display = 'none'; bar.style.width = '0';
+    clearInterval(prog._t); clearInterval(prog._tick);
+    prog.style.display = 'none'; bar.style.width = '0';
     btn.disabled = false; btn.textContent = 'Run audit';
   };
   btn.disabled = true; btn.textContent = useAI ? 'Claude is reviewing…' : 'Auditing…';
   prog.style.display = 'block'; bar.style.width = '12%';
   if (useAI) {
-    // creep toward 90% while the API call is in flight
+    // creep toward 90% while the API call is in flight, with a live elapsed
+    // clock — deep reviews can run several minutes and must not look frozen
     let p = 12;
     prog._t = setInterval(() => { p = Math.min(90, p + (90 - p) * 0.04); bar.style.width = p + '%'; }, 400);
+    const t0 = Date.now();
+    prog._tick = setInterval(() => {
+      const s = Math.floor((Date.now() - t0) / 1000);
+      btn.textContent = `Claude is reviewing… ${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+    }, 1000);
   } else {
     await new Promise(r => setTimeout(r, 250)); bar.style.width = '55%';
   }
@@ -1543,7 +1659,10 @@ const LENS = {
   gtm: { label: 'Growth',      role: 'Growth Strategist',     color: 'var(--emerald)' }
 };
 const SEVNAME = ['Low','Medium','High','Critical'];
+// Text numerals use the darker text-safe variants; ring strokes and bars keep
+// the bright brand colors (non-text elements are not bound by 4.5:1).
 const scoreColor = s => s >= 80 ? 'var(--emerald)' : s >= 55 ? 'var(--amber)' : 'var(--red)';
+const scoreTextColor = s => s >= 80 ? 'var(--emerald-text)' : s >= 55 ? 'var(--amber-text)' : 'var(--red)';
 
 function renderReport(result, opts) {
   clearError();
@@ -1565,7 +1684,7 @@ function renderReport(result, opts) {
       </div>
       ${['ux','dev','gtm'].map(l => `
         <div class="lens-score"><div class="lbl">${LENS[l].label}</div>
-        <div class="n" style="color:${scoreColor(scores[l])}">${scores[l]}</div>
+        <div class="n" style="color:${scoreTextColor(scores[l])}">${scores[l]}</div>
         <div class="bar"><i style="width:${scores[l]}%;background:${LENS[l].color}"></i></div></div>`).join('')}
     </div>
     <p class="metaline">Audited by <b>${state.last?.engine === 'ai' ? 'Claude Opus 4.8' : 'the local engine'}</b> for <b>${esc(personaLabel)}</b> with <b>${activeRules}</b> custom rule${activeRules===1?'':'s'} and <b>${state.last?.skills.length || 0}</b> expertise skill${state.last?.skills.length===1?'':'s'} · ${stats.nodes} DOM nodes · ${stats.images} images · ${stats.scripts} scripts · ${stats.kb} KB source · ${esc(state.last?.when || '')}</p>

@@ -667,11 +667,28 @@ function setEngine(engine) {
   if (engine === 'ai' && !$('apikey').value && !state.restoring) $('apikey').focus();
   if (!state.restoring) saveState();
 }
+// "Remember on this device" must take effect the moment it's set — not only
+// when a run happens to succeed later.
+function persistKey() {
+  try {
+    const k = $('apikey').value.replace(/\s+/g, '');
+    if ($('rememberkey').checked && k) localStorage.setItem('uxexpert_api_key', k);
+    else localStorage.removeItem('uxexpert_api_key');
+  } catch (e) {}
+}
 (() => {
   const saved = localStorage.getItem('uxexpert_api_key');
   if (saved) { $('apikey').value = saved; $('rememberkey').checked = true; }
   const ghSaved = localStorage.getItem('uxexpert_gh_token');
   if (ghSaved) $('ghtoken').value = ghSaved;
+  $('apikey').addEventListener('input', persistKey);
+  $('rememberkey').addEventListener('change', persistKey);
+  $('ghtoken').addEventListener('input', () => {
+    try {
+      const t = $('ghtoken').value.replace(/\s+/g, '');
+      t ? localStorage.setItem('uxexpert_gh_token', t) : localStorage.removeItem('uxexpert_gh_token');
+    } catch (e) {}
+  });
   // Any manual edit means the editor no longer holds the untouched sample
   $('code').addEventListener('input', () => { state.sampleInEditor = false; updateReady(); });
   $('url').addEventListener('input', updateReady);

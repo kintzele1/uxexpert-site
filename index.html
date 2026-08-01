@@ -476,7 +476,7 @@
 
 <footer>
   <div class="wrap">
-    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert.</div>
+    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span style="opacity:.55">· build 2026.08.01-1</span></div>
     <div><a href="https://uxexpert.ai/privacy/">Privacy</a><a href="https://uxexpert.ai/terms/">Terms</a><a href="mailto:hello@uxexpert.ai">Contact</a></div>
   </div>
 </footer>
@@ -1369,10 +1369,12 @@ async function analyzeWithClaude(src, opts, personaLabel) {
       + state.skills.map(s => `--- SKILL: ${s.name} ---\n${s.text.slice(0, 24000)}`).join('\n\n').slice(0, 60000)
     : '';
 
+  // 16k output budget: adaptive thinking and a long findings list share
+  // max_tokens, and a deep audit can truncate at 8k
   const text = await claudeRequest(
     key, AI_SYSTEM,
     `Audience to evaluate for: ${personaLabel}\nCustom rules: ${rules.join('; ') || 'none'}${skillBlock}\n\nWeb app source to audit:\n\n${source}`,
-    AI_SCHEMA, 8000
+    AI_SCHEMA, 16000
   );
 
   const SEVN = { critical: 3, high: 2, medium: 1, low: 0 };

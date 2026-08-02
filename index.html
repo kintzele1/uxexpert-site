@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>UXexpert.ai — AI UX Expert | Instant Website UX Audits for Design, Code & Conversion</title>
+<title>Instant AI UX Audits — Design, Code & Conversion | UXexpert.ai</title>
 <meta name="description" content="UXexpert.ai is your instant principal UX expert: AI-powered website UX audits covering design, accessibility, code quality, performance, and conversion — with prioritized, actionable fixes in seconds.">
 <meta property="og:title" content="UXexpert.ai — Your Instant Principal UX Expert">
 <meta property="og:description" content="Upload your web app. Get an AI UX expert review of design, code, and growth with prioritized, actionable fixes.">
@@ -48,9 +48,10 @@
     --shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px rgba(15,23,42,.06);
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}
   .skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--indigo);color:#fff;padding:10px 18px;border-radius:0 0 8px 0;font-weight:600;font-size:14px}
   .skip:focus{left:0}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   body{background:var(--paper);color:var(--slate);font-family:var(--sans);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
   a{color:var(--indigo);text-decoration:none}
   .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
@@ -78,7 +79,14 @@
   .navlinks{display:flex;gap:30px;align-items:center}
   .navlinks a:not(.btn){color:var(--slate-500);font-size:14.5px;font-weight:550}
   .navlinks a:not(.btn):hover{color:var(--slate)}
-  @media(max-width:780px){.navlinks a:not(.btn){display:none}}
+  .nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:8px;padding:7px 10px;cursor:pointer;color:var(--slate);font-size:16px;line-height:1}
+  .nav-toggle:hover{border-color:var(--slate-400)}
+  @media(max-width:780px){
+    .nav-toggle{display:block}
+    .navlinks{display:none;position:absolute;top:68px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;padding:14px 24px 18px;gap:14px;box-shadow:0 16px 40px rgba(15,23,42,.08)}
+    .navlinks.open{display:flex}
+    .navlinks a:not(.btn){padding:12px 0}
+  }
 
   /* Hero */
   .hero{padding:120px 0 96px;text-align:center}
@@ -166,8 +174,8 @@
   .filelist{margin-top:10px;display:flex;flex-direction:column;gap:6px;font-size:13px}
   .filelist .f{display:flex;justify-content:space-between;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:6px 10px;color:var(--slate-500)}
   .filelist .f b{color:var(--slate);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:70%}
-  .filelist .rm{color:var(--slate-400);cursor:pointer;font-size:15px;line-height:1;padding:2px 4px}
-  .filelist .rm:hover{color:var(--red)}
+  .filelist .rm{background:none;border:0;color:var(--slate-400);cursor:pointer;font-size:15px;line-height:1;padding:2px 4px}
+  .filelist .rm:hover,.filelist .rm:focus-visible{color:var(--red)}
   .samplelink{display:block;text-align:center;margin-top:12px;font-size:13.5px;color:var(--slate-500)}
   .samplelink a{font-weight:600}
   .progress{height:4px;background:var(--line-soft);border-radius:99px;overflow:hidden;margin:16px 0 0;display:none}
@@ -266,11 +274,12 @@
 
 <nav>
   <div class="wrap">
-    <a href="#" class="logo" aria-label="UXexpert home">
+    <a href="/" class="logo" aria-label="UXexpert home">
       <svg width="26" height="26" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#4F46E5"/><path d="M9 9l14 14M23 9L9 23" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/></svg>
       <span>UXexpert<span style="color:var(--indigo)">.ai</span></span>
     </a>
-    <div class="navlinks">
+    <button class="nav-toggle" id="navtoggle" aria-expanded="false" aria-controls="navlinks" aria-label="Menu" onclick="toggleNav()">&#9776;</button>
+    <div class="navlinks" id="navlinks">
       <a href="#how">How it works</a>
       <a href="#audit">Run an audit</a>
       <a href="#features">Features</a>
@@ -280,7 +289,8 @@
   </div>
 </nav>
 
-<header class="hero" id="main">
+<main id="main">
+<header class="hero">
   <div class="wrap">
     <p class="eyebrow">Your instant principal UX expert</p>
     <h1>Your web app, reviewed like a <em>flagship product</em>.</h1>
@@ -295,17 +305,17 @@
     <div class="lensline">
       <div class="cell">
         <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12z"/></svg></span>
-        <div class="role">Principal UX Designer</div>
+        <h3 class="role">Principal UX Designer</h3>
         <div class="scope">Usability, accessibility, hierarchy, and visual polish — mapped to WCAG.</div>
       </div>
       <div class="cell">
         <span class="ico teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
-        <div class="role">Full-Stack Engineer</div>
+        <h3 class="role">Full-Stack Engineer</h3>
         <div class="scope">Performance, security, correctness, and tech debt — with fixed snippets.</div>
       </div>
       <div class="cell">
         <span class="ico emerald"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
-        <div class="role">Growth Strategist</div>
+        <h3 class="role">Growth Strategist</h3>
         <div class="scope">Onboarding friction, trust signals, retention loops, and A/B hypotheses.</div>
       </div>
     </div>
@@ -416,7 +426,8 @@
         <p class="samplelink">Nothing to paste? <a href="#audit" onclick="loadSample();return false">Load the sample app</a></p>
       </div>
 
-      <div class="card" id="results" aria-live="polite">
+      <div class="card" id="results">
+        <p class="sr-only" id="auditstatus" aria-live="polite"></p>
         <div class="errbox" id="errbox" hidden>
           <p><b>Something went wrong</b><span id="errmsg"></span></p>
           <button class="rm" aria-label="Dismiss error" onclick="clearError()">&times;</button>
@@ -474,24 +485,26 @@
   </div>
 </section>
 
+</main>
+
 <footer>
   <div class="wrap">
-    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span style="opacity:.55">· build 2026.08.01-1</span></div>
+    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span style="opacity:.55">· build 2026.08.01-2</span></div>
     <div><a href="https://uxexpert.ai/privacy/">Privacy</a><a href="https://uxexpert.ai/terms/">Terms</a><a href="mailto:hello@uxexpert.ai">Contact</a></div>
   </div>
 </footer>
 
 <div class="overlay" id="waitlist" role="dialog" aria-modal="true" aria-labelledby="wl-title">
   <div class="modal">
-    <div id="wl-form">
+    <form id="wl-form" onsubmit="event.preventDefault();submitWaitlist()">
       <h3 id="wl-title">Join the waitlist</h3>
       <p id="wl-copy">Leave your email and you'll be first to hear when this tier ships. No spam, no sharing.</p>
       <input type="email" id="wl-email" placeholder="you@company.com" autocomplete="email" aria-label="Email address">
       <div class="row">
-        <button class="btn btn-primary" onclick="submitWaitlist()" id="wl-submit">Join</button>
-        <button class="btn btn-quiet" onclick="closeWaitlist()">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="wl-submit">Join</button>
+        <button type="button" class="btn btn-quiet" onclick="closeWaitlist()">Cancel</button>
       </div>
-    </div>
+    </form>
     <div class="ok" id="wl-ok">
       <b>You're on the list.</b>
       <p style="margin:0">We'll email you the moment it's ready.</p>
@@ -548,7 +561,7 @@ function addFiles(list) {
 }
 function renderFiles() {
   $('filelist').innerHTML = state.files.map((f, i) =>
-    `<div class="f"><b>${esc(f.name)}</b><span>${(f.size/1024).toFixed(1)} KB <span class="rm" role="button" aria-label="Remove file" onclick="removeFile(${i})">&times;</span></span></div>`).join('');
+    `<div class="f"><b>${esc(f.name)}</b><span>${(f.size/1024).toFixed(1)} KB <button type="button" class="rm" aria-label="Remove file ${esc(f.name)}" onclick="removeFile(${i})">&times;</button></span></div>`).join('');
   updateReady();
 }
 function removeFile(i) { state.files.splice(i, 1); renderFiles(); }
@@ -577,6 +590,7 @@ function esc(s) { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&l
 function showError(msg) {
   $('errmsg').textContent = ' ' + msg;
   $('errbox').hidden = false;
+  $('auditstatus').textContent = 'Error: ' + msg;
   toast(msg);
 }
 function clearError() { $('errbox').hidden = true; }
@@ -624,8 +638,10 @@ function restoreState() {
 /* ---------- waitlist (Formspree) ---------- */
 const FORMSPREE_ID = 'mjgndlwd';
 let wlPlan = 'pro';
+let wlLastFocused = null;
 function openWaitlist(plan) {
   wlPlan = plan;
+  wlLastFocused = document.activeElement;
   if (!FORMSPREE_ID) { location.href = `mailto:hello@uxexpert.ai?subject=UXexpert%20${plan}%20waitlist`; return; }
   $('wl-title').textContent = plan === 'enterprise' ? 'Talk to us about Enterprise' : 'Join the Pro waitlist';
   $('wl-copy').textContent = plan === 'enterprise'
@@ -635,7 +651,10 @@ function openWaitlist(plan) {
   $('waitlist').classList.add('show');
   $('wl-email').focus();
 }
-function closeWaitlist() { $('waitlist').classList.remove('show'); }
+function closeWaitlist() {
+  $('waitlist').classList.remove('show');
+  if (wlLastFocused && wlLastFocused.focus) wlLastFocused.focus();
+}
 async function submitWaitlist() {
   const email = $('wl-email').value.trim();
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { toast('That email does not look right — check it and try again.'); return; }
@@ -656,6 +675,23 @@ async function submitWaitlist() {
   }
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeWaitlist(); });
+// Trap Tab inside the open waitlist modal (background content stays unreachable)
+$('waitlist').addEventListener('keydown', e => {
+  if (e.key !== 'Tab') return;
+  const f = [...$('waitlist').querySelectorAll('input,button')].filter(x => x.offsetParent !== null);
+  if (!f.length) return;
+  const first = f[0], last = f[f.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+});
+
+/* ---------- mobile nav ---------- */
+function toggleNav(force) {
+  const links = $('navlinks'), btn = $('navtoggle');
+  const open = force !== undefined ? force : !links.classList.contains('open');
+  links.classList.toggle('open', open);
+  btn.setAttribute('aria-expanded', String(open));
+}
 
 /* ---------- engine selection ---------- */
 state.engine = 'local';
@@ -692,6 +728,9 @@ function persistKey() {
   // Any manual edit means the editor no longer holds the untouched sample
   $('code').addEventListener('input', () => { state.sampleInEditor = false; updateReady(); });
   $('url').addEventListener('input', updateReady);
+  $('url').addEventListener('keydown', e => { if (e.key === 'Enter') runEvaluation(); });
+  // Mobile menu closes when a destination is chosen
+  $('navlinks').addEventListener('click', e => { if (e.target.closest('a')) toggleNav(false); });
 })();
 
 /* ---------- sample app (deliberately flawed) ---------- */
@@ -1158,7 +1197,7 @@ Design standards: Thumb-reachable primary actions, 44px minimum touch targets, p
 
 function renderSkills() {
   $('skilllist').innerHTML = state.skills.map((s, i) =>
-    `<div class="f"><b>${esc(s.name)}</b><span>${(s.text.length/1024).toFixed(1)} KB <span class="rm" role="button" aria-label="Remove skill" onclick="removeSkill(${i})">&times;</span></span></div>`).join('');
+    `<div class="f"><b>${esc(s.name)}</b><span>${(s.text.length/1024).toFixed(1)} KB <button type="button" class="rm" aria-label="Remove skill ${esc(s.name)}" onclick="removeSkill(${i})">&times;</button></span></div>`).join('');
   if (!state.restoring) saveState();
 }
 function removeSkill(i) { state.skills.splice(i, 1); renderSkills(); }
@@ -1219,6 +1258,7 @@ Calibration rules:
 - Severity: reserve "critical" for findings that block the user's primary task, create a legal or safety violation (seizure-inducing motion, data transmitted insecurely, discriminatory exclusion), or pose a security risk. Everything else is at most "high". A competently built page should produce few or no criticals — do not inflate.
 - Consolidate findings that share a root cause into ONE finding listing every affected element (one palette-wide contrast problem is one finding; one form-labeling pattern is one finding). Real auditors report causes, not instances.
 - Audit only what is actually in the provided source. Never report a problem on an element that is implemented correctly, and never describe elements that do not appear in the source.
+- Never report that a model identifier, API parameter, package, or version "does not exist" based on your own knowledge — technology newer than your training data is common, and such findings are usually false. Flag only defects verifiable from the source itself.
 
 When expertise skills are provided, adopt them completely: they are authoritative context about the domain, the real users, and their working conditions. Research the app through that lens, validate terminology, workflows, data presentation, and compliance expectations against the skill, and judge design by the skill's standards rather than generic consumer-web taste. Findings that violate a skill's stated expectations are at least high severity.`;
 
@@ -1721,7 +1761,10 @@ function renderReport(result, opts) {
       <button class="btn btn-quiet btn-sm" onclick="copyReport()">Copy report</button>
       <button class="btn btn-quiet btn-sm" onclick="toast('Shareable links, PDF, Jira, and Figma exports are coming soon — for now, everything stays local.')">Share link — soon</button>
     </div>`;
-  if (!state.restoring) $('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (!state.restoring) {
+    $('auditstatus').textContent = `Audit complete: ${findings.length} findings, overall score ${scores.overall} out of 100.`;
+    $('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 function renderFinding(f, i) {

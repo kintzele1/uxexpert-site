@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Instant AI UX Audits — Design, Code & Conversion | UXexpert.ai</title>
+<title>Instant AI UX Audits — Design, Code & Growth | UXexpert.ai</title>
 <meta name="description" content="UXexpert.ai is your instant principal UX expert: AI-powered website UX audits covering design, accessibility, code quality, performance, and conversion — with prioritized, actionable fixes in seconds.">
 <meta property="og:title" content="UXexpert.ai — Your Instant Principal UX Expert">
 <meta property="og:description" content="Upload your web app. Get an AI UX expert review of design, code, and growth with prioritized, actionable fixes.">
@@ -135,7 +135,7 @@
   .drop b{color:var(--slate)}
   .drop .sub{font-size:12.5px;color:var(--slate-400);margin-top:4px}
   textarea{width:100%;min-height:120px;background:var(--paper);border:1px solid var(--line);border-radius:9px;color:var(--slate);font-family:var(--mono);font-size:12.5px;padding:12px;resize:vertical}
-  textarea:focus,input:focus,select:focus{outline:none;border-color:var(--indigo-soft);box-shadow:0 0 0 3px #6366F122}
+  textarea:focus,input:focus,select:focus{outline:2px solid var(--indigo);outline-offset:1px;border-color:var(--indigo-soft)}
   input[type=url],select{width:100%;background:var(--white);border:1px solid var(--line);border-radius:9px;color:var(--slate);font-size:14px;padding:10px 12px;font-family:var(--sans)}
   .or{display:flex;align-items:center;gap:10px;color:var(--slate-400);font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin:14px 0 8px}
   .or::before,.or::after{content:"";flex:1;height:1px;background:var(--line-soft)}
@@ -222,7 +222,7 @@
   .finding .fix b{color:var(--emerald-text);font-weight:650}
   .finding pre{margin-top:10px;background:var(--slate);border-radius:8px;padding:13px 14px;font-size:12px;overflow-x:auto;color:#E2E8F0;font-family:var(--mono);line-height:1.55}
   .playbook{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:20px 22px;margin-top:10px}
-  .playbook h4{font-size:14px;font-weight:650;margin-bottom:10px;letter-spacing:.02em}
+  .playbook .playhead{font-size:14px;font-weight:650;margin-bottom:10px;letter-spacing:.02em}
   .playbook li{font-size:13.5px;color:var(--slate-500);margin:8px 0 8px 18px}
   .playbook li b{color:var(--slate-700);font-weight:600}
   .export-row{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
@@ -276,7 +276,7 @@
 <nav>
   <div class="wrap">
     <a href="/" class="logo" aria-label="UXexpert home">
-      <svg width="26" height="26" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#4F46E5"/><path d="M9 9l14 14M23 9L9 23" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/></svg>
+      <svg aria-hidden="true" focusable="false" width="26" height="26" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#4F46E5"/><path d="M9 9l14 14M23 9L9 23" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/></svg>
       <span>UXexpert<span style="color:var(--indigo)">.ai</span></span>
     </a>
     <button class="nav-toggle" id="navtoggle" aria-expanded="false" aria-controls="navlinks" aria-label="Menu" onclick="toggleNav()">&#9776;</button>
@@ -305,17 +305,17 @@
 
     <div class="lensline">
       <div class="cell">
-        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12z"/></svg></span>
+        <span class="ico"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12z"/></svg></span>
         <h3 class="role">Principal UX Designer</h3>
         <div class="scope">Usability, accessibility, hierarchy, and visual polish — mapped to WCAG.</div>
       </div>
       <div class="cell">
-        <span class="ico teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+        <span class="ico teal"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
         <h3 class="role">Full-Stack Engineer</h3>
         <div class="scope">Performance, security, correctness, and tech debt — with fixed snippets.</div>
       </div>
       <div class="cell">
-        <span class="ico emerald"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
+        <span class="ico emerald"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
         <h3 class="role">Growth Strategist</h3>
         <div class="scope">Onboarding friction, trust signals, retention loops, and A/B hypotheses.</div>
       </div>
@@ -448,15 +448,15 @@
     <p class="eyebrow">Features</p>
     <h2>Depth that generic checkers can't reach</h2>
     <div class="featgrid">
-      <div class="feat"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg></span><h3>True multi-role synthesis</h3><p>Not three separate reports — one prioritized roadmap where design, engineering, and growth trade-offs are weighed against each other.</p></div>
-      <div class="feat"><span class="ico teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><h3>Code-native fixes</h3><p>Every technical finding ships with a corrected snippet you can paste straight into your codebase.</p></div>
-      <div class="feat"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 14 0v1"/></svg></span><h3>Audience tuning</h3><p>Auditing for Gen Z mobile users in emerging markets is a different job than auditing for enterprise buyers. Priorities re-weight to who you serve.</p></div>
-      <div class="feat"><span class="ico emerald"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 3v18M3 9h18"/></svg></span><h3>Expertise skills & custom rules</h3><p>Upload skills that make the reviewer an expert in your domain and your users, plus rules like AAA contrast and minimal motion. The audit enforces them.</p></div>
-      <div class="feat"><span class="ico teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span><h3>Growth playbook</h3><p>A retention roadmap, A/B hypotheses, and conversion fixes grounded in what is actually on your page.</p></div>
-      <div class="feat"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></span><h3>One-click exports</h3><p>Markdown export today. PDF, Jira tickets, Figma comments, Notion pages, and shareable report links are on the roadmap.</p></div>
-      <div class="feat"><span class="ico emerald"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg></span><h3>Version comparison</h3><p>Re-run after each iteration and compare scores. Automatic history tracking is on the roadmap.</p></div>
-      <div class="feat"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><h3>Private by design</h3><p>Local analysis never leaves your browser. AI reviews go directly from your browser to Anthropic with your own key — no middleman server.</p></div>
-      <div class="feat"><span class="ico teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8H8z"/><path d="M4 4h4v4H4zM16 4h4v4h-4zM4 16h4v4H4zM16 16h4v4h-4z"/></svg></span><h3>API for teams</h3><p>On the roadmap: wire audits into CI so every pull request gets a design, code, and growth review before merge.</p></div>
+      <div class="feat"><span class="ico"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg></span><h3>True multi-role synthesis</h3><p>Not three separate reports — one prioritized roadmap where design, engineering, and growth trade-offs are weighed against each other.</p></div>
+      <div class="feat"><span class="ico teal"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><h3>Code-native fixes</h3><p>Every technical finding ships with a corrected snippet you can paste straight into your codebase.</p></div>
+      <div class="feat"><span class="ico"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 14 0v1"/></svg></span><h3>Audience tuning</h3><p>Auditing for Gen Z mobile users in emerging markets is a different job than auditing for enterprise buyers. Priorities re-weight to who you serve.</p></div>
+      <div class="feat"><span class="ico emerald"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 3v18M3 9h18"/></svg></span><h3>Expertise skills & custom rules</h3><p>Upload skills that make the reviewer an expert in your domain and your users, plus rules like AAA contrast and minimal motion. The audit enforces them.</p></div>
+      <div class="feat"><span class="ico teal"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span><h3>Growth playbook</h3><p>A retention roadmap, A/B hypotheses, and conversion fixes grounded in what is actually on your page.</p></div>
+      <div class="feat"><span class="ico"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></span><h3>One-click exports</h3><p>Markdown export today. PDF, Jira tickets, Figma comments, Notion pages, and shareable report links are on the roadmap.</p></div>
+      <div class="feat"><span class="ico emerald"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg></span><h3>Version comparison</h3><p>Re-run after each iteration and compare scores. Automatic history tracking is on the roadmap.</p></div>
+      <div class="feat"><span class="ico"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><h3>Private by design</h3><p>Local analysis never leaves your browser. AI reviews go directly from your browser to Anthropic with your own key — no middleman server.</p></div>
+      <div class="feat"><span class="ico teal"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8h8v8H8z"/><path d="M4 4h4v4H4zM16 4h4v4h-4zM4 16h4v4H4zM16 16h4v4h-4z"/></svg></span><h3>API for teams</h3><p>On the roadmap: wire audits into CI so every pull request gets a design, code, and growth review before merge.</p></div>
     </div>
   </div>
 </section>
@@ -490,7 +490,7 @@
 
 <footer>
   <div class="wrap">
-    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span style="opacity:.55">· build 2026.08.01-3</span></div>
+    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.08.03-1</span></div>
     <div><a href="https://uxexpert.ai/privacy/">Privacy</a><a href="https://uxexpert.ai/terms/">Terms</a><a href="mailto:hello@uxexpert.ai">Contact</a></div>
   </div>
 </footer>
@@ -597,6 +597,7 @@ function showError(msg) {
 function clearError() { $('errbox').hidden = true; }
 
 // Funnel analytics — event names and coarse labels only, never code content.
+const scrollBehavior = () => matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
 function track(name, props) {
   try { if (window.plausible) plausible(name, props ? { props } : undefined); } catch (e) {}
 }
@@ -631,6 +632,12 @@ function restoreState() {
       state.last = s.last;
       renderReport(s.last.result, s.last.opts);
       if (s.last.stories) renderStories();
+      // Label restored reports unmistakably — inputs are not saved, so this
+      // report cannot be "re-run" without adding the product again
+      const note = document.createElement('div');
+      note.className = 'callout';
+      note.innerHTML = `<b>Restored report from ${esc(s.last.when)}.</b> Your code inputs are not saved between visits — to run a fresh audit, add your product again in step 01.`;
+      $('report').prepend(note);
     }
   } catch (e) {}
   finally { state.restoring = false; }
@@ -650,10 +657,13 @@ function openWaitlist(plan) {
     : "Leave your email and you'll be first to hear when Pro ships. No spam, no sharing.";
   $('wl-form').style.display = 'block'; $('wl-ok').style.display = 'none';
   $('waitlist').classList.add('show');
+  // Background becomes inert so virtual-cursor users can't reach behind the dialog
+  document.querySelectorAll('nav,main,footer').forEach(n => n.setAttribute('inert', ''));
   $('wl-email').focus();
 }
 function closeWaitlist() {
   $('waitlist').classList.remove('show');
+  document.querySelectorAll('nav,main,footer').forEach(n => n.removeAttribute('inert'));
   if (wlLastFocused && wlLastFocused.focus) wlLastFocused.focus();
 }
 async function submitWaitlist() {
@@ -744,7 +754,7 @@ function loadSample() {
 }
 function startDemo() {
   loadSample();
-  document.getElementById('audit').scrollIntoView({ behavior: 'smooth' });
+  document.getElementById('audit').scrollIntoView({ behavior: scrollBehavior() });
   setTimeout(runEvaluation, 450);
 }
 const SAMPLE = `<html>
@@ -1497,7 +1507,7 @@ function renderStories() {
   const host = $('stories');
   if (!host || !state.last?.stories) return;
   const P = { P0: 'var(--red)', P1: '#B45309', P2: 'var(--slate-500)' };
-  host.innerHTML = `<h4 class="storyhead">Development backlog — user stories</h4>`
+  host.innerHTML = `<h3 class="storyhead">Development backlog — user stories</h3>`
     + state.last.stories.map(s => `
       <div class="story">
         <div class="top">
@@ -1511,7 +1521,7 @@ function renderStories() {
       </div>`).join('')
     + `<div class="export-row" style="margin-top:12px"><button class="btn btn-quiet btn-sm" onclick="exportStories()">Download backlog (Markdown)</button></div>`;
   host.style.display = 'block';
-  host.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  host.scrollIntoView({ behavior: scrollBehavior(), block: 'nearest' });
 }
 
 function buildStoriesMarkdown() {
@@ -1659,7 +1669,14 @@ async function runEvaluation() {
       }
     }
   }
-  if (!src.html && !src.css && !src.js) { toast('Add some code first — or load the sample app.'); return; }
+  if (!src.html && !src.css && !src.js) {
+    // Loud and persistent: with a restored report on screen, a quiet toast here
+    // reads as "the audit ran and gave the same results"
+    showError(state.last
+      ? `Nothing new was audited — the report below is the one generated ${state.last.when}. Code inputs are not saved between visits, so add your product again in step 01 (drop files, paste code, or a GitHub link) and run.`
+      : 'Nothing to audit yet — add your product in step 01: drop files, paste code, or enter a GitHub link. Or load the sample app.');
+    return;
+  }
 
   const opts = {
     persona: $('persona').value,
@@ -1737,7 +1754,7 @@ function renderReport(result, opts) {
   rep.innerHTML = `
     <div class="scorebar">
       <div class="ring">
-        <svg width="124" height="124"><circle cx="62" cy="62" r="54" fill="none" stroke="var(--line)" stroke-width="8"/>
+        <svg aria-hidden="true" focusable="false" width="124" height="124"><circle cx="62" cy="62" r="54" fill="none" stroke="var(--line)" stroke-width="8"/>
         <circle cx="62" cy="62" r="54" fill="none" stroke="${scoreColor(scores.overall)}" stroke-width="8" stroke-linecap="round"
           stroke-dasharray="${circ}" stroke-dashoffset="${circ * (1 - scores.overall/100)}"/></svg>
         <div class="val">${scores.overall}<small>OVERALL</small></div>
@@ -1748,11 +1765,12 @@ function renderReport(result, opts) {
         <div class="bar"><i style="width:${scores[l]}%;background:${LENS[l].color}"></i></div></div>`).join('')}
     </div>
     <p class="metaline">Audited by <b>${state.last?.engine === 'ai' ? 'Claude Opus 4.8' : 'the local engine'}</b> for <b>${esc(personaLabel)}</b> with <b>${activeRules}</b> custom rule${activeRules===1?'':'s'} and <b>${state.last?.skills.length || 0}</b> expertise skill${state.last?.skills.length===1?'':'s'} · ${stats.nodes} DOM nodes · ${stats.images} images · ${stats.scripts} scripts · ${stats.kb} KB source · ${esc(state.last?.when || '')}</p>
-    ${!state.last?.skills.length ? `<div class="callout"><b>Make this audit domain-expert.</b> Add an expertise skill describing your industry and your real users — say, a Finance Collections agent inside a telco BSS suite — and the reviewer will research, validate, and judge design against that world instead of generic web standards. <a href="#skills-block" onclick="document.getElementById('skills-block').scrollIntoView({behavior:'smooth',block:'center'});return false">Add a skill</a></div>` : ''}
+    ${!state.last?.skills.length ? `<div class="callout"><b>Make this audit domain-expert.</b> Add an expertise skill describing your industry and your real users — say, a Finance Collections agent inside a telco BSS suite — and the reviewer will research, validate, and judge design against that world instead of generic web standards. <a href="#skills-block" onclick="document.getElementById('skills-block').scrollIntoView({behavior:scrollBehavior(),block:'center'});return false">Add a skill</a></div>` : ''}
     <div class="tabs">
       <button class="tab active" data-lens="all" onclick="filterLens(this)">All findings (${findings.length})</button>
       ${['ux','dev','gtm'].map(l => `<button class="tab" data-lens="${l}" onclick="filterLens(this)">${LENS[l].label} (${findings.filter(f=>f.lens===l).length})</button>`).join('')}
     </div>
+    <h3 class="sr-only">Audit findings</h3>
     <div id="findings">${findings.map(renderFinding).join('') || '<div class="empty-lens">No issues found — remarkably clean.</div>'}</div>
     ${renderPlaybook(findings)}
     <div id="stories" style="display:none"></div>
@@ -1764,7 +1782,7 @@ function renderReport(result, opts) {
     </div>`;
   if (!state.restoring) {
     $('auditstatus').textContent = `Audit complete: ${findings.length} findings, overall score ${scores.overall} out of 100.`;
-    $('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    $('results').scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
   }
 }
 
@@ -1789,7 +1807,7 @@ function renderPlaybook(findings) {
   const conv = findings.filter(f => f.lens === 'gtm').slice(0, 3);
   const quick = findings.filter(f => f.effort === 'S' && f.sev >= 2).slice(0, 3);
   return `<div class="playbook">
-    <h4>Growth playbook — where to start</h4>
+    <h3 class="playhead">Growth playbook — where to start</h3>
     <ul>
       <li><b>This week (quick wins):</b> ${quick.length ? quick.map(f => esc(f.title)).join(' · ') : 'No critical quick wins — polish the medium-severity items.'}</li>
       <li><b>First A/B hypothesis:</b> ${conv[0] ? `Fixing "${esc(conv[0].title)}" — measure signup-start rate before and after.` : 'Test a benefit-led headline variant against the current one.'}</li>

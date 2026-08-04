@@ -328,7 +328,7 @@
     <p class="eyebrow">How it works</p>
     <h2>Three steps to a shippable roadmap</h2>
     <div class="steps">
-      <div class="step"><div class="n">01</div><h3>Add your product</h3><p>Drop in HTML, CSS, and JavaScript files, paste code directly, or point UXexpert at a live URL or public GitHub repository. Add design systems or brand guidelines to tune enforcement.</p></div>
+      <div class="step"><div class="n">01</div><h3>Add your product</h3><p>Drop in HTML, CSS, and JavaScript files, paste code directly, add screenshots for a visual review, or point UXexpert at a live URL or GitHub repository. Add design systems or brand guidelines to tune enforcement.</p></div>
       <div class="step"><div class="n">02</div><h3>Tune the review</h3><p>Choose the audience you are building for, set custom rules, and load expertise skills that teach the reviewer your domain — from telco BSS collections consoles to patient portals. The audit re-weights itself around your users.</p></div>
       <div class="step"><div class="n">03</div><h3>Ship the fixes</h3><p>Every finding is scored by severity, effort, and impact, and arrives with a concrete fix — often a code snippet you can paste in as-is. Export the report and get to work.</p></div>
     </div>
@@ -346,8 +346,8 @@
         <div class="stephead"><span class="k">01</span><h3>Add your product</h3></div>
         <div class="drop" id="drop" tabindex="0" role="button" aria-label="Upload files">
           <b>Drop files here</b> or click to browse
-          <div class="sub">.html · .css · .js — multiple files welcome</div>
-          <input type="file" id="fileinput" multiple accept=".html,.htm,.css,.js,.txt" hidden>
+          <div class="sub">.html · .css · .js · screenshots (.png, .jpg) — multiple files welcome</div>
+          <input type="file" id="fileinput" multiple accept=".html,.htm,.css,.js,.txt,.png,.jpg,.jpeg,.webp,.gif" hidden>
         </div>
         <div class="filelist" id="filelist"></div>
         <p class="fieldnote" id="ghsummary" style="margin-top:8px;display:none"></p>
@@ -469,7 +469,7 @@
       <div class="plan hot">
         <span class="tag">Available now</span>
         <h3>Free</h3><div class="price">$0<small> / month</small></div><p class="for">Everything on this page, today</p>
-        <ul><li>Unlimited local audits, fully in your browser</li><li>Claude AI reviews with your own API key</li><li>GitHub repo and file uploads</li><li>Expertise skills and custom rules</li><li>Markdown export</li></ul>
+        <ul><li>Unlimited local audits, fully in your browser</li><li>Claude AI reviews with your own API key</li><li>Screenshot audits via Claude vision</li><li>GitHub repo and file uploads</li><li>Expertise skills and custom rules</li><li>Markdown export</li></ul>
         <a href="#audit" class="btn btn-primary">Start auditing</a>
       </div>
       <div class="plan">
@@ -490,7 +490,7 @@
 
 <footer>
   <div class="wrap">
-    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.08.03-1</span></div>
+    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.08.03-2</span></div>
     <div><a href="https://uxexpert.ai/privacy/">Privacy</a><a href="https://uxexpert.ai/terms/">Terms</a><a href="mailto:hello@uxexpert.ai">Contact</a></div>
   </div>
 </footer>
@@ -524,7 +524,7 @@
    gtm (Growth Strategist).
    ============================================================ */
 
-const state = { files: [] };
+const state = { files: [], images: [] };
 const $ = id => document.getElementById(id);
 
 /* ---------- input handling ---------- */
@@ -546,7 +546,8 @@ document.addEventListener('drop', e => {
 
 function addFiles(list) {
   [...list].forEach(f => {
-    if (!/\.(html?|css|js|txt)$/i.test(f.name)) { toast(`Skipped ${f.name} — the playground analyzes HTML, CSS, and JS. Screenshot and Figma analysis is on the roadmap.`); return; }
+    if (/\.(png|jpe?g|webp|gif)$/i.test(f.name) || /^image\//.test(f.type)) { addScreenshot(f); return; }
+    if (!/\.(html?|css|js|txt)$/i.test(f.name)) { toast(`Skipped ${f.name} — the playground analyzes HTML, CSS, JS, and screenshots (PNG, JPG, WebP).`); return; }
     const reader = new FileReader();
     reader.onload = () => {
       if (state.sampleInEditor) {
@@ -560,9 +561,51 @@ function addFiles(list) {
     reader.readAsText(f);
   });
 }
+// Screenshots: normalized client-side (downscaled to 2000px max, recompressed)
+// so vision runs stay fast and token-efficient. Reviewed only by the AI engine.
+function addScreenshot(f) {
+  if (state.images.length >= 6) { toast('Up to 6 screenshots per audit — remove one to add another.'); return; }
+  const reader = new FileReader();
+  reader.onload = async () => {
+    try {
+      const { dataUrl, mediaType } = await normalizeImage(String(reader.result));
+      if (state.sampleInEditor) {
+        $('code').value = ''; state.sampleInEditor = false;
+        toast('Sample code cleared — your uploads will be audited instead.');
+      }
+      state.images.push({ name: f.name, size: Math.round(dataUrl.length * 0.75), dataUrl, mediaType });
+      renderFiles();
+      toast(state.engine === 'ai' ? 'Screenshot added.' : 'Screenshot added — visual review uses the Claude AI engine (step 03).');
+    } catch (e) { toast('Could not read ' + f.name + ' as an image.'); }
+  };
+  reader.readAsDataURL(f);
+}
+function normalizeImage(dataUrl) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      const MAX = 2000;
+      const scale = Math.min(1, MAX / Math.max(img.width, img.height));
+      if (scale === 1 && dataUrl.length < 3500000) {
+        resolve({ dataUrl, mediaType: (dataUrl.match(/^data:(image\/[\w.+-]+);/) || [])[1] || 'image/png' });
+        return;
+      }
+      const c = document.createElement('canvas');
+      c.width = Math.round(img.width * scale); c.height = Math.round(img.height * scale);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      resolve({ dataUrl: c.toDataURL('image/jpeg', 0.88), mediaType: 'image/jpeg' });
+    };
+    img.onerror = reject;
+    img.src = dataUrl;
+  });
+}
+function removeImage(i) { state.images.splice(i, 1); renderFiles(); }
+
 function renderFiles() {
   $('filelist').innerHTML = state.files.map((f, i) =>
-    `<div class="f"><b>${esc(f.name)}</b><span>${(f.size/1024).toFixed(1)} KB <button type="button" class="rm" aria-label="Remove file ${esc(f.name)}" onclick="removeFile(${i})">&times;</button></span></div>`).join('');
+    `<div class="f"><b>${esc(f.name)}</b><span>${(f.size/1024).toFixed(1)} KB <button type="button" class="rm" aria-label="Remove file ${esc(f.name)}" onclick="removeFile(${i})">&times;</button></span></div>`).join('')
+  + state.images.map((im, i) =>
+    `<div class="f"><b>${esc(im.name)}</b><span><span class="pill">screenshot</span> ${(im.size/1024).toFixed(0)} KB <button type="button" class="rm" aria-label="Remove screenshot ${esc(im.name)}" onclick="removeImage(${i})">&times;</button></span></div>`).join('');
   updateReady();
 }
 function removeFile(i) { state.files.splice(i, 1); renderFiles(); }
@@ -575,6 +618,7 @@ function updateReady() {
   const code = $('code').value.trim();
   const parts = [];
   if (state.files.length) parts.push(`${state.files.length} uploaded file${state.files.length > 1 ? 's' : ''} (${kb(fileBytes)})`);
+  if (state.images.length) parts.push(`${state.images.length} screenshot${state.images.length > 1 ? 's' : ''}`);
   if (code) parts.push(state.sampleInEditor ? `the built-in sample app (${kb(code.length)})` : `pasted code (${kb(code.length)})`);
   if (!parts.length && $('url').value.trim()) parts.push($('url').value.trim().replace(/^https?:\/\//, ''));
   el.textContent = parts.length ? 'Will audit: ' + parts.join(' + ') : 'Nothing to audit yet — add your product in step 01.';
@@ -598,6 +642,10 @@ function clearError() { $('errbox').hidden = true; }
 
 // Funnel analytics — event names and coarse labels only, never code content.
 const scrollBehavior = () => matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+
+// Set to the deployed crawler Worker URL (e.g. 'https://crawl.uxexpert.ai') to
+// enable live-URL audits for sites that block CORS. Empty = direct fetch only.
+const URL_PROXY = '';
 function track(name, props) {
   try { if (window.plausible) plausible(name, props ? { props } : undefined); } catch (e) {}
 }
@@ -746,11 +794,11 @@ function persistKey() {
 
 /* ---------- sample app (deliberately flawed) ---------- */
 function loadSample() {
-  const hadFiles = state.files.length > 0;
+  const hadUploads = state.files.length > 0 || state.images.length > 0;
   $('code').value = SAMPLE;
   state.sampleInEditor = true;
-  state.files = []; renderFiles();
-  toast(hadFiles ? 'Your uploaded files were cleared — the sample app is loaded now.' : 'Sample app loaded. Run the audit when ready.');
+  state.files = []; state.images = []; renderFiles();
+  toast(hadUploads ? 'Your uploads were cleared — the sample app is loaded now.' : 'Sample app loaded. Run the audit when ready.');
 }
 function startDemo() {
   loadSample();
@@ -1271,6 +1319,8 @@ Calibration rules:
 - Audit only what is actually in the provided source. Never report a problem on an element that is implemented correctly, and never describe elements that do not appear in the source.
 - Never report that a model identifier, API parameter, package, or version "does not exist" based on your own knowledge — technology newer than your training data is common, and such findings are usually false. Flag only defects verifiable from the source itself.
 
+When screenshots are provided, review them as rendered UI with a principal designer's eye: visual hierarchy, spacing and alignment, contrast as actually seen in the pixels, affordance clarity, consistency, and copy quality. Name the screenshot in each such finding. When both code and screenshots are provided, cross-reference them and flag mismatches between what the code promises and what the pixels show.
+
 When expertise skills are provided, adopt them completely: they are authoritative context about the domain, the real users, and their working conditions. Research the app through that lens, validate terminology, workflows, data presentation, and compliance expectations against the skill, and judge design by the skill's standards rather than generic consumer-web taste. Findings that violate a skill's stated expectations are at least high severity.`;
 
 const AI_SCHEMA = {
@@ -1420,13 +1470,20 @@ async function analyzeWithClaude(src, opts, personaLabel) {
       + state.skills.map(s => `--- SKILL: ${s.name} ---\n${s.text.slice(0, 24000)}`).join('\n\n').slice(0, 60000)
     : '';
 
+  // Multimodal content: screenshots (labeled) lead, then the text brief.
   // 16k output budget: adaptive thinking and a long findings list share
   // max_tokens, and a deep audit can truncate at 8k
-  const text = await claudeRequest(
-    key, AI_SYSTEM,
-    `Audience to evaluate for: ${personaLabel}\nCustom rules: ${rules.join('; ') || 'none'}${skillBlock}\n\nWeb app source to audit:\n\n${source}`,
-    AI_SCHEMA, 16000
-  );
+  const content = [];
+  state.images.forEach((im, i) => {
+    content.push({ type: 'text', text: `Screenshot ${i + 1} of ${state.images.length}: ${im.name}` });
+    content.push({ type: 'image', source: { type: 'base64', media_type: im.mediaType, data: im.dataUrl.split(',')[1] } });
+  });
+  content.push({
+    type: 'text',
+    text: `Audience to evaluate for: ${personaLabel}\nCustom rules: ${rules.join('; ') || 'none'}${skillBlock}`
+      + (source ? `\n\nWeb app source to audit:\n\n${source}` : '\n\nNo code was provided — audit the screenshots.')
+  });
+  const text = await claudeRequest(key, AI_SYSTEM, content, AI_SCHEMA, 16000);
 
   const SEVN = { critical: 3, high: 2, medium: 1, low: 0 };
   const findings = JSON.parse(text).findings.map(f => ({
@@ -1442,7 +1499,8 @@ async function analyzeWithClaude(src, opts, personaLabel) {
     nodes: doc.querySelectorAll('*').length,
     images: doc.querySelectorAll('img').length,
     scripts: doc.querySelectorAll('script').length,
-    kb: (new Blob([src.html + src.css + src.js]).size / 1024).toFixed(1)
+    kb: (new Blob([src.html + src.css + src.js]).size / 1024).toFixed(1),
+    shots: state.images.length
   };
   return { findings, scores, stats };
 }
@@ -1660,21 +1718,32 @@ async function runEvaluation() {
     } else {
       toast('Fetching URL…');
       try {
-        const res = await fetch(url, { mode: 'cors' });
+        // URL_PROXY (set after deploying the crawler worker) fetches server-side,
+        // bypassing CORS; until then, direct fetch works only for permissive sites
+        const target = URL_PROXY ? URL_PROXY + '?url=' + encodeURIComponent(url) : url;
+        const res = await fetch(target, { mode: 'cors' });
         if (!res.ok) throw new Error('HTTP ' + res.status);
         src.html = await res.text();
       } catch (e) {
-        showError('Could not fetch that URL — most sites block cross-origin requests (CORS), a browser limitation. Paste the page HTML or use a GitHub link instead.');
+        showError(URL_PROXY
+          ? 'Could not fetch that URL — the site may be down or blocking crawlers. Paste the page HTML or use a GitHub link instead.'
+          : 'Could not fetch that URL — most sites block cross-origin requests (CORS), a browser limitation. Paste the page HTML or use a GitHub link instead.');
         return;
       }
     }
   }
-  if (!src.html && !src.css && !src.js) {
+  const hasShots = state.images.length > 0;
+  if (!src.html && !src.css && !src.js && !hasShots) {
     // Loud and persistent: with a restored report on screen, a quiet toast here
     // reads as "the audit ran and gave the same results"
     showError(state.last
       ? `Nothing new was audited — the report below is the one generated ${state.last.when}. Code inputs are not saved between visits, so add your product again in step 01 (drop files, paste code, or a GitHub link) and run.`
       : 'Nothing to audit yet — add your product in step 01: drop files, paste code, or enter a GitHub link. Or load the sample app.');
+    return;
+  }
+  if (hasShots && state.engine !== 'ai') {
+    showError('Screenshots need the Claude AI engine — the local engine reads code, not pixels. Choose Claude AI review in step 03 (with your API key) and run again.');
+    setEngine('ai');
     return;
   }
 
@@ -1723,7 +1792,7 @@ async function runEvaluation() {
   renderReport(result, opts);
   track('Audit Run', {
     engine: state.engine,
-    source: state.files.length ? 'files' : (state.sampleInEditor ? 'sample' : ($('code').value.trim() ? 'paste' : 'url')),
+    source: state.files.length ? 'files' : (state.images.length ? 'screenshots' : (state.sampleInEditor ? 'sample' : ($('code').value.trim() ? 'paste' : 'url'))),
     skills: state.skills.length
   });
   saveState();
@@ -1764,7 +1833,7 @@ function renderReport(result, opts) {
         <div class="n" style="color:${scoreTextColor(scores[l])}">${scores[l]}</div>
         <div class="bar"><i style="width:${scores[l]}%;background:${LENS[l].color}"></i></div></div>`).join('')}
     </div>
-    <p class="metaline">Audited by <b>${state.last?.engine === 'ai' ? 'Claude Opus 4.8' : 'the local engine'}</b> for <b>${esc(personaLabel)}</b> with <b>${activeRules}</b> custom rule${activeRules===1?'':'s'} and <b>${state.last?.skills.length || 0}</b> expertise skill${state.last?.skills.length===1?'':'s'} · ${stats.nodes} DOM nodes · ${stats.images} images · ${stats.scripts} scripts · ${stats.kb} KB source · ${esc(state.last?.when || '')}</p>
+    <p class="metaline">Audited by <b>${state.last?.engine === 'ai' ? 'Claude Opus 4.8' : 'the local engine'}</b> for <b>${esc(personaLabel)}</b> with <b>${activeRules}</b> custom rule${activeRules===1?'':'s'} and <b>${state.last?.skills.length || 0}</b> expertise skill${state.last?.skills.length===1?'':'s'} · ${stats.nodes} DOM nodes · ${stats.images} images · ${stats.scripts} scripts · ${stats.kb} KB source${stats.shots ? ` · ${stats.shots} screenshot${stats.shots > 1 ? 's' : ''}` : ''} · ${esc(state.last?.when || '')}</p>
     ${!state.last?.skills.length ? `<div class="callout"><b>Make this audit domain-expert.</b> Add an expertise skill describing your industry and your real users — say, a Finance Collections agent inside a telco BSS suite — and the reviewer will research, validate, and judge design against that world instead of generic web standards. <a href="#skills-block" onclick="document.getElementById('skills-block').scrollIntoView({behavior:scrollBehavior(),block:'center'});return false">Add a skill</a></div>` : ''}
     <div class="tabs">
       <button class="tab active" data-lens="all" onclick="filterLens(this)">All findings (${findings.length})</button>

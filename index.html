@@ -21,7 +21,7 @@
 <!-- Defense-in-depth: even if script injection ever occurred, network egress is
      limited to the APIs this app legitimately talks to — an injected script
      cannot exfiltrate a pasted API key to an arbitrary host. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://plausible.io; connect-src 'self' https://api.anthropic.com https://api.github.com https://raw.githubusercontent.com https://formspree.io https://plausible.io; img-src 'self' data:; style-src 'unsafe-inline'; base-uri 'none'; object-src 'none'; form-action 'self' https://formspree.io">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://plausible.io; connect-src 'self' https://api.anthropic.com https://api.github.com https://raw.githubusercontent.com https://formspree.io https://plausible.io https://uxexpert-crawl.kintzele1994.workers.dev; img-src 'self' data:; style-src 'unsafe-inline'; base-uri 'none'; object-src 'none'; form-action 'self' https://formspree.io">
 <!-- Privacy-friendly analytics by Plausible -->
 <script async src="https://plausible.io/js/pa-HuKnDbBb6VROp-Q7KzWUg.js"></script>
 <script>
@@ -490,7 +490,7 @@
 
 <footer>
   <div class="wrap">
-    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.08.03-2</span></div>
+    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.08.06-1</span></div>
     <div><a href="https://uxexpert.ai/privacy/">Privacy</a><a href="https://uxexpert.ai/terms/">Terms</a><a href="mailto:hello@uxexpert.ai">Contact</a></div>
   </div>
 </footer>
@@ -645,7 +645,7 @@ const scrollBehavior = () => matchMedia('(prefers-reduced-motion: reduce)').matc
 
 // Set to the deployed crawler Worker URL (e.g. 'https://crawl.uxexpert.ai') to
 // enable live-URL audits for sites that block CORS. Empty = direct fetch only.
-const URL_PROXY = '';
+const URL_PROXY = 'https://uxexpert-crawl.kintzele1994.workers.dev';
 function track(name, props) {
   try { if (window.plausible) plausible(name, props ? { props } : undefined); } catch (e) {}
 }

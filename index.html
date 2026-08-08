@@ -164,6 +164,7 @@
   .composer{display:none;margin-top:10px}
   .composer.show{display:block}
   .composer textarea{min-height:110px;font-family:var(--sans);font-size:13px}
+  .hitl{background:#FFFBEB;border:1px solid #FDE68A;border-left:3px solid var(--amber);border-radius:8px;padding:10px 14px;font-size:12.5px;color:#78591C;margin:14px 0 4px;line-height:1.5}
   .callout{background:#EEF2FF;border:1px solid #C7D2FE;border-radius:10px;padding:13px 16px;font-size:13.5px;color:var(--slate-700);margin-bottom:18px;line-height:1.55}
   .callout b{font-weight:650}
   .fieldnote{font-size:12.5px;color:var(--slate-400);margin:2px 0 10px;line-height:1.5}
@@ -406,7 +407,7 @@
           </label>
           <label class="engine" id="eng-ai">
             <input type="radio" name="engine" value="ai" data-change="setEngine" data-arg="ai">
-            <span><span class="t">Claude AI review</span><span class="d">Deeper, contextual reasoning from Claude Opus 4.8. Bring your own Anthropic API key; your code is sent directly to Anthropic and nowhere else.</span></span>
+            <span><span class="t">Claude AI review</span><span class="d">Deeper, contextual reasoning from Claude Opus 4.8. Bring your own Anthropic API key; your code is sent directly to Anthropic and nowhere else. AI can be wrong — review and validate its findings before acting.</span></span>
           </label>
         </div>
         <div class="keywrap" id="keywrap">
@@ -472,7 +473,7 @@
         <h3>Founding Pro</h3><div class="price">$19<small> / month</small></div><p class="for">Locked at this rate for life</p>
         <ul><li>Everything in Free, plus early access to Pro as it ships:</li><li>Hosted Claude reviews — no API key needed</li><li>User stories &amp; acceptance criteria (live now)</li><li>Saved history and version comparison</li><li>PDF, Jira, Figma, and Notion exports</li><li>A founding badge and a direct line to shape the roadmap</li></ul>
         <button class="btn btn-primary" data-action="foundingCheckout">Become a founding member</button>
-        <p style="font-size:12px;color:var(--slate-500);margin-top:10px;text-align:center">Early access. Your founding rate never rises. Cancel anytime.</p>
+        <p style="font-size:12px;color:var(--slate-500);margin-top:10px;text-align:center">Early access to a product in active development. Today, user stories are live and everything in Free is included; hosted reviews, history, and richer exports roll out to founding members first. Your founding rate never rises. Cancel anytime.</p>
       </div>
     </div>
   </div>
@@ -482,7 +483,8 @@
 
 <footer>
   <div class="wrap">
-    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.08.06-4</span></div>
+    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.08.06-6</span></div>
+    <div style="max-width:640px;font-size:12.5px;color:var(--slate-500);line-height:1.5">UXexpert produces automated and AI-assisted suggestions, not professional advice or a guarantee of compliance. A human should review, validate, and edit every finding, story, and fix before acting on it.</div>
     <div><a href="https://uxexpert.ai/privacy/">Privacy</a><a href="https://uxexpert.ai/terms/">Terms</a><a href="mailto:hello@uxexpert.ai">Contact</a></div>
   </div>
 </footer>
@@ -508,6 +510,6 @@
 
 <div class="toast" id="toast" role="status"></div>
 
-<script src="app.js?v=20260806-4" defer></script>
+<script src="app.js?v=20260806-6" defer></script>
 </body>
 </html>

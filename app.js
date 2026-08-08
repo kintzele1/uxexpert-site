@@ -135,7 +135,7 @@ const URL_PROXY = 'https://uxexpert-crawl.kintzele1994.workers.dev';
 // Stripe Payment Link for the $19/mo Founding Pro offer. Create it in the
 // Stripe dashboard (see SETUP-STRIPE.md) and paste the buy.stripe.com URL here.
 // Empty = the button falls back to the email waitlist so nothing looks broken.
-const STRIPE_PAYMENT_LINK = '';
+const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/7sY28k4Ef4HC8Srcv6afS00';
 
 function foundingCheckout() {
   track('Founding Checkout', { price: 19 });
@@ -1067,6 +1067,7 @@ function renderStories() {
   if (!host || !state.last?.stories) return;
   const P = { P0: 'var(--red)', P1: '#B45309', P2: 'var(--slate-500)' };
   host.innerHTML = `<h3 class="storyhead">Development backlog — user stories</h3>`
+    + `<p class="hitl">AI-drafted stories and acceptance criteria — a first draft for your backlog, not final scope. A product owner should review, refine, and confirm each one before it enters a sprint.</p>`
     + state.last.stories.map(s => `
       <div class="story">
         <div class="top">
@@ -1084,7 +1085,7 @@ function renderStories() {
 }
 
 function buildStoriesMarkdown() {
-  let md = `# UXexpert Development Backlog\n\n_Generated from the audit of ${state.last.when} · ${state.last.stories.length} stories_\n\n`;
+  let md = `# UXexpert Development Backlog\n\n_Generated from the audit of ${state.last.when} · ${state.last.stories.length} stories_\n\n> AI-drafted stories and acceptance criteria. Review, refine, and confirm each one with a product owner before it enters a sprint — treat this as a first draft, not final scope.\n\n`;
   state.last.stories.forEach((s, i) => {
     md += `## ${i + 1}. [${s.priority}] ${s.title}\n\n${s.story}\n\n**Lens:** ${LENS[s.lens]?.label || s.lens} · **Effort:** ${s.effort}\n\n**Acceptance criteria:**\n`;
     s.acceptance_criteria.forEach(a => md += `- [ ] ${a}\n`);
@@ -1335,6 +1336,7 @@ function renderReport(result, opts) {
         <div class="bar"><i style="width:${scores[l]}%;background:${LENS[l].color}"></i></div></div>`).join('')}
     </div>
     <p class="metaline">Audited by <b>${state.last?.engine === 'ai' ? 'Claude Opus 4.8' : 'the local engine'}</b> for <b>${esc(personaLabel)}</b> with <b>${activeRules}</b> custom rule${activeRules===1?'':'s'} and <b>${state.last?.skills.length || 0}</b> expertise skill${state.last?.skills.length===1?'':'s'} · ${stats.nodes} DOM nodes · ${stats.images} images · ${stats.scripts} scripts · ${stats.kb} KB source${stats.shots ? ` · ${stats.shots} screenshot${stats.shots > 1 ? 's' : ''}` : ''} · ${esc(state.last?.when || '')}</p>
+    <p class="hitl">${state.last?.engine === 'ai' ? 'AI-assisted analysis' : 'Automated analysis'} — a starting point, not a verdict. Review, validate, and edit every finding before you act on it. You are the human in the loop; treat these as suggestions, not verified facts or professional advice.</p>
     ${!state.last?.skills.length ? `<div class="callout"><b>Make this audit domain-expert.</b> Add an expertise skill describing your industry and your real users — say, a Finance Collections agent inside a telco BSS suite — and the reviewer will research, validate, and judge design against that world instead of generic web standards. <a href="#skills-block" data-action="scrollToSkills">Add a skill</a></div>` : ''}
     <div class="tabs">
       <button class="tab active" data-lens="all" data-action="filterLens">All findings (${findings.length})</button>
@@ -1407,7 +1409,7 @@ function filterLens(btn) {
 function buildMarkdown() {
   const { result, opts, when } = state.last;
   const { findings, scores, stats } = result;
-  let md = `# UXexpert Audit Report\n\n_Generated ${when} · engine: ${state.last.engine === 'ai' ? 'Claude Opus 4.8' : 'local'} · audience: ${$('persona').selectedOptions[0].textContent}_\n\n`;
+  let md = `# UXexpert Audit Report\n\n_Generated ${when} · engine: ${state.last.engine === 'ai' ? 'Claude Opus 4.8' : 'local'} · audience: ${$('persona').selectedOptions[0].textContent}_\n\n> ${state.last.engine === 'ai' ? 'AI-assisted' : 'Automated'} analysis — a starting point, not a verdict. Review, validate, and edit every finding before acting on it. These are suggestions, not verified facts or professional advice.\n\n`;
   if (state.last.skills.length) md += `_Expertise skills: ${state.last.skills.join(' · ')}_\n\n`;
   md += `## Scores\n\n| Lens | Score |\n|---|---|\n| **Overall** | **${scores.overall}/100** |\n| UX Design | ${scores.ux}/100 |\n| Engineering | ${scores.dev}/100 |\n| Growth | ${scores.gtm}/100 |\n\n`;
   md += `_${stats.nodes} DOM nodes · ${stats.images} images · ${stats.scripts} scripts · ${stats.kb} KB source_\n\n## Findings (${findings.length})\n\n`;

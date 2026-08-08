@@ -17,6 +17,9 @@
 <meta name="twitter:title" content="UXexpert.ai — Your Instant Principal UX Expert">
 <meta name="twitter:description" content="Upload your web app. Get an AI UX expert review of design, code, and growth with prioritized, actionable fixes.">
 <meta name="twitter:image" content="https://uxexpert.ai/og.png">
+<meta property="og:image:alt" content="UXexpert.ai AI UX audit report showing prioritized design, code, and growth fixes">
+<meta property="og:locale" content="en_US">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <link rel="canonical" href="https://uxexpert.ai/">
 <!-- Defense-in-depth: even if script injection ever occurred, network egress is
      limited to the APIs this app legitimately talks to — an injected script
@@ -26,7 +29,11 @@
 <script async src="https://plausible.io/js/pa-HuKnDbBb6VROp-Q7KzWUg.js"></script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%234F46E5'/%3E%3Cpath d='M9 9l14 14M23 9L9 23' stroke='%23fff' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"UXexpert.ai","alternateName":"UXexpert","url":"https://uxexpert.ai","slogan":"Your instant principal UX expert","applicationCategory":"DeveloperApplication","description":"AI UX expert for instant website UX audits: design, accessibility, code quality, performance, and conversion review with prioritized fixes.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"UXexpert.ai","alternateName":"UXexpert","url":"https://uxexpert.ai","slogan":"Your instant principal UX expert","applicationCategory":"DeveloperApplication","operatingSystem":"Web","browserRequirements":"Requires JavaScript. Runs in any modern browser.","featureList":["AI UX audit across design, engineering and growth lenses","Accessibility and WCAG checks","Code-native fixes with pasteable snippets","Screenshot audits via Claude vision","Live URL and GitHub repository audits","User stories with acceptance criteria","Markdown export"],"description":"AI UX expert for instant website UX audits: design, accessibility, code quality, performance, and conversion review with prioritized fixes.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<script type="application/ld+json">
+[{"@context":"https://schema.org","@type":"Organization","name":"UXexpert.ai","url":"https://uxexpert.ai","logo":"https://uxexpert.ai/og.png","contactPoint":{"@type":"ContactPoint","email":"hello@uxexpert.ai","contactType":"customer support"}},
+{"@context":"https://schema.org","@type":"WebSite","name":"UXexpert.ai","url":"https://uxexpert.ai"}]
 </script>
 <style>
   :root{
@@ -165,6 +172,14 @@
   .composer.show{display:block}
   .composer textarea{min-height:110px;font-family:var(--sans);font-size:13px}
   .hitl{background:#FFFBEB;border:1px solid #FDE68A;border-left:3px solid var(--amber);border-radius:8px;padding:10px 14px;font-size:12.5px;color:#78591C;margin:14px 0 4px;line-height:1.5}
+  .faq{max-width:760px;margin:40px auto 0}
+  .faq details{border:1px solid var(--line);border-radius:10px;padding:0;margin-bottom:12px;background:var(--white);overflow:hidden}
+  .faq summary{list-style:none;cursor:pointer;padding:18px 20px;font-weight:650;font-size:16px;color:var(--slate);display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";color:var(--indigo);font-weight:700;font-size:22px;line-height:1}
+  .faq details[open] summary::after{content:"–"}
+  .faq details[open] summary{border-bottom:1px solid var(--line-soft)}
+  .faq .a{padding:14px 20px 20px;font-size:15px;color:var(--slate-700);line-height:1.6}
   .callout{background:#EEF2FF;border:1px solid #C7D2FE;border-radius:10px;padding:13px 16px;font-size:13.5px;color:var(--slate-700);margin-bottom:18px;line-height:1.55}
   .callout b{font-weight:650}
   .fieldnote{font-size:12.5px;color:var(--slate-400);margin:2px 0 10px;line-height:1.5}
@@ -270,7 +285,7 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<nav>
+<nav aria-label="Primary">
   <div class="wrap">
     <a href="/" class="logo" aria-label="UXexpert home">
       <svg aria-hidden="true" focusable="false" width="26" height="26" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#4F46E5"/><path d="M9 9l14 14M23 9L9 23" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/></svg>
@@ -282,6 +297,7 @@
       <a href="#audit">Run an audit</a>
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
       <a href="#audit" class="btn btn-primary btn-sm">Start a free audit</a>
     </div>
   </div>
@@ -292,7 +308,7 @@
   <div class="wrap">
     <p class="eyebrow">Your instant principal UX expert</p>
     <h1>Your web app, reviewed like a <em>flagship product</em>.</h1>
-    <p class="sub">UXexpert gives you a principal-level design review, an engineering code audit, and a growth strategist's conversion analysis — in one prioritized report, in seconds.</p>
+    <p class="sub">UXexpert.ai is an AI UX audit tool that gives you a principal-level design review, an engineering code audit, and a growth strategist's conversion analysis — in one prioritized report, in seconds.</p>
     <p class="proof">Built for indie hackers, agencies, and product teams</p>
     <div class="cta-row">
       <a href="#audit" class="btn btn-primary">Start a free audit</a>
@@ -479,11 +495,58 @@
   </div>
 </section>
 
+<section id="faq">
+  <div class="wrap">
+    <p class="eyebrow">FAQ</p>
+    <h2>Common questions about AI UX audits</h2>
+    <div class="faq">
+      <details>
+        <summary>What is an AI UX audit?</summary>
+        <div class="a">An AI UX audit uses an AI model to review a website or web app the way an expert would — checking usability, accessibility, code quality, performance, and conversion — and returns prioritized, actionable findings. UXexpert.ai runs three lenses at once: a principal UX design review, a full-stack engineering code audit, and a growth strategist's conversion analysis.</div>
+      </details>
+      <details>
+        <summary>What does UXexpert.ai check?</summary>
+        <div class="a">Every audit covers design and usability, accessibility mapped to WCAG success criteria, engineering and code quality, performance signals, SEO fundamentals, and conversion. Each finding comes scored by severity, effort, and impact, with a concrete fix — often a code snippet you can paste in.</div>
+      </details>
+      <details>
+        <summary>Is my code private?</summary>
+        <div class="a">Yes. The local engine runs entirely in your browser — the code you paste, upload, or fetch never leaves your device. The optional Claude AI engine only sends data if you supply your own Anthropic API key, and it goes directly from your browser to Anthropic, never through our servers.</div>
+      </details>
+      <details>
+        <summary>Do I need an API key?</summary>
+        <div class="a">No. The local engine is free and needs no key or account. An Anthropic API key is only required for the deeper Claude AI review, which you bring yourself. Founding Pro will later add hosted reviews that need no key of your own.</div>
+      </details>
+      <details>
+        <summary>How is this different from Lighthouse or an accessibility checker?</summary>
+        <div class="a">Single-purpose tools check one dimension — Lighthouse for performance, axe for accessibility. UXexpert.ai combines a usability, engineering, and growth review in one report, adds AI reasoning that reads your code and screenshots in context, and lets you tune the audit to your specific users with expertise skills. It complements those tools rather than replacing them.</div>
+      </details>
+      <details>
+        <summary>Can it audit a live URL or a GitHub repository?</summary>
+        <div class="a">Yes. Paste a live URL and UXexpert fetches the page for review, or point it at a public GitHub repository — a branch or folder link works too. A GitHub token unlocks private repositories. You can also drag in files or screenshots directly.</div>
+      </details>
+      <details>
+        <summary>Is there a free version?</summary>
+        <div class="a">Yes — the local engine is free forever, with unlimited audits, expertise skills, custom rules, and Markdown export. Founding Pro ($19/month, rate locked for life) adds early access to hosted reviews, saved history, and richer exports as they ship.</div>
+      </details>
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is an AI UX audit?","acceptedAnswer":{"@type":"Answer","text":"An AI UX audit uses an AI model to review a website or web app the way an expert would — checking usability, accessibility, code quality, performance, and conversion — and returns prioritized, actionable findings. UXexpert.ai runs three lenses at once: a principal UX design review, a full-stack engineering code audit, and a growth strategist's conversion analysis."}},
+{"@type":"Question","name":"What does UXexpert.ai check?","acceptedAnswer":{"@type":"Answer","text":"Every audit covers design and usability, accessibility mapped to WCAG success criteria, engineering and code quality, performance signals, SEO fundamentals, and conversion. Each finding is scored by severity, effort, and impact, with a concrete fix — often a pasteable code snippet."}},
+{"@type":"Question","name":"Is my code private?","acceptedAnswer":{"@type":"Answer","text":"Yes. The local engine runs entirely in your browser and the code you paste, upload, or fetch never leaves your device. The optional Claude AI engine only sends data if you supply your own Anthropic API key, going directly from your browser to Anthropic and never through our servers."}},
+{"@type":"Question","name":"Do I need an API key?","acceptedAnswer":{"@type":"Answer","text":"No. The local engine is free and needs no key or account. An Anthropic API key is only required for the deeper Claude AI review, which you bring yourself. Founding Pro will later add hosted reviews that need no key of your own."}},
+{"@type":"Question","name":"How is UXexpert.ai different from Lighthouse or an accessibility checker?","acceptedAnswer":{"@type":"Answer","text":"Single-purpose tools check one dimension. UXexpert.ai combines usability, engineering, and growth review in one report, adds AI reasoning that reads code and screenshots in context, and lets you tune the audit to your users with expertise skills. It complements those tools rather than replacing them."}},
+{"@type":"Question","name":"Can it audit a live URL or a GitHub repository?","acceptedAnswer":{"@type":"Answer","text":"Yes. Paste a live URL and UXexpert fetches the page for review, or point it at a public GitHub repository — a branch or folder link works too. A GitHub token unlocks private repositories, and you can also drag in files or screenshots directly."}},
+{"@type":"Question","name":"Is there a free version?","acceptedAnswer":{"@type":"Answer","text":"Yes — the local engine is free forever, with unlimited audits, expertise skills, custom rules, and Markdown export. Founding Pro ($19/month, rate locked for life) adds early access to hosted reviews, saved history, and richer exports as they ship."}}
+]}
+</script>
 </main>
 
 <footer>
   <div class="wrap">
-    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.08.06-6</span></div>
+    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.08.06-7</span></div>
     <div style="max-width:640px;font-size:12.5px;color:var(--slate-500);line-height:1.5">UXexpert produces automated and AI-assisted suggestions, not professional advice or a guarantee of compliance. A human should review, validate, and edit every finding, story, and fix before acting on it.</div>
     <div><a href="https://uxexpert.ai/privacy/">Privacy</a><a href="https://uxexpert.ai/terms/">Terms</a><a href="mailto:hello@uxexpert.ai">Contact</a></div>
   </div>
@@ -510,6 +573,6 @@
 
 <div class="toast" id="toast" role="status"></div>
 
-<script src="app.js?v=20260806-6" defer></script>
+<script src="app.js?v=20260806-7" defer></script>
 </body>
 </html>

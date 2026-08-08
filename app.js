@@ -135,7 +135,7 @@ const URL_PROXY = 'https://uxexpert-crawl.kintzele1994.workers.dev';
 // Stripe Payment Link for the $19/mo Founding Pro offer. Create it in the
 // Stripe dashboard (see SETUP-STRIPE.md) and paste the buy.stripe.com URL here.
 // Empty = the button falls back to the email waitlist so nothing looks broken.
-const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/7sY28k4Ef4HC8Srcv6afS00';
+const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/7sY8wQ88m6AX2tN2L6co001';
 
 function foundingCheckout() {
   track('Founding Checkout', { price: 19 });

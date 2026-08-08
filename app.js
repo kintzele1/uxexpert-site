@@ -131,6 +131,22 @@ const scrollBehavior = () => matchMedia('(prefers-reduced-motion: reduce)').matc
 // Set to the deployed crawler Worker URL (e.g. 'https://crawl.uxexpert.ai') to
 // enable live-URL audits for sites that block CORS. Empty = direct fetch only.
 const URL_PROXY = 'https://uxexpert-crawl.kintzele1994.workers.dev';
+
+// Stripe Payment Link for the $19/mo Founding Pro offer. Create it in the
+// Stripe dashboard (see SETUP-STRIPE.md) and paste the buy.stripe.com URL here.
+// Empty = the button falls back to the email waitlist so nothing looks broken.
+const STRIPE_PAYMENT_LINK = '';
+
+function foundingCheckout() {
+  track('Founding Checkout', { price: 19 });
+  if (STRIPE_PAYMENT_LINK) {
+    // Stripe appends the customer email; we tag the source for reconciliation
+    window.location.href = STRIPE_PAYMENT_LINK + (STRIPE_PAYMENT_LINK.includes('?') ? '&' : '?') + 'client_reference_id=uxexpert-web';
+  } else {
+    openWaitlist('pro');
+    toast('Founding checkout opens shortly — leave your email and you\'ll be first in.');
+  }
+}
 function track(name, props) {
   try { if (window.plausible) plausible(name, props ? { props } : undefined); } catch (e) {}
 }
@@ -1427,7 +1443,7 @@ updateReady();
 /* ---------- event delegation (CSP: no inline handlers) ---------- */
 const ACTIONS = {
   runEvaluation, generateStories, exportStories, exportMarkdown, copyReport, clearError,
-  addCustomSkill, closeWaitlist, toggleNav, loadSample, startDemo,
+  addCustomSkill, closeWaitlist, toggleNav, loadSample, startDemo, foundingCheckout,
   toggleComposer: () => toggleComposer(),
   toggleComposerClose: () => toggleComposer(false),
   filterLens: (el) => filterLens(el),
@@ -1456,3 +1472,10 @@ document.addEventListener('change', e => {
   if (el && CHANGES[el.dataset.change]) CHANGES[el.dataset.change](el, e);
 });
 document.getElementById('wl-form').addEventListener('submit', e => { e.preventDefault(); submitWaitlist(); });
+
+// Welcome founding members back after Stripe checkout (success URL = /?founding=success)
+if (new URLSearchParams(location.search).get('founding') === 'success') {
+  track('Founding Joined');
+  toast('Welcome aboard, founding member — check your email for the receipt and next steps.');
+  history.replaceState(null, '', location.pathname);
+}

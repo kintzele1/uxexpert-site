@@ -275,14 +275,17 @@ function persistKey() {
 (() => {
   const saved = localStorage.getItem('uxexpert_api_key');
   if (saved) { $('apikey').value = saved; $('rememberkey').checked = true; }
-  const ghSaved = localStorage.getItem('uxexpert_gh_token');
+  // GitHub token: session-scoped only (repo-read credential, cleared on tab
+  // close) — never persisted to localStorage. Clean up any legacy persisted one.
+  try { localStorage.removeItem('uxexpert_gh_token'); } catch (e) {}
+  const ghSaved = sessionStorage.getItem('uxexpert_gh_token');
   if (ghSaved) $('ghtoken').value = ghSaved;
   $('apikey').addEventListener('input', persistKey);
   $('rememberkey').addEventListener('change', persistKey);
   $('ghtoken').addEventListener('input', () => {
     try {
       const t = $('ghtoken').value.replace(/\s+/g, '');
-      t ? localStorage.setItem('uxexpert_gh_token', t) : localStorage.removeItem('uxexpert_gh_token');
+      t ? sessionStorage.setItem('uxexpert_gh_token', t) : sessionStorage.removeItem('uxexpert_gh_token');
     } catch (e) {}
   });
   // Any manual edit means the editor no longer holds the untouched sample
@@ -1109,7 +1112,7 @@ async function fetchGitHubRepo(url) {
   const [, owner, repoRaw, kind, branchIn, sub] = m;
   const repo = repoRaw.replace(/\.git$/, '');
   const token = $('ghtoken').value.replace(/\s+/g, '');
-  try { token ? localStorage.setItem('uxexpert_gh_token', token) : localStorage.removeItem('uxexpert_gh_token'); } catch (e) {}
+  try { token ? sessionStorage.setItem('uxexpert_gh_token', token) : sessionStorage.removeItem('uxexpert_gh_token'); } catch (e) {}
   toast(`Fetching ${owner}/${repo} from GitHub…`);
 
   const gh = async path => {

@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#4F46E5">
 <title>Instant AI UX Audits — Design, Code & Growth | UXexpert.ai</title>
 <meta name="description" content="UXexpert.ai is your instant principal UX expert: AI-powered website UX audits covering design, accessibility, code quality, performance, and conversion — with prioritized, actionable fixes in seconds.">
 <meta property="og:title" content="UXexpert.ai — Your Instant Principal UX Expert">
@@ -52,6 +53,9 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   @media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}
+  @media (prefers-reduced-motion: reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+  .btn:focus-visible,.tab:focus-visible,a:focus-visible,summary:focus-visible,.rm:focus-visible,.nav-toggle:focus-visible{outline:2px solid var(--indigo);outline-offset:2px}
+  .engine:focus-within{outline:2px solid var(--indigo);outline-offset:2px}
   .skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--indigo);color:#fff;padding:10px 18px;border-radius:0 0 8px 0;font-weight:600;font-size:14px}
   .skip:focus{left:0}
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -100,6 +104,8 @@
   .hero .proof b{color:var(--slate-700);font-weight:650}
   .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
   .hero .under{margin-top:14px;font-size:13.5px;color:var(--slate-400)}
+  .trust{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+  .trust span{font-size:12.5px;color:var(--slate-700);background:var(--white);border:1px solid var(--line);border-radius:999px;padding:6px 14px}
   .lensline{display:flex;gap:0;justify-content:center;margin:64px auto 0;max-width:860px;border:1px solid var(--line);border-radius:var(--radius);background:var(--white);box-shadow:var(--shadow);overflow:hidden}
   .lensline .cell{flex:1;padding:24px 26px;text-align:left;border-left:1px solid var(--line-soft)}
   .lensline .cell:first-child{border-left:0}
@@ -308,13 +314,14 @@
   <div class="wrap">
     <p class="eyebrow">Your instant principal UX expert</p>
     <h1>Your web app, reviewed like a <em>flagship product</em>.</h1>
-    <p class="sub">UXexpert.ai is an AI UX audit tool that gives you a principal-level design review, an engineering code audit, and a growth strategist's conversion analysis — in one prioritized report, in seconds.</p>
+    <p class="sub">UXexpert.ai is an AI UX audit tool that gives you a principal-level design review, an engineering code audit, and a growth strategist's conversion analysis — in one prioritized report: instantly with the local engine, or a deeper Claude review in a minute or two.</p>
     <p class="proof">Built for indie hackers, agencies, and product teams</p>
     <div class="cta-row">
       <a href="#audit" class="btn btn-primary">Start a free audit</a>
       <button class="btn btn-quiet" data-action="startDemo">See a sample report</button>
     </div>
     <p class="under">No account required. Run privately in your browser, or bring your API key for a full Claude review.</p>
+    <div class="trust"><span>Private by design — local audits never leave your browser</span><span>No sign-up to start</span><span>Open engine you can inspect</span></div>
 
     <div class="lensline">
       <div class="cell">
@@ -353,6 +360,7 @@
     <p class="eyebrow">Live playground</p>
     <h2>Run an audit right now</h2>
     <p class="lede">Two engines, your choice: the local engine runs entirely in your browser and nothing you paste leaves your machine, or bring an Anthropic API key for a deeper review by Claude. New here? <a href="#audit" data-action="startDemo" class="textlink">Load the sample app</a> and run your first audit in one click.</p>
+    <noscript><p class="callout" style="max-width:640px">The live audit playground needs JavaScript enabled to run. Everything else on this page works without it.</p></noscript>
 
     <div class="pg-grid">
       <div class="card" id="inputcard">
@@ -372,7 +380,7 @@
         <input type="url" id="url" aria-label="Live URL or GitHub repository" placeholder="https://your-app.com or github.com/owner/repo">
         <p class="fieldnote" style="margin-top:6px">Public GitHub repos are fetched right in your browser — a branch or folder link works too.</p>
         <input type="password" id="ghtoken" class="key" placeholder="GitHub token (optional — unlocks private repos)" autocomplete="off" spellcheck="false" aria-label="GitHub access token" style="margin-top:8px">
-        <p class="fieldnote" style="margin-top:6px">A fine-grained token with repository read access unlocks private repos and a 5,000-requests-per-hour limit. Sent only to GitHub; stored only in this browser.</p>
+        <p class="fieldnote" style="margin-top:6px">A fine-grained token with repository read access unlocks private repos and a 5,000-requests-per-hour limit. Sent only to GitHub, and kept only for this browser session — it's cleared when you close the tab.</p>
 
         <div class="stephead"><span class="k">02</span><h3>Tune the review</h3><span class="hint">optional</span></div>
         <label for="persona" style="display:block;font-size:13px;color:var(--slate-500);margin-bottom:6px">Audience</label>
@@ -423,7 +431,7 @@
           </label>
           <label class="engine" id="eng-ai">
             <input type="radio" name="engine" value="ai" data-change="setEngine" data-arg="ai">
-            <span><span class="t">Claude AI review</span><span class="d">Deeper, contextual reasoning from Claude Opus 4.8. Bring your own Anthropic API key; your code is sent directly to Anthropic and nowhere else. AI can be wrong — review and validate its findings before acting.</span></span>
+            <span><span class="t">Claude AI review</span><span class="d">Deeper, contextual reasoning from Claude Opus 4.8. Bring your own Anthropic API key; your code is sent directly to Anthropic and nowhere else. A deep review typically takes a minute or two, not seconds. AI can be wrong — review and validate its findings before acting.</span></span>
           </label>
         </div>
         <div class="keywrap" id="keywrap">
@@ -546,7 +554,7 @@
 
 <footer>
   <div class="wrap">
-    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.08.06-8</span></div>
+    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.08.08-1</span></div>
     <div style="max-width:640px;font-size:12.5px;color:var(--slate-500);line-height:1.5">UXexpert produces automated and AI-assisted suggestions, not professional advice or a guarantee of compliance. A human should review, validate, and edit every finding, story, and fix before acting on it.</div>
     <div><a href="https://uxexpert.ai/privacy/">Privacy</a><a href="https://uxexpert.ai/terms/">Terms</a><a href="mailto:hello@uxexpert.ai">Contact</a></div>
   </div>
@@ -573,6 +581,6 @@
 
 <div class="toast" id="toast" role="status"></div>
 
-<script src="app.js?v=20260806-8" defer></script>
+<script src="app.js?v=20260808-1" defer></script>
 </body>
 </html>

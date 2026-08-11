@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#4F46E5">
+<title>AI UX Audit Tool: The Complete Guide (2026) | UXexpert.ai</title>
+<meta name="description" content="What an AI UX audit tool is, what it checks, how it compares to Lighthouse and single-purpose checkers, and how to get the most from one. The complete guide to auditing design, code, and conversion with AI.">
+<meta property="og:title" content="AI UX Audit Tool: The Complete Guide">
+<meta property="og:description" content="What an AI UX audit tool is, what it checks, how it beats single-purpose tools, and how to get the most from one.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UXexpert.ai">
+<meta property="og:url" content="https://uxexpert.ai/blog/ai-ux-audit-tool/">
+<meta property="og:image" content="https://uxexpert.ai/og.png?v=20260810">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://uxexpert.ai/og.png?v=20260810">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://uxexpert.ai/blog/ai-ux-audit-tool/">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src https://plausible.io; connect-src 'self' https://plausible.io; img-src 'self' data:; style-src 'unsafe-inline'; base-uri 'none'; object-src 'none'; form-action 'self'">
+<script async src="https://plausible.io/js/pa-HuKnDbBb6VROp-Q7KzWUg.js"></script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230F172A'/%3E%3Cpath d='M10 10 22 22' stroke='%236366F1' stroke-width='3.6' stroke-linecap='round'/%3E%3Cpath d='M22 10 10 22' stroke='%232DD4BF' stroke-width='3.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"AI UX Audit Tool: The Complete Guide","description":"What an AI UX audit tool is, what it checks, how it compares to single-purpose tools, and how to get the most from one.","datePublished":"2026-08-11","dateModified":"2026-08-11","author":{"@type":"Organization","name":"UXexpert.ai","url":"https://uxexpert.ai"},"publisher":{"@type":"Organization","name":"UXexpert.ai","logo":{"@type":"ImageObject","url":"https://uxexpert.ai/og.png"}},"mainEntityOfPage":"https://uxexpert.ai/blog/ai-ux-audit-tool/","image":"https://uxexpert.ai/og.png","keywords":"AI UX audit tool, web app UX analysis, automated design audit, design code review, conversion rate audit"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://uxexpert.ai/"},
+{"@type":"ListItem","position":2,"name":"Blog","item":"https://uxexpert.ai/blog/"},
+{"@type":"ListItem","position":3,"name":"AI UX Audit Tool: The Complete Guide","item":"https://uxexpert.ai/blog/ai-ux-audit-tool/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is an AI UX audit tool?","acceptedAnswer":{"@type":"Answer","text":"An AI UX audit tool uses AI to review a website or web app the way an expert would — checking usability, accessibility, code quality, performance, and conversion — and returns prioritized, actionable findings with fixes. UXexpert.ai runs three lenses at once: a principal design review, an engineering code audit, and a growth strategist's conversion analysis."}},
+{"@type":"Question","name":"What does an AI UX audit check?","acceptedAnswer":{"@type":"Answer","text":"It checks design and usability, accessibility mapped to WCAG, engineering and code quality, performance signals, SEO fundamentals, and conversion. Each finding is scored by severity, effort, and impact and paired with a concrete fix, often a pasteable code snippet."}},
+{"@type":"Question","name":"How is an AI UX audit different from Lighthouse?","acceptedAnswer":{"@type":"Answer","text":"Lighthouse measures one dimension (mostly performance and some best-practices checks). An AI UX audit combines usability, engineering, and conversion review in one report and adds reasoning that reads your actual code and screenshots in context. UXexpert.ai complements tools like Lighthouse and axe rather than replacing them."}},
+{"@type":"Question","name":"Is there a free AI UX audit tool?","acceptedAnswer":{"@type":"Answer","text":"Yes. UXexpert.ai has a free local engine that runs unlimited audits entirely in your browser, with no account or API key. A deeper Claude review is available with your own API key, and Founding Pro adds hosted reviews and more as they ship."}}
+]}
+</script>
+<style>
+  :root{--indigo:#4F46E5;--indigo-soft:#6366F1;--teal:#14B8A6;--teal-text:#0F766E;--slate:#0F172A;--slate-700:#334155;--slate-500:#5A6879;--paper:#F8FAFC;--white:#FFFFFF;--line:#E2E8F0;--amber:#F59E0B;
+    --serif:"New York","Iowan Old Style",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px rgba(15,23,42,.06)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  @media (prefers-reduced-motion: reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+  body{background:var(--paper);color:var(--slate);font-family:var(--sans);line-height:1.68;font-size:16px;-webkit-font-smoothing:antialiased}
+  a{color:var(--indigo);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .btn:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--indigo);outline-offset:2px}
+  nav{background:rgba(248,250,252,.85);backdrop-filter:saturate(180%) blur(10px);-webkit-backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+  nav .wrap{max-width:1080px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px;flex-wrap:wrap}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:var(--slate);letter-spacing:-.02em;text-decoration:none}
+  .logo:hover{text-decoration:none}
+  .navlinks{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+  .navlinks a{color:var(--slate-700);font-size:14.5px;font-weight:500}
+  .navlinks a[aria-current=page]{color:var(--indigo);font-weight:600}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:15px;border:1px solid transparent;border-radius:10px;padding:11px 18px;cursor:pointer;text-decoration:none;transition:background .2s ease,border-color .2s ease,color .2s ease}
+  .btn:hover{text-decoration:none}
+  .btn-primary{background:var(--indigo);color:#fff;box-shadow:0 1px 2px rgba(79,70,229,.35)}
+  .btn-primary:hover{background:#4338CA}
+  .btn-quiet{background:var(--white);color:var(--slate);border-color:var(--line)}
+  .btn-quiet:hover{border-color:var(--indigo);color:var(--indigo)}
+  .btn-sm{padding:8px 14px;font-size:14px;border-radius:9px}
+  main{max-width:740px;margin:0 auto;padding:0 28px}
+  .crumb{font-size:13px;color:var(--slate-500);padding:26px 0 0}
+  .crumb a{color:var(--slate-500)}
+  .crumb a:hover{color:var(--indigo)}
+  .head{padding:22px 0 6px;border-bottom:1px solid var(--line);margin-bottom:34px}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--teal-text);margin-bottom:14px}
+  h1{font-family:var(--serif);font-weight:600;font-size:44px;line-height:1.08;letter-spacing:-.02em;margin-bottom:16px}
+  .byline{color:var(--slate-500);font-size:14px;margin-bottom:24px}
+  article p{font-size:17.5px;line-height:1.7;color:var(--slate-700);margin-bottom:20px}
+  article h2{font-family:var(--serif);font-weight:600;font-size:28px;letter-spacing:-.01em;color:var(--slate);margin:40px 0 14px;line-height:1.2;scroll-margin-top:84px}
+  article h3{font-size:18px;font-weight:700;color:var(--slate);margin:26px 0 8px}
+  article ul,article ol{margin:0 0 20px;padding-left:24px}
+  article li{font-size:17px;line-height:1.65;color:var(--slate-700);margin-bottom:10px}
+  article strong{color:var(--slate);font-weight:650}
+  article .lead{font-size:20px;line-height:1.6;color:var(--slate-700)}
+  .toc{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin:28px 0}
+  .toc .tl{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--slate-500);margin-bottom:10px}
+  .toc ol{margin:0;padding-left:20px}
+  .toc li{font-size:15.5px;line-height:1.5;margin-bottom:6px;color:var(--slate-700)}
+  blockquote{margin:26px 0;padding:6px 0 6px 24px;border-left:3px solid var(--indigo);font-family:var(--serif);font-size:22px;line-height:1.4;color:var(--slate);font-style:italic}
+  .callout{background:var(--white);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:20px 22px;margin:28px 0;box-shadow:var(--shadow)}
+  .callout p{margin:0;font-size:16px}
+  .callout .lbl{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--teal-text);margin-bottom:8px}
+  code{font-family:var(--mono);font-size:.9em;background:#EEF2F7;padding:2px 6px;border-radius:5px;color:#334155}
+  .disc{background:#FFFBEB;border:1px solid #FDE68A;border-left:3px solid var(--amber);border-radius:10px;padding:14px 18px;font-size:14px;color:#7c5b12;line-height:1.55;margin:28px 0}
+  .faq{margin:16px 0 0;display:flex;flex-direction:column;gap:10px}
+  .faq details{background:var(--white);border:1px solid var(--line);border-radius:12px}
+  .faq summary{cursor:pointer;padding:16px 20px;font-weight:600;font-size:16.5px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;color:var(--slate)}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";color:var(--indigo);font-size:22px;font-weight:400;line-height:1;flex:0 0 auto}
+  .faq details[open] summary::after{content:"–"}
+  .faq .a{padding:0 20px 18px;color:var(--slate-700);font-size:15.5px;line-height:1.65}
+  .cta{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:30px 26px;text-align:center;margin:40px 0 8px;box-shadow:var(--shadow)}
+  .cta h2{font-family:var(--serif);font-weight:600;font-size:25px;margin:0 0 8px}
+  .cta p{color:var(--slate-500);margin-bottom:18px;font-size:16px}
+  .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .related{margin:44px 0 0;border-top:1px solid var(--line);padding-top:28px}
+  .related h2{font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:16px}
+  .related a{display:block;background:var(--white);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:10px;color:var(--slate);font-weight:600}
+  .related a:hover{border-color:var(--indigo);text-decoration:none}
+  .related a span{display:block;font-weight:400;font-size:14px;color:var(--slate-500);margin-top:3px}
+  footer{border-top:1px solid var(--line);background:var(--white);margin-top:56px}
+  footer .fwrap{max-width:1080px;margin:0 auto;padding:40px 28px;display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center;color:var(--slate-500);font-size:13.5px}
+  footer a{color:var(--slate-500)}
+  footer .links a{margin:0 9px}
+  .foot-legal{max-width:640px;font-size:12.5px;line-height:1.5;color:var(--slate-500)}
+  @media (max-width:720px){h1{font-size:33px}article p{font-size:17px}.navlinks{gap:15px;font-size:14px}}
+  @media (max-width:520px){.navlinks a.nav-hide{display:none}}
+</style>
+</head>
+<body>
+<nav aria-label="Primary"><div class="wrap">
+  <a class="logo" href="/" aria-label="UXexpert home"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#0F172A"/><path d="M10 10 22 22" stroke="#6366F1" stroke-width="3.6" stroke-linecap="round"/><path d="M22 10 10 22" stroke="#2DD4BF" stroke-width="3.6" stroke-linecap="round"/></svg><span>UXexpert<span style="color:#4F46E5">.ai</span></span></a>
+  <div class="navlinks">
+    <a class="nav-hide" href="/#how">How it works</a>
+    <a class="nav-hide" href="/#features">Features</a>
+    <a href="/pricing/">Pricing</a>
+    <a href="/blog/" aria-current="page">Blog</a>
+    <a href="/about/">About</a>
+    <a href="/#audit" class="btn btn-primary btn-sm">Start a free audit</a>
+  </div>
+</div></nav>
+<main>
+  <p class="crumb"><a href="/">Home</a> › <a href="/blog/">Blog</a> › AI UX Audit Tool: The Complete Guide</p>
+  <div class="head">
+    <p class="kicker">Complete guide</p>
+    <h1>AI UX Audit Tool: The Complete Guide</h1>
+    <p class="byline">12 min read · Updated August 11, 2026</p>
+  </div>
+
+  <article>
+    <p class="lead">An AI UX audit tool reviews your website or web app the way a senior expert would — reading the actual design and code to find usability, accessibility, quality, and conversion problems, then handing you prioritized fixes. This guide covers what these tools are, what they check, how they differ from single-purpose checkers, and how to get real value from one.</p>
+
+    <div class="toc" aria-label="Contents">
+      <div class="tl">On this page</div>
+      <ol>
+        <li><a href="#what">What is an AI UX audit tool?</a></li>
+        <li><a href="#checks">What it checks</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#vs">AI audit vs. single-purpose tools</a></li>
+        <li><a href="#most">How to get the most out of one</a></li>
+        <li><a href="#trust">Accuracy and the human in the loop</a></li>
+      </ol>
+    </div>
+
+    <h2 id="what">What is an AI UX audit tool?</h2>
+    <p>A UX audit is an expert review of a product's experience: someone senior examines it and reports what's working, what's broken, and what to fix. Historically that meant hiring a person, waiting for their calendar, and paying accordingly. An <strong>AI UX audit tool</strong> does the review with AI instead — reading your site or code directly and returning the same kind of prioritized, expert-grade findings in minutes rather than weeks.</p>
+    <p>The best of these tools don't just describe the surface. They reason about your <em>actual implementation</em> — the markup, the styles, the flows — and connect what they see to why it matters for the people using your product. The result is closer to a consultant's report than a linter's warning list.</p>
+
+    <h2 id="checks">What an AI UX audit checks</h2>
+    <p>A comprehensive audit reviews your product across several dimensions at once. UXexpert.ai runs three expert lenses in a single pass:</p>
+    <ul>
+      <li><strong>Design &amp; usability</strong> — hierarchy, clarity, consistency, and the friction between a user and their goal, plus accessibility mapped to WCAG.</li>
+      <li><strong>Engineering &amp; code quality</strong> — correctness, maintainability, semantic structure, and performance signals that shape how the product feels.</li>
+      <li><strong>Growth &amp; conversion</strong> — the clarity and friction issues standing between a visitor and the action you want them to take.</li>
+    </ul>
+    <p>Every finding is scored by severity, effort, and impact, and paired with a concrete fix — often a code snippet you can paste in. That scoring is what turns a report into a plan.</p>
+
+    <h2 id="how">How it works</h2>
+    <p>A good AI audit tool meets you where your work already is. UXexpert.ai accepts several inputs — a live URL, a public GitHub repository, pasted code, or a screenshot for a <a href="/blog/audit-a-screenshot/">vision-based review</a> — and offers two engines with different trade-offs:</p>
+    <ul>
+      <li><strong>The local engine</strong> runs entirely in your browser and returns results in seconds, with nothing leaving your device.</li>
+      <li><strong>The Claude engine</strong> adds deeper reasoning using your own API key, going straight from your browser to Anthropic, and takes a minute or two.</li>
+    </ul>
+    <p>Because privacy is a common concern, it's worth knowing exactly where your code goes — we cover that in <a href="/blog/private-code-audit/">private code audits</a>.</p>
+
+    <h2 id="vs">AI audit vs. single-purpose tools</h2>
+    <p>Tools like Lighthouse and axe are excellent and worth using — but each measures one dimension. Lighthouse focuses on performance and some best-practice checks; axe focuses on detectable accessibility issues. Neither reasons about your product as a whole, and none of them connect a design decision to the code that implements it to the conversion it affects.</p>
+    <p>That intersection is where an AI UX audit earns its place. It combines the dimensions into one report, adds reasoning that reads your code and screenshots in context, and — with <a href="/blog/custom-design-audit/">expertise skills</a> — can be tuned to your specific users. Think of it as complementary: keep Lighthouse for performance budgets, and use an AI audit for the cross-cutting review a single-purpose tool can't give. We go deeper on this in <a href="/blog/hidden-cost-of-design-debt/">the hidden cost of design debt</a>.</p>
+
+    <blockquote>Single-purpose tools tell you one thing precisely. An AI audit tells you how the whole thing hangs together.</blockquote>
+
+    <h2 id="most">How to get the most out of one</h2>
+    <p>An audit tool is only as valuable as what you do with it. The workflow that pays off:</p>
+    <ul>
+      <li><strong>Tune it to your product.</strong> Upload expertise skills and set custom rules so the review reflects your users and design system, not a generic checklist — see <a href="/blog/custom-design-audit/">tuning the review</a>.</li>
+      <li><strong>Turn findings into work.</strong> Convert the report into user stories with acceptance criteria so it becomes a backlog, not a PDF — see <a href="/blog/user-stories-from-a-ux-audit/">turning an audit into user stories</a>.</li>
+      <li><strong>Use it on AI-built apps.</strong> If you vibe-code, an audit is the senior review your fast build skipped — see <a href="/blog/audit-ai-generated-code/">auditing AI-generated code</a>.</li>
+      <li><strong>Diagnose specific problems.</strong> Point it at a page your analytics flagged to find the root of a <a href="/blog/diagnosing-low-conversion-rates/">conversion leak</a>, or run a focused <a href="/blog/accessibility-audit-guide/">accessibility audit</a>.</li>
+      <li><strong>Make it a habit.</strong> Re-run after changes so issues are caught continuously, not once a quarter.</li>
+    </ul>
+
+    <h2 id="trust">Accuracy and the human in the loop</h2>
+    <p>Be clear-eyed about what these tools are: powerful assistants, not oracles. AI-generated findings can be incomplete or occasionally wrong, and passing an audit does not certify compliance with WCAG or any law. The right mental model is a fast, tireless senior reviewer whose work you still read before acting. Used that way — as a strong first pass that a person validates — an AI UX audit dramatically raises your quality floor without pretending to remove your judgment.</p>
+
+    <div class="callout">
+      <p class="lbl">Where UXexpert fits</p>
+      <p><a href="/">UXexpert.ai</a> is an AI UX audit tool built around these principles: three expert lenses in one report, reads your real code, tunable to your product, private by default, and honest about being AI-assisted. The local engine is free and needs no account. It's the fastest way to get a principal-level review of your web app — start with a URL, a repo, or pasted code.</p>
+    </div>
+
+    <div class="disc">AI-assisted audit output can be incomplete or wrong and is not professional advice or a compliance certification. Review, validate, and edit findings before acting on them.</div>
+
+    <h2>Frequently asked</h2>
+    <div class="faq">
+      <details>
+        <summary>What is an AI UX audit tool?</summary>
+        <div class="a">An AI UX audit tool uses AI to review a website or web app the way an expert would — checking usability, accessibility, code quality, performance, and conversion — and returns prioritized, actionable findings with fixes. UXexpert.ai runs three lenses at once: a principal design review, an engineering code audit, and a growth strategist's conversion analysis.</div>
+      </details>
+      <details>
+        <summary>What does an AI UX audit check?</summary>
+        <div class="a">It checks design and usability, accessibility mapped to WCAG, engineering and code quality, performance signals, SEO fundamentals, and conversion. Each finding is scored by severity, effort, and impact and paired with a concrete fix, often a pasteable code snippet.</div>
+      </details>
+      <details>
+        <summary>How is an AI UX audit different from Lighthouse?</summary>
+        <div class="a">Lighthouse measures one dimension (mostly performance and some best-practice checks). An AI UX audit combines usability, engineering, and conversion review in one report and adds reasoning that reads your actual code and screenshots in context. UXexpert.ai complements tools like Lighthouse and axe rather than replacing them.</div>
+      </details>
+      <details>
+        <summary>Is there a free AI UX audit tool?</summary>
+        <div class="a">Yes. UXexpert.ai has a free local engine that runs unlimited audits entirely in your browser, with no account or API key. A deeper Claude review is available with your own API key, and Founding Pro adds hosted reviews and more as they ship.</div>
+      </details>
+    </div>
+
+    <div class="cta">
+      <h2>Try an AI UX audit on your site</h2>
+      <p>Free, private, and instant — no account, no API key to start.</p>
+      <div class="cta-row">
+        <a href="/#audit" class="btn btn-primary">Start a free audit</a>
+        <a href="/pricing/" class="btn btn-quiet">See pricing</a>
+      </div>
+    </div>
+
+    <div class="related">
+      <h2>Explore the guides</h2>
+      <a href="/blog/custom-design-audit/">Tuning the Review<span>Make the audit an expert in your product.</span></a>
+      <a href="/blog/private-code-audit/">Private Code Audits<span>Local engine vs. your own Claude key.</span></a>
+      <a href="/blog/user-stories-from-a-ux-audit/">Turn an Audit Into User Stories<span>From findings to a ready-to-work backlog.</span></a>
+      <a href="/blog/audit-ai-generated-code/">Auditing AI-Generated Code<span>Review a vibe-coded app before launch.</span></a>
+      <a href="/blog/accessibility-audit-guide/">How to Run an Accessibility Audit<span>WCAG-aligned checks with code-level fixes.</span></a>
+      <a href="/blog/diagnosing-low-conversion-rates/">Diagnosing Low Conversion Rates<span>Button, broken code, or leaky funnel?</span></a>
+    </div>
+  </article>
+</main>
+<footer>
+  <div class="fwrap">
+    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert.</div>
+    <div class="foot-legal">UXexpert produces automated and AI-assisted suggestions, not professional advice or a guarantee of compliance. A human should review, validate, and edit every finding, story, and fix before acting on it.</div>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/about/">About</a><a href="/pricing/">Pricing</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="mailto:hello@uxexpert.ai">Contact</a></div>
+  </div>
+</footer>
+</body>
+</html>

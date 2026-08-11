@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#4F46E5">
-<title>The UXexpert Blog — Design, Code & Conversion Audits | UXexpert.ai</title>
-<meta name="description" content="Guides on auditing web app UX where design, code, and conversion meet: catching design debt, getting a principal-level design review without a designer, and diagnosing low conversion rates.">
+<title>The UXexpert Blog — Guides on AI UX, Design & Code Audits | UXexpert.ai</title>
+<meta name="description" content="Practical guides on auditing web app UX where design, code, and conversion meet: AI UX audits, design debt, accessibility, private code review, user stories, and auditing AI-generated apps.">
 <meta property="og:title" content="The UXexpert Blog — Design, Code & Conversion">
 <meta property="og:description" content="Where design, code, and conversion meet — practical guides on auditing your web app's UX.">
 <meta property="og:type" content="website">
@@ -23,6 +23,13 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230F172A'/%3E%3Cpath d='M10 10 22 22' stroke='%236366F1' stroke-width='3.6' stroke-linecap='round'/%3E%3Cpath d='M22 10 10 22' stroke='%232DD4BF' stroke-width='3.6' stroke-linecap='round'/%3E%3C/svg%3E">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Blog","name":"The UXexpert Blog","url":"https://uxexpert.ai/blog/","description":"Practical guides on auditing web app UX where design, code, and conversion meet.","publisher":{"@type":"Organization","name":"UXexpert.ai","url":"https://uxexpert.ai"},"blogPost":[
+{"@type":"BlogPosting","headline":"AI UX Audit Tool: The Complete Guide","url":"https://uxexpert.ai/blog/ai-ux-audit-tool/","datePublished":"2026-08-11"},
+{"@type":"BlogPosting","headline":"Tuning the Review: Custom AI Design Audits","url":"https://uxexpert.ai/blog/custom-design-audit/","datePublished":"2026-08-11"},
+{"@type":"BlogPosting","headline":"Private Code Audits: Local Engine vs. Your Claude Key","url":"https://uxexpert.ai/blog/private-code-audit/","datePublished":"2026-08-11"},
+{"@type":"BlogPosting","headline":"Turn a UX Audit Into User Stories","url":"https://uxexpert.ai/blog/user-stories-from-a-ux-audit/","datePublished":"2026-08-11"},
+{"@type":"BlogPosting","headline":"Auditing AI-Generated Code","url":"https://uxexpert.ai/blog/audit-ai-generated-code/","datePublished":"2026-08-11"},
+{"@type":"BlogPosting","headline":"How to Run an Accessibility Audit","url":"https://uxexpert.ai/blog/accessibility-audit-guide/","datePublished":"2026-08-11"},
+{"@type":"BlogPosting","headline":"Audit a Design From a Screenshot","url":"https://uxexpert.ai/blog/audit-a-screenshot/","datePublished":"2026-08-11"},
 {"@type":"BlogPosting","headline":"The Hidden Cost of Design Debt","url":"https://uxexpert.ai/blog/hidden-cost-of-design-debt/","datePublished":"2026-08-10"},
 {"@type":"BlogPosting","headline":"Design Review Without a Designer","url":"https://uxexpert.ai/blog/design-review-without-a-designer/","datePublished":"2026-08-10"},
 {"@type":"BlogPosting","headline":"Diagnosing Low Conversion Rates","url":"https://uxexpert.ai/blog/diagnosing-low-conversion-rates/","datePublished":"2026-08-10"}
@@ -58,15 +65,21 @@
   .eyebrow{color:var(--indigo);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
   h1{font-family:var(--serif);font-weight:600;font-size:46px;line-height:1.08;letter-spacing:-.02em;margin-bottom:16px}
   .lede{color:var(--slate-500);font-size:19px;max-width:640px;margin:0 auto;line-height:1.55}
-  .posts{display:grid;grid-template-columns:1fr;gap:18px;margin:44px 0 8px}
-  .post{display:block;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:28px 30px;box-shadow:var(--shadow);transition:border-color .2s ease,transform .06s ease}
+  .sec{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--slate-500);margin:40px 0 4px}
+  .feat{display:block;background:var(--white);border:1px solid var(--indigo);border-radius:16px;padding:30px 32px;box-shadow:0 8px 30px rgba(79,70,229,.12);margin-top:40px;transition:transform .06s ease}
+  .feat:hover{text-decoration:none;transform:translateY(-1px)}
+  .feat .kicker{font-size:11.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--indigo);margin-bottom:10px}
+  .feat h2{font-family:var(--serif);font-weight:600;font-size:30px;letter-spacing:-.01em;color:var(--slate);margin-bottom:10px;line-height:1.14}
+  .feat p{color:var(--slate-700);font-size:16px;line-height:1.6;margin-bottom:14px;max-width:72ch}
+  .feat .more{color:var(--indigo);font-weight:600;font-size:14.5px}
+  .posts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0 0}
+  .post{display:block;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px 24px;box-shadow:var(--shadow);transition:border-color .2s ease}
   .post:hover{border-color:var(--indigo);text-decoration:none}
-  .post .kicker{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--teal-text);margin-bottom:10px}
-  .post h2{font-family:var(--serif);font-weight:600;font-size:27px;letter-spacing:-.01em;color:var(--slate);margin-bottom:8px;line-height:1.15}
-  .post p{color:var(--slate-700);font-size:15.5px;line-height:1.6;margin-bottom:14px;max-width:70ch}
-  .post .more{color:var(--indigo);font-weight:600;font-size:14.5px}
-  .post .meta{color:var(--slate-500);font-size:13px;margin-top:10px}
-  .cta{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:32px 28px;text-align:center;margin:36px 0 8px;box-shadow:var(--shadow)}
+  .post .kicker{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--teal-text);margin-bottom:9px}
+  .post h3{font-family:var(--serif);font-weight:600;font-size:21px;letter-spacing:-.01em;color:var(--slate);margin-bottom:7px;line-height:1.18}
+  .post p{color:var(--slate-700);font-size:14.5px;line-height:1.55;margin-bottom:12px}
+  .post .meta{color:var(--slate-500);font-size:12.5px}
+  .cta{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:32px 28px;text-align:center;margin:44px 0 8px;box-shadow:var(--shadow)}
   .cta h2{font-family:var(--serif);font-weight:600;font-size:26px;margin-bottom:8px}
   .cta p{color:var(--slate-500);margin-bottom:18px}
   .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
@@ -75,7 +88,7 @@
   footer a{color:var(--slate-500)}
   footer .links a{margin:0 9px}
   .foot-legal{max-width:640px;font-size:12.5px;line-height:1.5;color:var(--slate-500)}
-  @media (max-width:720px){h1{font-size:34px}.lede{font-size:17px}.navlinks{gap:15px;font-size:14px}.page-head{padding-top:44px}.post{padding:24px}}
+  @media (max-width:720px){h1{font-size:34px}.lede{font-size:17px}.navlinks{gap:15px;font-size:14px}.page-head{padding-top:44px}.posts{grid-template-columns:1fr}.feat{padding:24px}}
   @media (max-width:520px){.navlinks a.nav-hide{display:none}}
 </style>
 </head>
@@ -98,27 +111,72 @@
     <p class="lede">Most audits look at one thing. The problems that actually cost you sit in the overlap — a design decision made in markup, a funnel that leaks because of a slow component. These guides live in that intersection.</p>
   </div>
 
+  <a class="feat" href="/blog/ai-ux-audit-tool/">
+    <div class="kicker">Start here · Complete guide</div>
+    <h2>AI UX Audit Tool: The Complete Guide</h2>
+    <p>What an AI UX audit tool is, what it checks, how it compares to Lighthouse and single-purpose checkers, and how to get real value from one. The best entry point to everything below.</p>
+    <span class="more">Read the guide →</span>
+  </a>
+
+  <p class="sec">Get more from your audits</p>
+  <div class="posts">
+    <a class="post" href="/blog/custom-design-audit/">
+      <div class="kicker">Tuning</div>
+      <h3>Tuning the Review: Custom AI Design Audits</h3>
+      <p>Make the audit an expert in your product with expertise skills and custom rules — so it checks your design system, not a generic checklist.</p>
+      <div class="meta">8 min · custom AI design audit</div>
+    </a>
+    <a class="post" href="/blog/private-code-audit/">
+      <div class="kicker">Privacy</div>
+      <h3>Private Code Audits: Local vs. Your Claude Key</h3>
+      <p>Get an AI review without uploading your source. How the local engine and bring-your-own-key model keep code on your device.</p>
+      <div class="meta">8 min · private code audit</div>
+    </a>
+    <a class="post" href="/blog/user-stories-from-a-ux-audit/">
+      <div class="kicker">Backlog</div>
+      <h3>Turn a UX Audit Into User Stories</h3>
+      <p>Convert findings into user stories with acceptance criteria — a ready-to-work backlog, not a PDF nobody opens twice.</p>
+      <div class="meta">7 min · AI user story generator</div>
+    </a>
+    <a class="post" href="/blog/audit-a-screenshot/">
+      <div class="kicker">Vision</div>
+      <h3>Audit a Design From a Screenshot</h3>
+      <p>No code yet? Get AI UX feedback on a mockup or screenshot — what vision catches, what it misses, and when to pair it with a code audit.</p>
+      <div class="meta">7 min · screenshot UX audit</div>
+    </a>
+  </div>
+
+  <p class="sec">Deep dives</p>
   <div class="posts">
     <a class="post" href="/blog/hidden-cost-of-design-debt/">
       <div class="kicker">Design + Code</div>
-      <h2>The Hidden Cost of Design Debt</h2>
-      <p>Design debt doesn't show up in your bug tracker, but it quietly taxes every conversion. Here's why single-discipline reviews miss it, how it hides in your HTML and CSS, and how to catch UX problems in your code before users do.</p>
-      <span class="more">Read the guide →</span>
-      <div class="meta">10 min read · Design debt detection</div>
+      <h3>The Hidden Cost of Design Debt</h3>
+      <p>Why single-discipline reviews miss the code-level design debt that quietly taxes conversion — and how to catch it.</p>
+      <div class="meta">10 min · design debt detection</div>
+    </a>
+    <a class="post" href="/blog/audit-ai-generated-code/">
+      <div class="kicker">Vibe coding</div>
+      <h3>Auditing AI-Generated Code</h3>
+      <p>AI built your app in an afternoon, but nobody reviewed it. How to audit a vibe-coded app before your users find the gaps.</p>
+      <div class="meta">9 min · review AI-generated code</div>
+    </a>
+    <a class="post" href="/blog/accessibility-audit-guide/">
+      <div class="kicker">Accessibility</div>
+      <h3>How to Run an Accessibility Audit</h3>
+      <p>What WCAG-aligned checks matter, why you need automated plus human testing, and the highest-impact code-level fixes.</p>
+      <div class="meta">10 min · accessibility audit tool</div>
     </a>
     <a class="post" href="/blog/design-review-without-a-designer/">
       <div class="kicker">Speed + Quality</div>
-      <h2>Design Review Without a Designer</h2>
-      <p>Indie hackers ship in days; flagship products get reviewed by three experts. You can have both. A practical look at getting principal-level, automated design audit feedback at startup speed — and what to look for in a tool.</p>
-      <span class="more">Read the guide →</span>
-      <div class="meta">9 min read · Automated design audit</div>
+      <h3>Design Review Without a Designer</h3>
+      <p>Principal-level, automated design audit feedback at startup speed — and exactly what to look for in a tool.</p>
+      <div class="meta">9 min · automated design audit</div>
     </a>
     <a class="post" href="/blog/diagnosing-low-conversion-rates/">
       <div class="kicker">Conversion</div>
-      <h2>Diagnosing Low Conversion Rates</h2>
-      <p>Your conversion rate is low. But is it a button, broken code, or a leaky funnel? Analytics tell you <em>where</em> people drop, never <em>why</em>. A diagnostic approach to conversion rate audits and web app UX analysis that finds the root.</p>
-      <span class="more">Read the guide →</span>
-      <div class="meta">10 min read · Conversion rate audit</div>
+      <h3>Diagnosing Low Conversion Rates</h3>
+      <p>Button, broken code, or leaky funnel? A diagnostic approach to conversion rate audits that finds the root cause.</p>
+      <div class="meta">10 min · conversion rate audit</div>
     </a>
   </div>
 

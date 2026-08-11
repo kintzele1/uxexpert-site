@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#4F46E5">
+<title>How to Run an Accessibility Audit (with Code-Level Fixes) | UXexpert.ai</title>
+<meta name="description" content="A practical guide to running an accessibility audit on your web app: what WCAG-aligned checks matter, why you need automated plus human testing, and the highest-impact code-level fixes — labels, contrast, semantics, and keyboard access.">
+<meta property="og:title" content="How to Run an Accessibility Audit">
+<meta property="og:description" content="What an accessibility audit checks, how to run one, and the highest-impact code-level fixes mapped to WCAG.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UXexpert.ai">
+<meta property="og:url" content="https://uxexpert.ai/blog/accessibility-audit-guide/">
+<meta property="og:image" content="https://uxexpert.ai/og.png?v=20260810">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://uxexpert.ai/og.png?v=20260810">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://uxexpert.ai/blog/accessibility-audit-guide/">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src https://plausible.io; connect-src 'self' https://plausible.io; img-src 'self' data:; style-src 'unsafe-inline'; base-uri 'none'; object-src 'none'; form-action 'self'">
+<script async src="https://plausible.io/js/pa-HuKnDbBb6VROp-Q7KzWUg.js"></script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230F172A'/%3E%3Cpath d='M10 10 22 22' stroke='%236366F1' stroke-width='3.6' stroke-linecap='round'/%3E%3Cpath d='M22 10 10 22' stroke='%232DD4BF' stroke-width='3.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"How to Run an Accessibility Audit (with Code-Level Fixes)","description":"What an accessibility audit checks, why you need automated plus human testing, and the highest-impact code-level fixes mapped to WCAG.","datePublished":"2026-08-11","dateModified":"2026-08-11","author":{"@type":"Organization","name":"UXexpert.ai","url":"https://uxexpert.ai"},"publisher":{"@type":"Organization","name":"UXexpert.ai","logo":{"@type":"ImageObject","url":"https://uxexpert.ai/og.png"}},"mainEntityOfPage":"https://uxexpert.ai/blog/accessibility-audit-guide/","image":"https://uxexpert.ai/og.png","keywords":"accessibility audit tool, WCAG audit, accessibility audit with code review, a11y checker"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://uxexpert.ai/"},
+{"@type":"ListItem","position":2,"name":"Blog","item":"https://uxexpert.ai/blog/"},
+{"@type":"ListItem","position":3,"name":"How to Run an Accessibility Audit","item":"https://uxexpert.ai/blog/accessibility-audit-guide/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I run an accessibility audit on my website?","acceptedAnswer":{"@type":"Answer","text":"Run an automated audit against the page's code, then confirm with manual keyboard and screen-reader testing. UXexpert.ai checks your HTML and CSS against WCAG-aligned criteria — labels, contrast, semantics, focus, alt text — and returns each issue with a code-level fix. Automated tools catch a large share of issues; a human should verify the rest, and an audit is not a legal compliance certification."}},
+{"@type":"Question","name":"What does an accessibility audit check?","acceptedAnswer":{"@type":"Answer","text":"An accessibility audit checks whether content is perceivable, operable, understandable, and robust: form labels and accessible names, color contrast, semantic structure and headings, keyboard operability and visible focus, image alt text, and correct ARIA. UXexpert.ai maps findings to WCAG success criteria and pairs each with a concrete fix."}},
+{"@type":"Question","name":"Can AI find accessibility issues in my code?","acceptedAnswer":{"@type":"Answer","text":"Yes. AI can read your markup and flag accessibility problems rooted in code — missing labels, non-semantic structure, contrast failures, and missing ARIA — often with a pasteable fix. It won't catch everything a human tester will, so use it as a fast first pass and confirm with real assistive-technology testing."}}
+]}
+</script>
+<style>
+  :root{--indigo:#4F46E5;--indigo-soft:#6366F1;--teal:#14B8A6;--teal-text:#0F766E;--slate:#0F172A;--slate-700:#334155;--slate-500:#5A6879;--paper:#F8FAFC;--white:#FFFFFF;--line:#E2E8F0;--amber:#F59E0B;
+    --serif:"New York","Iowan Old Style",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px rgba(15,23,42,.06)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  @media (prefers-reduced-motion: reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+  body{background:var(--paper);color:var(--slate);font-family:var(--sans);line-height:1.68;font-size:16px;-webkit-font-smoothing:antialiased}
+  a{color:var(--indigo);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .btn:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--indigo);outline-offset:2px}
+  nav{background:rgba(248,250,252,.85);backdrop-filter:saturate(180%) blur(10px);-webkit-backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+  nav .wrap{max-width:1080px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px;flex-wrap:wrap}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:var(--slate);letter-spacing:-.02em;text-decoration:none}
+  .logo:hover{text-decoration:none}
+  .navlinks{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+  .navlinks a{color:var(--slate-700);font-size:14.5px;font-weight:500}
+  .navlinks a[aria-current=page]{color:var(--indigo);font-weight:600}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:15px;border:1px solid transparent;border-radius:10px;padding:11px 18px;cursor:pointer;text-decoration:none;transition:background .2s ease,border-color .2s ease,color .2s ease}
+  .btn:hover{text-decoration:none}
+  .btn-primary{background:var(--indigo);color:#fff;box-shadow:0 1px 2px rgba(79,70,229,.35)}
+  .btn-primary:hover{background:#4338CA}
+  .btn-quiet{background:var(--white);color:var(--slate);border-color:var(--line)}
+  .btn-quiet:hover{border-color:var(--indigo);color:var(--indigo)}
+  .btn-sm{padding:8px 14px;font-size:14px;border-radius:9px}
+  main{max-width:740px;margin:0 auto;padding:0 28px}
+  .crumb{font-size:13px;color:var(--slate-500);padding:26px 0 0}
+  .crumb a{color:var(--slate-500)}
+  .crumb a:hover{color:var(--indigo)}
+  .head{padding:22px 0 6px;border-bottom:1px solid var(--line);margin-bottom:34px}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--teal-text);margin-bottom:14px}
+  h1{font-family:var(--serif);font-weight:600;font-size:44px;line-height:1.08;letter-spacing:-.02em;margin-bottom:16px}
+  .byline{color:var(--slate-500);font-size:14px;margin-bottom:24px}
+  article p{font-size:17.5px;line-height:1.7;color:var(--slate-700);margin-bottom:20px}
+  article h2{font-family:var(--serif);font-weight:600;font-size:28px;letter-spacing:-.01em;color:var(--slate);margin:40px 0 14px;line-height:1.2}
+  article h3{font-size:18px;font-weight:700;color:var(--slate);margin:26px 0 8px}
+  article ul,article ol{margin:0 0 20px;padding-left:24px}
+  article li{font-size:17px;line-height:1.65;color:var(--slate-700);margin-bottom:10px}
+  article strong{color:var(--slate);font-weight:650}
+  article .lead{font-size:20px;line-height:1.6;color:var(--slate-700)}
+  blockquote{margin:26px 0;padding:6px 0 6px 24px;border-left:3px solid var(--indigo);font-family:var(--serif);font-size:22px;line-height:1.4;color:var(--slate);font-style:italic}
+  .callout{background:var(--white);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:20px 22px;margin:28px 0;box-shadow:var(--shadow)}
+  .callout p{margin:0;font-size:16px}
+  .callout .lbl{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--teal-text);margin-bottom:8px}
+  code{font-family:var(--mono);font-size:.9em;background:#EEF2F7;padding:2px 6px;border-radius:5px;color:#334155}
+  .disc{background:#FFFBEB;border:1px solid #FDE68A;border-left:3px solid var(--amber);border-radius:10px;padding:14px 18px;font-size:14px;color:#7c5b12;line-height:1.55;margin:28px 0}
+  .faq{margin:16px 0 0;display:flex;flex-direction:column;gap:10px}
+  .faq details{background:var(--white);border:1px solid var(--line);border-radius:12px}
+  .faq summary{cursor:pointer;padding:16px 20px;font-weight:600;font-size:16.5px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;color:var(--slate)}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";color:var(--indigo);font-size:22px;font-weight:400;line-height:1;flex:0 0 auto}
+  .faq details[open] summary::after{content:"–"}
+  .faq .a{padding:0 20px 18px;color:var(--slate-700);font-size:15.5px;line-height:1.65}
+  .cta{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:30px 26px;text-align:center;margin:40px 0 8px;box-shadow:var(--shadow)}
+  .cta h2{font-family:var(--serif);font-weight:600;font-size:25px;margin:0 0 8px}
+  .cta p{color:var(--slate-500);margin-bottom:18px;font-size:16px}
+  .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .related{margin:44px 0 0;border-top:1px solid var(--line);padding-top:28px}
+  .related h2{font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:16px}
+  .related a{display:block;background:var(--white);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:10px;color:var(--slate);font-weight:600}
+  .related a:hover{border-color:var(--indigo);text-decoration:none}
+  .related a span{display:block;font-weight:400;font-size:14px;color:var(--slate-500);margin-top:3px}
+  footer{border-top:1px solid var(--line);background:var(--white);margin-top:56px}
+  footer .fwrap{max-width:1080px;margin:0 auto;padding:40px 28px;display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center;color:var(--slate-500);font-size:13.5px}
+  footer a{color:var(--slate-500)}
+  footer .links a{margin:0 9px}
+  .foot-legal{max-width:640px;font-size:12.5px;line-height:1.5;color:var(--slate-500)}
+  @media (max-width:720px){h1{font-size:33px}article p{font-size:17px}.navlinks{gap:15px;font-size:14px}}
+  @media (max-width:520px){.navlinks a.nav-hide{display:none}}
+</style>
+</head>
+<body>
+<nav aria-label="Primary"><div class="wrap">
+  <a class="logo" href="/" aria-label="UXexpert home"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#0F172A"/><path d="M10 10 22 22" stroke="#6366F1" stroke-width="3.6" stroke-linecap="round"/><path d="M22 10 10 22" stroke="#2DD4BF" stroke-width="3.6" stroke-linecap="round"/></svg><span>UXexpert<span style="color:#4F46E5">.ai</span></span></a>
+  <div class="navlinks">
+    <a class="nav-hide" href="/#how">How it works</a>
+    <a class="nav-hide" href="/#features">Features</a>
+    <a href="/pricing/">Pricing</a>
+    <a href="/blog/" aria-current="page">Blog</a>
+    <a href="/about/">About</a>
+    <a href="/#audit" class="btn btn-primary btn-sm">Start a free audit</a>
+  </div>
+</div></nav>
+<main>
+  <p class="crumb"><a href="/">Home</a> › <a href="/blog/">Blog</a> › How to Run an Accessibility Audit</p>
+  <div class="head">
+    <p class="kicker">Accessibility</p>
+    <h1>How to Run an Accessibility Audit</h1>
+    <p class="byline">10 min read · Updated August 11, 2026</p>
+  </div>
+
+  <article>
+    <p class="lead">Accessibility gets filed as a compliance chore, which is exactly why it ships broken. Framed as a checkbox, it becomes something to do later. Framed correctly — as usability for the full range of people who'll actually use your product — it's just good UX, and it happens to be the single most common thing teams get wrong in ways they never notice.</p>
+
+    <p>The good news: most accessibility problems live in the code, which means they're findable and fixable with a systematic audit. This is how to run one, what it should check, and the handful of fixes that resolve the majority of real issues.</p>
+
+    <h2>What an accessibility audit checks</h2>
+    <p>A useful audit is organized around whether people can actually perceive, operate, and understand your interface — the backbone of the WCAG guidelines. Concretely, it looks at:</p>
+    <ul>
+      <li><strong>Names and labels</strong> — every form control has a programmatic label; every icon-button and link has an accessible name.</li>
+      <li><strong>Color contrast</strong> — text meets the required ratio against its background so it's readable in real conditions, not just on the designer's monitor.</li>
+      <li><strong>Semantic structure</strong> — real headings, lists, landmarks, and buttons, so the page has meaning beyond its pixels.</li>
+      <li><strong>Keyboard operability</strong> — everything works without a mouse, in a logical order, with a visible focus indicator.</li>
+      <li><strong>Images and media</strong> — meaningful images have alt text; decorative ones are correctly hidden.</li>
+      <li><strong>Correct ARIA</strong> — used only where needed and not breaking native semantics (bad ARIA is worse than none).</li>
+    </ul>
+
+    <blockquote>Accessibility isn't a feature you add. It's a property of code you either wrote well or didn't.</blockquote>
+
+    <h2>Why you need automated and human testing</h2>
+    <p>Be honest about what automation can and can't do. Automated checks are excellent at the objective, machine-detectable failures — a missing label, an insufficient contrast ratio, an empty alt attribute — and they'll find a large share of issues in seconds. But some criteria require judgment a tool can't supply: whether alt text is <em>meaningful</em>, whether the focus order tells a coherent story, whether an interaction is genuinely understandable. The right process is automated-first to clear the detectable problems fast, then human verification with a keyboard and a screen reader for the rest.</p>
+
+    <h2>How to run one, start to finish</h2>
+    <ol>
+      <li><strong>Audit the code.</strong> Run an automated pass over the actual markup and CSS to surface labels, contrast, semantics, and structure issues, each mapped to the relevant WCAG criterion.</li>
+      <li><strong>Fix at the source, with code.</strong> Resolve findings in the markup — add the <code>&lt;label&gt;</code>, fix the ratio, replace the <code>&lt;div&gt;</code> with a <code>&lt;button&gt;</code> — rather than papering over them with ARIA.</li>
+      <li><strong>Test by keyboard.</strong> Tab through every flow. Can you reach and operate everything, in order, with a focus indicator you can see?</li>
+      <li><strong>Test with a screen reader.</strong> VoiceOver or NVDA will tell you immediately whether your names, roles, and structure actually make sense.</li>
+      <li><strong>Re-audit and guard against regression.</strong> Confirm the fixes, and add a check so the same issues can't quietly return.</li>
+    </ol>
+
+    <h2>The highest-impact fixes</h2>
+    <p>A small number of fixes resolve a disproportionate share of real-world barriers. If you do nothing else, do these:</p>
+    <ul>
+      <li><strong>Label every input.</strong> A real <code>&lt;label&gt;</code> (or an accessible name) on every field. This alone fixes a huge fraction of form failures — and forms are where conversions live.</li>
+      <li><strong>Fix contrast.</strong> Bring low-contrast text up to ratio. It helps everyone, everywhere, on every screen.</li>
+      <li><strong>Use semantic elements.</strong> Buttons that are <code>&lt;button&gt;</code>, headings that are headings. Native semantics are free accessibility.</li>
+      <li><strong>Make focus visible.</strong> Never remove focus outlines without replacing them; keyboard users navigate by them.</li>
+    </ul>
+
+    <div class="callout">
+      <p class="lbl">Where UXexpert fits</p>
+      <p><a href="/">UXexpert.ai</a> includes accessibility in every audit, checking your real HTML and CSS against WCAG-aligned criteria and mapping each finding to the success criterion it relates to — with a concrete, pasteable fix. Because it reviews accessibility alongside design and code, you see a11y issues in the context of the whole experience, not as an isolated report. Run it in your browser with the local engine, free. It's a fast expert first pass, not a substitute for testing with real assistive technology.</p>
+    </div>
+
+    <div class="disc"><strong>Important:</strong> an automated audit — including UXexpert — is a strong first pass, not a legal compliance certification. Passing an audit does not certify conformance with WCAG, the ADA, or any law. Confirm with human assistive-technology testing and, where stakes are high, an accessibility professional.</div>
+
+    <h2>Frequently asked</h2>
+    <div class="faq">
+      <details>
+        <summary>How do I run an accessibility audit on my website?</summary>
+        <div class="a">Run an automated audit against the page's code, then confirm with manual keyboard and screen-reader testing. UXexpert.ai checks your HTML and CSS against WCAG-aligned criteria — labels, contrast, semantics, focus, alt text — and returns each issue with a code-level fix. Automated tools catch a large share of issues; a human should verify the rest, and an audit is not a legal compliance certification.</div>
+      </details>
+      <details>
+        <summary>What does an accessibility audit check?</summary>
+        <div class="a">An accessibility audit checks whether content is perceivable, operable, understandable, and robust: form labels and accessible names, color contrast, semantic structure and headings, keyboard operability and visible focus, image alt text, and correct ARIA. UXexpert.ai maps findings to WCAG success criteria and pairs each with a concrete fix.</div>
+      </details>
+      <details>
+        <summary>Can AI find accessibility issues in my code?</summary>
+        <div class="a">Yes. AI can read your markup and flag accessibility problems rooted in code — missing labels, non-semantic structure, contrast failures, and missing ARIA — often with a pasteable fix. It won't catch everything a human tester will, so use it as a fast first pass and confirm with real assistive-technology testing.</div>
+      </details>
+    </div>
+
+    <div class="cta">
+      <h2>Check your accessibility now</h2>
+      <p>Run a free, WCAG-aligned audit in your browser — nothing leaves your device.</p>
+      <div class="cta-row">
+        <a href="/#audit" class="btn btn-primary">Start a free audit</a>
+        <a href="/pricing/" class="btn btn-quiet">See pricing</a>
+      </div>
+    </div>
+
+    <div class="related">
+      <h2>Keep reading</h2>
+      <a href="/blog/hidden-cost-of-design-debt/">The Hidden Cost of Design Debt<span>How accessibility gaps hide in your markup and cost conversions.</span></a>
+      <a href="/blog/audit-ai-generated-code/">Auditing AI-Generated Code<span>Accessibility is the gap models leave most often.</span></a>
+    </div>
+  </article>
+</main>
+<footer>
+  <div class="fwrap">
+    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert.</div>
+    <div class="foot-legal">UXexpert produces automated and AI-assisted suggestions, not professional advice or a guarantee of compliance. A human should review, validate, and edit every finding, story, and fix before acting on it.</div>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/about/">About</a><a href="/pricing/">Pricing</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="mailto:hello@uxexpert.ai">Contact</a></div>
+  </div>
+</footer>
+</body>
+</html>

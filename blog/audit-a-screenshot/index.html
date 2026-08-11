@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#4F46E5">
+<title>Audit a Design From a Screenshot: AI UX Feedback on an Image | UXexpert.ai</title>
+<meta name="description" content="No code yet? Get AI design feedback from a screenshot. How vision-based UX audits work, what they can and can't see, and when to review a mockup or screenshot versus the underlying code.">
+<meta property="og:title" content="Audit a Design From a Screenshot">
+<meta property="og:description" content="Get AI UX feedback from a screenshot or mockup — what vision audits catch, what they miss, and when to pair them with a code review.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UXexpert.ai">
+<meta property="og:url" content="https://uxexpert.ai/blog/audit-a-screenshot/">
+<meta property="og:image" content="https://uxexpert.ai/og.png?v=20260810">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://uxexpert.ai/og.png?v=20260810">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://uxexpert.ai/blog/audit-a-screenshot/">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src https://plausible.io; connect-src 'self' https://plausible.io; img-src 'self' data:; style-src 'unsafe-inline'; base-uri 'none'; object-src 'none'; form-action 'self'">
+<script async src="https://plausible.io/js/pa-HuKnDbBb6VROp-Q7KzWUg.js"></script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230F172A'/%3E%3Cpath d='M10 10 22 22' stroke='%236366F1' stroke-width='3.6' stroke-linecap='round'/%3E%3Cpath d='M22 10 10 22' stroke='%232DD4BF' stroke-width='3.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Audit a Design From a Screenshot: AI UX Feedback on an Image","description":"How vision-based UX audits work, what they can and can't see, and when to review a screenshot or mockup versus the underlying code.","datePublished":"2026-08-11","dateModified":"2026-08-11","author":{"@type":"Organization","name":"UXexpert.ai","url":"https://uxexpert.ai"},"publisher":{"@type":"Organization","name":"UXexpert.ai","logo":{"@type":"ImageObject","url":"https://uxexpert.ai/og.png"}},"mainEntityOfPage":"https://uxexpert.ai/blog/audit-a-screenshot/","image":"https://uxexpert.ai/og.png","keywords":"AI design feedback from screenshot, analyze a design image, screenshot UX audit, review a mockup with AI"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://uxexpert.ai/"},
+{"@type":"ListItem","position":2,"name":"Blog","item":"https://uxexpert.ai/blog/"},
+{"@type":"ListItem","position":3,"name":"Audit a Design From a Screenshot","item":"https://uxexpert.ai/blog/audit-a-screenshot/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Can AI give design feedback from a screenshot?","acceptedAnswer":{"@type":"Answer","text":"Yes. UXexpert.ai can review a screenshot with Claude vision, assessing visual hierarchy, layout, clarity, consistency, and likely usability and conversion issues — useful when you have a design or mockup but no code yet. For code-level issues like exact contrast ratios and semantics, pair it with a code audit. Review the feedback before acting on it."}},
+{"@type":"Question","name":"How do I get a UX review of a design image?","acceptedAnswer":{"@type":"Answer","text":"Drop the image into UXexpert.ai and run a vision-based audit. It returns prioritized observations about hierarchy, clarity, visual consistency, and conversion, each with a suggested improvement — a fast way to pressure-test a mockup before you build it."}},
+{"@type":"Question","name":"Can I audit a Figma frame or mockup with AI?","acceptedAnswer":{"@type":"Answer","text":"Yes. Export the frame as an image and run a screenshot audit. UXexpert.ai reviews the visual design and flags usability and conversion issues before a line of code is written; once it's built, run a code audit to catch what a picture can't show."}}
+]}
+</script>
+<style>
+  :root{--indigo:#4F46E5;--indigo-soft:#6366F1;--teal:#14B8A6;--teal-text:#0F766E;--slate:#0F172A;--slate-700:#334155;--slate-500:#5A6879;--paper:#F8FAFC;--white:#FFFFFF;--line:#E2E8F0;--amber:#F59E0B;
+    --serif:"New York","Iowan Old Style",Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px rgba(15,23,42,.06)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  @media (prefers-reduced-motion: reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+  body{background:var(--paper);color:var(--slate);font-family:var(--sans);line-height:1.68;font-size:16px;-webkit-font-smoothing:antialiased}
+  a{color:var(--indigo);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .btn:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--indigo);outline-offset:2px}
+  nav{background:rgba(248,250,252,.85);backdrop-filter:saturate(180%) blur(10px);-webkit-backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+  nav .wrap{max-width:1080px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px;flex-wrap:wrap}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:var(--slate);letter-spacing:-.02em;text-decoration:none}
+  .logo:hover{text-decoration:none}
+  .navlinks{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+  .navlinks a{color:var(--slate-700);font-size:14.5px;font-weight:500}
+  .navlinks a[aria-current=page]{color:var(--indigo);font-weight:600}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:15px;border:1px solid transparent;border-radius:10px;padding:11px 18px;cursor:pointer;text-decoration:none;transition:background .2s ease,border-color .2s ease,color .2s ease}
+  .btn:hover{text-decoration:none}
+  .btn-primary{background:var(--indigo);color:#fff;box-shadow:0 1px 2px rgba(79,70,229,.35)}
+  .btn-primary:hover{background:#4338CA}
+  .btn-quiet{background:var(--white);color:var(--slate);border-color:var(--line)}
+  .btn-quiet:hover{border-color:var(--indigo);color:var(--indigo)}
+  .btn-sm{padding:8px 14px;font-size:14px;border-radius:9px}
+  main{max-width:740px;margin:0 auto;padding:0 28px}
+  .crumb{font-size:13px;color:var(--slate-500);padding:26px 0 0}
+  .crumb a{color:var(--slate-500)}
+  .crumb a:hover{color:var(--indigo)}
+  .head{padding:22px 0 6px;border-bottom:1px solid var(--line);margin-bottom:34px}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--teal-text);margin-bottom:14px}
+  h1{font-family:var(--serif);font-weight:600;font-size:44px;line-height:1.08;letter-spacing:-.02em;margin-bottom:16px}
+  .byline{color:var(--slate-500);font-size:14px;margin-bottom:24px}
+  article p{font-size:17.5px;line-height:1.7;color:var(--slate-700);margin-bottom:20px}
+  article h2{font-family:var(--serif);font-weight:600;font-size:28px;letter-spacing:-.01em;color:var(--slate);margin:40px 0 14px;line-height:1.2}
+  article h3{font-size:18px;font-weight:700;color:var(--slate);margin:26px 0 8px}
+  article ul,article ol{margin:0 0 20px;padding-left:24px}
+  article li{font-size:17px;line-height:1.65;color:var(--slate-700);margin-bottom:10px}
+  article strong{color:var(--slate);font-weight:650}
+  article .lead{font-size:20px;line-height:1.6;color:var(--slate-700)}
+  blockquote{margin:26px 0;padding:6px 0 6px 24px;border-left:3px solid var(--indigo);font-family:var(--serif);font-size:22px;line-height:1.4;color:var(--slate);font-style:italic}
+  .callout{background:var(--white);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:12px;padding:20px 22px;margin:28px 0;box-shadow:var(--shadow)}
+  .callout p{margin:0;font-size:16px}
+  .callout .lbl{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--teal-text);margin-bottom:8px}
+  code{font-family:var(--mono);font-size:.9em;background:#EEF2F7;padding:2px 6px;border-radius:5px;color:#334155}
+  .disc{background:#FFFBEB;border:1px solid #FDE68A;border-left:3px solid var(--amber);border-radius:10px;padding:14px 18px;font-size:14px;color:#7c5b12;line-height:1.55;margin:28px 0}
+  .faq{margin:16px 0 0;display:flex;flex-direction:column;gap:10px}
+  .faq details{background:var(--white);border:1px solid var(--line);border-radius:12px}
+  .faq summary{cursor:pointer;padding:16px 20px;font-weight:600;font-size:16.5px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;color:var(--slate)}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";color:var(--indigo);font-size:22px;font-weight:400;line-height:1;flex:0 0 auto}
+  .faq details[open] summary::after{content:"–"}
+  .faq .a{padding:0 20px 18px;color:var(--slate-700);font-size:15.5px;line-height:1.65}
+  .cta{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:30px 26px;text-align:center;margin:40px 0 8px;box-shadow:var(--shadow)}
+  .cta h2{font-family:var(--serif);font-weight:600;font-size:25px;margin:0 0 8px}
+  .cta p{color:var(--slate-500);margin-bottom:18px;font-size:16px}
+  .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .related{margin:44px 0 0;border-top:1px solid var(--line);padding-top:28px}
+  .related h2{font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:16px}
+  .related a{display:block;background:var(--white);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:10px;color:var(--slate);font-weight:600}
+  .related a:hover{border-color:var(--indigo);text-decoration:none}
+  .related a span{display:block;font-weight:400;font-size:14px;color:var(--slate-500);margin-top:3px}
+  footer{border-top:1px solid var(--line);background:var(--white);margin-top:56px}
+  footer .fwrap{max-width:1080px;margin:0 auto;padding:40px 28px;display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center;color:var(--slate-500);font-size:13.5px}
+  footer a{color:var(--slate-500)}
+  footer .links a{margin:0 9px}
+  .foot-legal{max-width:640px;font-size:12.5px;line-height:1.5;color:var(--slate-500)}
+  @media (max-width:720px){h1{font-size:33px}article p{font-size:17px}.navlinks{gap:15px;font-size:14px}}
+  @media (max-width:520px){.navlinks a.nav-hide{display:none}}
+</style>
+</head>
+<body>
+<nav aria-label="Primary"><div class="wrap">
+  <a class="logo" href="/" aria-label="UXexpert home"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#0F172A"/><path d="M10 10 22 22" stroke="#6366F1" stroke-width="3.6" stroke-linecap="round"/><path d="M22 10 10 22" stroke="#2DD4BF" stroke-width="3.6" stroke-linecap="round"/></svg><span>UXexpert<span style="color:#4F46E5">.ai</span></span></a>
+  <div class="navlinks">
+    <a class="nav-hide" href="/#how">How it works</a>
+    <a class="nav-hide" href="/#features">Features</a>
+    <a href="/pricing/">Pricing</a>
+    <a href="/blog/" aria-current="page">Blog</a>
+    <a href="/about/">About</a>
+    <a href="/#audit" class="btn btn-primary btn-sm">Start a free audit</a>
+  </div>
+</div></nav>
+<main>
+  <p class="crumb"><a href="/">Home</a> › <a href="/blog/">Blog</a> › Audit a Design From a Screenshot</p>
+  <div class="head">
+    <p class="kicker">Vision audits</p>
+    <h1>Audit a Design From a Screenshot</h1>
+    <p class="byline">7 min read · Updated August 11, 2026</p>
+  </div>
+
+  <article>
+    <p class="lead">Sometimes there's no code to audit yet — just a Figma frame, a screenshot of a page you admire, or a design a teammate dropped in a thread. You don't need an implementation to get useful UX feedback. With vision, an AI can review the design straight from the image and tell you what a senior eye would flag before anyone writes a line of code.</p>
+
+    <p>A screenshot audit uses a multimodal model to look at a picture of an interface and reason about it the way a designer would in a critique. It's fast, it's early, and it's a genuinely different tool from a code audit — with its own sweet spots and its own blind spots. Knowing which to reach for, and when, is the whole game.</p>
+
+    <h2>When a screenshot audit makes sense</h2>
+    <p>Reviewing an image shines precisely when code isn't the right input yet — or isn't available at all:</p>
+    <ul>
+      <li><strong>Before you build.</strong> Pressure-test a mockup or Figma frame while changing it is still cheap. Catching a buried CTA in design beats catching it in production.</li>
+      <li><strong>Competitor and inspiration teardowns.</strong> Analyze a page you can't fetch or don't own, to understand what's working and why.</li>
+      <li><strong>Quick gut-checks.</strong> Someone shares a screen in Slack; you want a structured second opinion in seconds, not a meeting.</li>
+      <li><strong>Anything you can see but not easily scrape.</strong> A canvas-heavy app, a native screen, a PDF — if you can screenshot it, you can review it.</li>
+    </ul>
+
+    <h2>What vision can — and can't — see</h2>
+    <p>Be precise about the trade-off, because it's the key to using this well. A picture carries the <em>presentation</em> but not the <em>implementation</em>.</p>
+    <h3>What it sees well</h3>
+    <ul>
+      <li>Visual hierarchy and whether the primary action stands out.</li>
+      <li>Layout, spacing rhythm, alignment, and visual consistency.</li>
+      <li>Clarity of copy and labels, and obvious readability problems.</li>
+      <li>Likely usability and conversion friction — confusing flows, competing calls to action, trust gaps.</li>
+    </ul>
+    <h3>What it can't confirm from an image</h3>
+    <ul>
+      <li><strong>Exact contrast ratios</strong> — it can suspect a contrast problem, but only the actual color values prove it.</li>
+      <li><strong>Semantics and structure</strong> — whether a "button" is a real <code>&lt;button&gt;</code>, whether inputs have labels, whether headings are headings.</li>
+      <li><strong>Keyboard and screen-reader behavior</strong> — operability lives in the code and the interaction, not the pixels.</li>
+      <li><strong>Performance</strong> — a screenshot can't show layout shift, jank, or load time.</li>
+    </ul>
+
+    <blockquote>A screenshot shows how it looks. The code shows how it works. The best review uses both.</blockquote>
+
+    <h2>How to run a screenshot audit</h2>
+    <ol>
+      <li><strong>Capture the frame.</strong> Export the Figma frame or grab a clean, full-resolution screenshot — the sharper the image, the better the read.</li>
+      <li><strong>Run a vision audit.</strong> Drop it in and let the model review hierarchy, clarity, consistency, and conversion, returning prioritized observations with suggested improvements.</li>
+      <li><strong>Act while it's cheap.</strong> Fix the design issues in the mockup, before they're baked into code.</li>
+      <li><strong>Re-audit the build.</strong> Once it's implemented, run a <a href="/blog/private-code-audit/">code audit</a> to catch the code-level truths a picture couldn't — contrast, semantics, keyboard, performance.</li>
+    </ol>
+
+    <h2>Screenshot and code: use both</h2>
+    <p>These aren't competitors; they're stages. Vision is your early-and-broad review — it catches design-level problems when they're cheapest to fix and works on anything you can capture. A code audit is your deep-and-exact review — it verifies what only the implementation can prove. Run the screenshot audit on the mockup, and the code audit on the build, and you've reviewed the experience end to end.</p>
+
+    <div class="callout">
+      <p class="lbl">Where UXexpert fits</p>
+      <p><a href="/">UXexpert.ai</a> supports both. Drop in a screenshot for a Claude-vision review of the design, or point it at a URL, repo, or pasted code for a full three-lens audit — and use them together as your design moves from mockup to shipped. Findings come prioritized with concrete suggestions, and you stay the human deciding what to change.</p>
+    </div>
+
+    <div class="disc">Vision-based feedback is AI-assisted and can be incomplete or wrong, and an image can't confirm code-level issues. Review and validate findings, and pair a screenshot audit with a code audit once the design is built.</div>
+
+    <h2>Frequently asked</h2>
+    <div class="faq">
+      <details>
+        <summary>Can AI give design feedback from a screenshot?</summary>
+        <div class="a">Yes. UXexpert.ai can review a screenshot with Claude vision, assessing visual hierarchy, layout, clarity, consistency, and likely usability and conversion issues — useful when you have a design or mockup but no code yet. For code-level issues like exact contrast ratios and semantics, pair it with a code audit. Review the feedback before acting on it.</div>
+      </details>
+      <details>
+        <summary>How do I get a UX review of a design image?</summary>
+        <div class="a">Drop the image into UXexpert.ai and run a vision-based audit. It returns prioritized observations about hierarchy, clarity, visual consistency, and conversion, each with a suggested improvement — a fast way to pressure-test a mockup before you build it.</div>
+      </details>
+      <details>
+        <summary>Can I audit a Figma frame or mockup with AI?</summary>
+        <div class="a">Yes. Export the frame as an image and run a screenshot audit. UXexpert.ai reviews the visual design and flags usability and conversion issues before a line of code is written; once it's built, run a code audit to catch what a picture can't show.</div>
+      </details>
+    </div>
+
+    <div class="cta">
+      <h2>Review your design before you build it</h2>
+      <p>Drop in a screenshot or mockup and get an expert read in seconds.</p>
+      <div class="cta-row">
+        <a href="/#audit" class="btn btn-primary">Start a free audit</a>
+        <a href="/pricing/" class="btn btn-quiet">See pricing</a>
+      </div>
+    </div>
+
+    <div class="related">
+      <h2>Keep reading</h2>
+      <a href="/blog/ai-ux-audit-tool/">AI UX Audit Tool: The Complete Guide<span>Everything an AI audit checks, and how to use one.</span></a>
+      <a href="/blog/audit-ai-generated-code/">Auditing AI-Generated Code<span>Once the mockup is built, review the code too.</span></a>
+    </div>
+  </article>
+</main>
+<footer>
+  <div class="fwrap">
+    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert.</div>
+    <div class="foot-legal">UXexpert produces automated and AI-assisted suggestions, not professional advice or a guarantee of compliance. A human should review, validate, and edit every finding, story, and fix before acting on it.</div>
+    <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/about/">About</a><a href="/pricing/">Pricing</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="mailto:hello@uxexpert.ai">Contact</a></div>
+  </div>
+</footer>
+</body>
+</html>

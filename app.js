@@ -147,6 +147,59 @@ function foundingCheckout() {
     toast('Founding checkout opens shortly — leave your email and you\'ll be first in.');
   }
 }
+
+/* ---------- Founding access (soft, client-side unlock) ----------
+   A founding member pastes the code from their welcome email. We store only the
+   SHA-256 of accepted codes here, so the plaintext isn't in this public file. This
+   is a convenience gate, not hard security (the flag lives in localStorage and can
+   be set by a determined user) — it removes the Pro-preview nag and shows the
+   founding badge. Real, server-enforced entitlement arrives with hosted features. */
+const FOUNDING_HASHES = ['05811c8e31802d582d6bdb26b5b8ad4165a45cabc56fd85dcda51b2d5761624d'];
+let unlockLastFocused = null;
+async function sha256hex(s) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+}
+function isFounding() { try { return localStorage.getItem('uxexpert_founding') === '1'; } catch (e) { return false; } }
+function applyFoundingState() {
+  const on = isFounding();
+  const badge = $('foundingbadge'); if (badge) badge.hidden = !on;
+  document.body.classList.toggle('is-founding', on);
+  const sb = $('storybtn'); if (sb) sb.textContent = on ? 'User stories' : 'User stories — Pro';
+}
+function openUnlock() {
+  unlockLastFocused = document.activeElement;
+  $('unlock-form').style.display = 'block'; $('unlock-ok').style.display = 'none';
+  $('unlock-err').hidden = true; $('unlock-code').value = '';
+  $('unlock').classList.add('show');
+  document.querySelectorAll('nav,main,footer').forEach(n => n.setAttribute('inert', ''));
+  $('unlock-code').focus();
+}
+function closeUnlock() {
+  $('unlock').classList.remove('show');
+  document.querySelectorAll('nav,main,footer').forEach(n => n.removeAttribute('inert'));
+  if (unlockLastFocused && unlockLastFocused.focus) unlockLastFocused.focus();
+}
+async function submitUnlock() {
+  const code = $('unlock-code').value.trim().toUpperCase();
+  if (!code) return;
+  const btn = $('unlock-submit'); btn.disabled = true; btn.textContent = 'Checking…';
+  try {
+    const h = await sha256hex(code);
+    if (FOUNDING_HASHES.includes(h)) {
+      try { localStorage.setItem('uxexpert_founding', '1'); } catch (e) {}
+      applyFoundingState();
+      $('unlock-form').style.display = 'none'; $('unlock-ok').style.display = 'block';
+      track('Founding Unlocked');
+    } else {
+      $('unlock-err').hidden = false;
+      $('unlock-err').textContent = 'That code was not recognized. Check your welcome email, or contact hello@uxexpert.ai.';
+    }
+  } catch (e) {
+    $('unlock-err').hidden = false;
+    $('unlock-err').textContent = 'Could not verify the code in this browser — email hello@uxexpert.ai and we will sort it out.';
+  } finally { btn.disabled = false; btn.textContent = 'Unlock'; }
+}
 function track(name, props) {
   try { if (window.plausible) plausible(name, props ? { props } : undefined); } catch (e) {}
 }
@@ -1041,7 +1094,9 @@ async function generateStories() {
   let key;
   try { key = getApiKey(); }
   catch (e) {
-    toast('User stories are a Pro capability — during beta, preview them by adding your Anthropic API key in step 03.');
+    toast(isFounding()
+      ? 'Add your Anthropic API key in step 03 to generate stories now — hosted, no-key generation for founding members is coming soon.'
+      : 'User stories are a Pro capability — during beta, preview them by adding your Anthropic API key in step 03.');
     setEngine('ai');
     return;
   }
@@ -1060,9 +1115,11 @@ async function generateStories() {
     renderStories();
     track('Stories Generated', { count: state.last.stories.length });
     saveState();
-    toast(`${state.last.stories.length} user stories ready — a Pro feature, free to preview during beta.`);
+    toast(isFounding()
+      ? `${state.last.stories.length} user stories ready.`
+      : `${state.last.stories.length} user stories ready — a Pro feature, free to preview during beta.`);
   } catch (e) { showError(e.message); }
-  finally { btn.disabled = false; btn.textContent = 'User stories — Pro'; }
+  finally { btn.disabled = false; btn.textContent = isFounding() ? 'User stories' : 'User stories — Pro'; }
 }
 
 function renderStories() {
@@ -1355,6 +1412,7 @@ function renderReport(result, opts) {
       <button class="btn btn-quiet btn-sm" data-action="copyReport">Copy report</button>
       <button class="btn btn-quiet btn-sm" data-action="comingSoon">Share link — soon</button>
     </div>`;
+  applyFoundingState();
   if (!state.restoring) {
     $('auditstatus').textContent = `Audit complete: ${findings.length} findings, overall score ${scores.overall} out of 100.`;
     $('results').scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
@@ -1449,6 +1507,7 @@ updateReady();
 const ACTIONS = {
   runEvaluation, generateStories, exportStories, exportMarkdown, copyReport, clearError,
   addCustomSkill, closeWaitlist, toggleNav, loadSample, startDemo, foundingCheckout,
+  foundingUnlock: () => openUnlock(), closeUnlock,
   toggleComposer: () => toggleComposer(),
   toggleComposerClose: () => toggleComposer(false),
   filterLens: (el) => filterLens(el),
@@ -1477,10 +1536,20 @@ document.addEventListener('change', e => {
   if (el && CHANGES[el.dataset.change]) CHANGES[el.dataset.change](el, e);
 });
 document.getElementById('wl-form').addEventListener('submit', e => { e.preventDefault(); submitWaitlist(); });
+document.getElementById('unlock-form').addEventListener('submit', e => { e.preventDefault(); submitUnlock(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeUnlock(); });
 
-// Welcome founding members back after Stripe checkout (success URL = /?founding=success)
+// Apply any saved founding state on load (badge + de-nag the Pro-preview copy)
+applyFoundingState();
+
+// Post-checkout: /welcome/ is the primary landing, but keep the legacy home handler.
 if (new URLSearchParams(location.search).get('founding') === 'success') {
   track('Founding Joined');
-  toast('Welcome aboard, founding member — check your email for the receipt and next steps.');
+  toast('Welcome aboard, founding member — check your email for your founding code and receipt.');
+  history.replaceState(null, '', location.pathname);
+}
+// Deep link from the welcome page opens the unlock prompt directly.
+if (new URLSearchParams(location.search).get('unlock') === '1') {
+  openUnlock();
   history.replaceState(null, '', location.pathname);
 }

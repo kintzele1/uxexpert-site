@@ -278,6 +278,9 @@
   /* Waitlist modal */
   .overlay{position:fixed;inset:0;background:rgba(15,23,42,.45);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
   .overlay.show{display:flex}
+  .fbadge{display:inline-flex;align-items:center;gap:5px;background:#ECFDF5;color:var(--emerald-text);border:1px solid #A7F3D0;font-weight:700;font-size:12px;letter-spacing:.01em;padding:5px 11px;border-radius:999px}
+  .fbadge[hidden]{display:none}
+  .errline{color:var(--red);font-size:13px;margin:10px 0 0;line-height:1.5}
   .modal{background:var(--white);border-radius:14px;padding:30px;max-width:420px;width:100%;box-shadow:0 24px 80px rgba(15,23,42,.3)}
   .modal h3{font-size:18px;margin-bottom:6px}
   .modal p{font-size:14px;color:var(--slate-500);margin-bottom:18px}
@@ -304,6 +307,7 @@
       <a href="/pricing/">Pricing</a>
       <a href="/blog/">Blog</a>
       <a href="/about/">About</a>
+      <span class="fbadge" id="foundingbadge" hidden aria-label="Founding member">&#9733; Founding</span>
       <a href="#audit" class="btn btn-primary btn-sm">Start a free audit</a>
     </div>
   </div>
@@ -497,9 +501,9 @@
 
 <footer>
   <div class="wrap">
-    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.08.10-1</span></div>
+    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.08.11-1</span></div>
     <div style="max-width:640px;font-size:12.5px;color:var(--slate-500);line-height:1.5">UXexpert produces automated and AI-assisted suggestions, not professional advice or a guarantee of compliance. A human should review, validate, and edit every finding, story, and fix before acting on it.</div>
-    <div><a href="/about/">About</a><a href="/blog/">Blog</a><a href="/pricing/">Pricing</a><a href="https://uxexpert.ai/privacy/">Privacy</a><a href="https://uxexpert.ai/terms/">Terms</a><a href="mailto:hello@uxexpert.ai">Contact</a></div>
+    <div><a href="/about/">About</a><a href="/blog/">Blog</a><a href="/pricing/">Pricing</a><a href="https://uxexpert.ai/privacy/">Privacy</a><a href="https://uxexpert.ai/terms/">Terms</a><a href="mailto:hello@uxexpert.ai">Contact</a><a href="#" data-action="foundingUnlock">Founding access</a></div>
   </div>
 </footer>
 
@@ -522,8 +526,29 @@
   </div>
 </div>
 
+<div class="overlay" id="unlock" role="dialog" aria-modal="true" aria-labelledby="unlock-title">
+  <div class="modal">
+    <form id="unlock-form">
+      <h3 id="unlock-title">Unlock founding access</h3>
+      <p id="unlock-copy">Paste the founding code from your welcome email. It activates your founding badge and removes the Pro-preview prompts on this device.</p>
+      <input type="text" id="unlock-code" placeholder="UXP-FOUND-XXXX-XXXX-XXXX" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Founding access code">
+      <p class="errline" id="unlock-err" hidden></p>
+      <div class="row">
+        <button type="submit" class="btn btn-primary" id="unlock-submit">Unlock</button>
+        <button type="button" class="btn btn-quiet" data-action="closeUnlock">Cancel</button>
+      </div>
+      <p style="font-size:12px;color:var(--slate-500);margin-top:12px;line-height:1.5">No code yet? It's emailed right after checkout. This unlock is a founding-member convenience — hosted, no-key features roll out to you first as they ship. Questions: <a href="mailto:hello@uxexpert.ai">hello@uxexpert.ai</a>.</p>
+    </form>
+    <div class="ok" id="unlock-ok">
+      <b>You're in — founding access unlocked.</b>
+      <p style="margin:0">Your founding badge is active on this device. We'll email you as hosted, no-key reviews, saved history, and richer exports ship to founding members first.</p>
+      <button class="btn btn-quiet btn-sm" style="margin-top:14px" data-action="closeUnlock">Close</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast" role="status"></div>
 
-<script src="app.js?v=20260810-1" defer></script>
+<script src="app.js?v=20260811-1" defer></script>
 </body>
 </html>

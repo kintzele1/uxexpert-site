@@ -77,7 +77,9 @@
   .plan ul{list-style:none;padding:0;margin:0 0 22px;display:flex;flex-direction:column;gap:10px}
   .plan li{position:relative;padding-left:24px;color:var(--slate-700);font-size:14.5px;line-height:1.5}
   .plan li::before{content:"✓";position:absolute;left:0;top:0;color:var(--teal-text);font-weight:700}
-  .plan.hot li:first-child::before{content:"→";color:var(--indigo)}
+  .plan li .lv{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:20px;margin-left:6px;vertical-align:middle}
+  .plan li .lv.on{background:#ECFDF5;color:var(--teal-text)}
+  .plan li .lv.soon{background:#F1F5F9;color:var(--slate-500)}
   .tag{position:absolute;top:-11px;left:28px;background:var(--indigo);color:#fff;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:5px 11px;border-radius:20px}
   .plan .btn{margin-top:auto}
   .foot-note{font-size:12px;color:var(--slate-500);margin-top:12px;text-align:center;line-height:1.5}
@@ -140,15 +142,16 @@
         <div class="price">$19<small> / month</small></div>
         <p class="for">Rate locked for life. Cancel anytime.</p>
         <ul>
-          <li>Everything in Free, plus early access to Pro as it ships:</li>
-          <li>User stories &amp; acceptance criteria (live now)</li>
-          <li>Hosted Claude reviews — no API key needed</li>
-          <li>Saved history and version comparison</li>
-          <li>PDF, Jira, Figma, and Notion exports</li>
-          <li>A founding badge and a direct line to the roadmap</li>
+          <li>Everything in Free — unlimited local audits <span class="lv on">Live</span></li>
+          <li>Your founding rate, locked for life <span class="lv on">Live</span></li>
+          <li>User stories &amp; acceptance criteria <span class="lv on">Live</span></li>
+          <li>Founding badge &amp; a direct line to the roadmap <span class="lv on">Live</span></li>
+          <li>Hosted Claude reviews — no key of your own <span class="lv soon">Coming</span></li>
+          <li>Saved history &amp; version comparison <span class="lv soon">Coming</span></li>
+          <li>PDF, Jira, Figma &amp; Notion exports <span class="lv soon">Coming</span></li>
         </ul>
         <a href="https://buy.stripe.com/7sY8wQ88m6AX2tN2L6co001?client_reference_id=uxexpert-web" class="btn btn-primary btn-block plausible-event-name=Founding+Checkout">Become a founding member</a>
-        <p class="foot-note">Early access to a product in active development. Today, user stories are live and everything in Free is included; hosted reviews, saved history, and richer exports roll out to founding members first. Your founding rate never rises. Cancel anytime.</p>
+        <p class="foot-note">This is an honest pre-sale — you're funding a product in active development. <strong>Live today:</strong> everything in Free, user stories, and your founding badge. <strong>Coming to founding members first:</strong> hosted no-key reviews, saved history, and richer exports. Your rate never rises, and you can cancel anytime.</p>
       </div>
     </div>
     <div class="disc"><strong>Human in the loop.</strong> UXexpert produces automated and AI-assisted suggestions, not professional advice or a guarantee of compliance. A person should review, validate, and edit every finding, story, and fix before acting on it.</div>

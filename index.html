@@ -77,6 +77,13 @@
   .btn-sm{padding:9px 16px;font-size:13.5px}
   .textlink{font-weight:600;font-size:14px}
   .textlink:hover{text-decoration:underline}
+  .heroaudit{display:flex;gap:10px;max-width:540px;margin:8px auto 0;flex-wrap:wrap;justify-content:center}
+  .heroaudit input{flex:1 1 300px;min-width:0;padding:14px 16px;font-size:15.5px;border:1px solid var(--line);border-radius:11px;background:var(--white);color:var(--slate);font-family:var(--sans);box-shadow:var(--shadow)}
+  .heroaudit input::placeholder{color:var(--slate-400)}
+  .heroaudit input:focus{outline:none;border-color:var(--indigo);box-shadow:0 0 0 3px rgba(79,70,229,.15)}
+  .heroaudit .btn{flex:0 0 auto;padding:14px 24px}
+  .cta-alt{margin-top:10px}
+  @media(max-width:560px){.heroaudit{flex-direction:column}.heroaudit .btn{width:100%}}
 
   /* Nav */
   nav{position:sticky;top:0;z-index:50;background:rgba(248,250,252,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
@@ -320,11 +327,14 @@
     <h1>Your web app, reviewed like a <em>flagship product</em>.</h1>
     <p class="sub">UXexpert.ai is an AI UX audit tool that gives you a principal-level design review, an engineering code audit, and a growth strategist's conversion analysis — in one prioritized report: instantly with the local engine, or a deeper Claude review in a minute or two.</p>
     <p class="proof">Built for indie hackers, agencies, and product teams</p>
-    <div class="cta-row">
-      <a href="#audit" class="btn btn-primary">Start a free audit</a>
-      <button class="btn btn-quiet" data-action="startDemo">See a sample report</button>
+    <form class="heroaudit" id="heroaudit">
+      <input type="text" id="herourl" inputmode="url" autocomplete="off" spellcheck="false" placeholder="Paste your site URL — e.g. yoursite.com" aria-label="Your site URL to audit">
+      <button type="submit" class="btn btn-primary">Run free audit</button>
+    </form>
+    <div class="cta-row cta-alt">
+      <button class="btn btn-quiet btn-sm" data-action="startDemo">or see a sample report first</button>
     </div>
-    <p class="under">No account required. Run privately in your browser, or bring your API key for a full Claude review.</p>
+    <p class="under">No account, no sign-up — free to run, or bring your Anthropic API key for a deeper Claude review.</p>
     <div class="trust"><span>Private by design — local audits never leave your browser</span><span>No sign-up to start</span><span>Open engine you can inspect</span></div>
 
     <div class="lensline">
@@ -363,12 +373,18 @@
   <div class="wrap">
     <p class="eyebrow">Live playground</p>
     <h2>Run an audit right now</h2>
-    <p class="lede">Two engines, your choice: the local engine runs entirely in your browser and nothing you paste leaves your machine, or bring an Anthropic API key for a deeper review by Claude. New here? <a href="#audit" data-action="startDemo" class="textlink">Load the sample app</a> and run your first audit in one click.</p>
+    <p class="lede">Paste a URL, drop files, or paste code — then hit Run. The local engine is instant and free; add your Anthropic API key for a deeper Claude review. New here? <a href="#audit" data-action="startDemo" class="textlink">Load the sample app</a> to see a full report in one click.</p>
     <noscript><p class="callout" style="max-width:640px">The live audit playground needs JavaScript enabled to run. Everything else on this page works without it.</p></noscript>
 
     <div class="pg-grid">
       <div class="card" id="inputcard">
         <div class="stephead"><span class="k">01</span><h3>Add your product</h3></div>
+        <label for="url" style="display:block;font-size:13px;font-weight:600;color:var(--slate-700);margin-bottom:6px">Audit a live URL or GitHub repo</label>
+        <input type="url" id="url" aria-label="Live URL or GitHub repository" placeholder="https://your-app.com or github.com/owner/repo">
+        <p class="fieldnote" style="margin-top:6px">The page is fetched for you — public GitHub repos work too (a branch or folder link is fine).</p>
+        <input type="password" id="ghtoken" class="key" placeholder="GitHub token (optional — unlocks private repos)" autocomplete="off" spellcheck="false" aria-label="GitHub access token" style="margin-top:8px">
+        <p class="fieldnote" style="margin-top:6px">A fine-grained token with repository read access unlocks private repos and a 5,000-requests-per-hour limit. Sent only to GitHub, and kept only for this browser session — it's cleared when you close the tab.</p>
+        <div class="or">or drop files / screenshots</div>
         <div class="drop" id="drop" tabindex="0" role="button" aria-label="Upload files">
           <b>Drop files here</b> or click to browse
           <div class="sub">.html · .css · .js · screenshots (.png, .jpg) — multiple files welcome</div>
@@ -380,11 +396,6 @@
         <textarea id="code" spellcheck="false" aria-label="Paste your code" placeholder="<!DOCTYPE html>
 <html>
   Paste your page here…"></textarea>
-        <div class="or">or audit a live URL / GitHub repo</div>
-        <input type="url" id="url" aria-label="Live URL or GitHub repository" placeholder="https://your-app.com or github.com/owner/repo">
-        <p class="fieldnote" style="margin-top:6px">Public GitHub repos are fetched right in your browser — a branch or folder link works too.</p>
-        <input type="password" id="ghtoken" class="key" placeholder="GitHub token (optional — unlocks private repos)" autocomplete="off" spellcheck="false" aria-label="GitHub access token" style="margin-top:8px">
-        <p class="fieldnote" style="margin-top:6px">A fine-grained token with repository read access unlocks private repos and a 5,000-requests-per-hour limit. Sent only to GitHub, and kept only for this browser session — it's cleared when you close the tab.</p>
 
         <div class="stephead"><span class="k">02</span><h3>Tune the review</h3><span class="hint">optional</span></div>
         <label for="persona" style="display:block;font-size:13px;color:var(--slate-500);margin-bottom:6px">Audience</label>
@@ -501,7 +512,7 @@
 
 <footer>
   <div class="wrap">
-    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.08.11-1</span></div>
+    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.09.15-1</span></div>
     <div style="max-width:640px;font-size:12.5px;color:var(--slate-500);line-height:1.5">UXexpert produces automated and AI-assisted suggestions, not professional advice or a guarantee of compliance. A human should review, validate, and edit every finding, story, and fix before acting on it.</div>
     <div><a href="/about/">About</a><a href="/blog/">Blog</a><a href="/pricing/">Pricing</a><a href="https://uxexpert.ai/privacy/">Privacy</a><a href="https://uxexpert.ai/terms/">Terms</a><a href="mailto:hello@uxexpert.ai">Contact</a><a href="#" data-action="foundingUnlock">Founding access</a></div>
   </div>
@@ -549,6 +560,6 @@
 
 <div class="toast" id="toast" role="status"></div>
 
-<script src="app.js?v=20260811-1" defer></script>
+<script src="app.js?v=20260915-1" defer></script>
 </body>
 </html>

@@ -1537,6 +1537,16 @@ document.addEventListener('change', e => {
 });
 document.getElementById('wl-form').addEventListener('submit', e => { e.preventDefault(); submitWaitlist(); });
 document.getElementById('unlock-form').addEventListener('submit', e => { e.preventDefault(); submitUnlock(); });
+
+// Hero audit bar: paste a URL up top -> prefill the playground URL and run immediately.
+function heroAudit() {
+  let v = $('herourl').value.trim();
+  if (v && !/^https?:\/\//i.test(v)) v = 'https://' + v;
+  document.getElementById('audit').scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
+  if (v) { $('url').value = v; updateReady(); runEvaluation(); }
+  else { $('url').focus(); }
+}
+{ const hf = document.getElementById('heroaudit'); if (hf) hf.addEventListener('submit', e => { e.preventDefault(); heroAudit(); }); }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeUnlock(); });
 
 // Apply any saved founding state on load (badge + de-nag the Pro-preview copy)

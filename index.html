@@ -85,6 +85,40 @@
   .cta-alt{margin-top:10px}
   @media(max-width:560px){.heroaudit{flex-direction:column}.heroaudit .btn{width:100%}}
 
+  /* Hero report preview — shows the payoff above the fold */
+  .heroshow{max-width:640px;margin:44px auto 0;background:var(--white);border:1px solid var(--line);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 24px 60px rgba(15,23,42,.10);overflow:hidden;text-align:left}
+  .hs-bar{display:flex;align-items:center;gap:7px;padding:11px 16px;border-bottom:1px solid var(--line);background:var(--paper)}
+  .hs-bar .d{width:9px;height:9px;border-radius:50%;background:#E2E8F0}
+  .hs-url{margin-left:10px;font-size:12px;color:var(--slate-500);font-family:var(--mono)}
+  .hs-body{display:grid;grid-template-columns:auto 1fr;gap:22px;padding:20px 22px;align-items:center}
+  .hs-scores{display:flex;align-items:center;gap:18px}
+  .hs-ring{width:74px;height:74px;flex:0 0 auto;border-radius:50%;background:conic-gradient(var(--teal) 88%, var(--line) 0);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
+  .hs-ring::before{content:"";position:absolute;inset:7px;background:var(--white);border-radius:50%}
+  .hs-ring b{position:relative;font-size:22px;font-weight:700;font-family:var(--serif);color:var(--slate)}
+  .hs-ring small{position:relative;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate-500)}
+  .hs-lenses{display:flex;flex-direction:column;gap:9px;min-width:118px}
+  .hs-l{display:flex;flex-direction:column;gap:4px}
+  .hs-l span{font-size:11px;color:var(--slate-500);font-weight:600}
+  .hs-l i{height:6px;border-radius:6px;background:var(--line);display:block;position:relative}
+  .hs-l i::after{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--w);background:var(--c);border-radius:6px}
+  .hs-findings{display:flex;flex-direction:column;gap:11px;border-left:1px solid var(--line);padding-left:22px}
+  .hs-f{display:flex;gap:10px;align-items:flex-start}
+  .hs-sev{flex:0 0 auto;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding:3px 8px;border-radius:20px}
+  .hs-sev.high{background:#FEE2E2;color:#B91C1C}
+  .hs-sev.med{background:#FEF3C7;color:#92400E}
+  .hs-f b{display:block;font-size:13px;color:var(--slate);font-weight:650}
+  .hs-f span{display:block;font-size:12px;color:var(--slate-500);line-height:1.4;margin-top:1px}
+  @media(max-width:640px){.hs-body{grid-template-columns:1fr;gap:16px}.hs-findings{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:14px}.hs-scores{justify-content:center}}
+
+  /* Subtle entrance motion (reduced-motion users get none) */
+  @media (prefers-reduced-motion: no-preference){
+    .hero .eyebrow,.hero h1,.hero .sub,.hero .proof,.hero .heroaudit,.hero .cta-alt,.hero .under,.hero .trust,.hero .heroshow,.hero .lensline{animation:heroIn .6s cubic-bezier(.2,.6,.2,1) both}
+    .hero h1{animation-delay:.04s}.hero .sub{animation-delay:.09s}.hero .proof{animation-delay:.13s}.hero .heroaudit{animation-delay:.17s}.hero .cta-alt{animation-delay:.21s}.hero .under{animation-delay:.25s}.hero .trust{animation-delay:.29s}.hero .heroshow{animation-delay:.35s}.hero .lensline{animation-delay:.42s}
+  }
+  @keyframes heroIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .lensline .cell{transition:transform .16s ease,box-shadow .16s ease}
+  .lensline .cell:hover{transform:translateY(-2px)}
+
   /* Nav */
   nav{position:sticky;top:0;z-index:50;background:rgba(248,250,252,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
   nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
@@ -337,6 +371,24 @@
     <p class="under">No account, no sign-up — free to run, or bring your Anthropic API key for a deeper Claude review.</p>
     <div class="trust"><span>Private by design — local audits never leave your browser</span><span>No sign-up to start</span><span>Open engine you can inspect</span></div>
 
+    <div class="heroshow" aria-hidden="true">
+      <div class="hs-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="hs-url">yoursite.com — audit report</span></div>
+      <div class="hs-body">
+        <div class="hs-scores">
+          <div class="hs-ring"><b>88</b><small>Overall</small></div>
+          <div class="hs-lenses">
+            <div class="hs-l"><span>Design</span><i style="--w:96%;--c:var(--indigo)"></i></div>
+            <div class="hs-l"><span>Engineering</span><i style="--w:91%;--c:var(--teal)"></i></div>
+            <div class="hs-l"><span>Growth</span><i style="--w:78%;--c:var(--amber)"></i></div>
+          </div>
+        </div>
+        <div class="hs-findings">
+          <div class="hs-f"><span class="hs-sev high">High</span><div><b>No clear call-to-action</b><span>Add one primary, visually dominant CTA above the fold.</span></div></div>
+          <div class="hs-f"><span class="hs-sev med">Med</span><div><b>Form field has no label</b><span>Add a &lt;label&gt; so screen readers announce it.</span></div></div>
+        </div>
+      </div>
+    </div>
+
     <div class="lensline">
       <div class="cell">
         <span class="ico"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12z"/></svg></span>
@@ -512,7 +564,7 @@
 
 <footer>
   <div class="wrap">
-    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.09.15-1</span></div>
+    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.09.15-2</span></div>
     <div style="max-width:640px;font-size:12.5px;color:var(--slate-500);line-height:1.5">UXexpert produces automated and AI-assisted suggestions, not professional advice or a guarantee of compliance. A human should review, validate, and edit every finding, story, and fix before acting on it.</div>
     <div><a href="/about/">About</a><a href="/blog/">Blog</a><a href="/pricing/">Pricing</a><a href="https://uxexpert.ai/privacy/">Privacy</a><a href="https://uxexpert.ai/terms/">Terms</a><a href="mailto:hello@uxexpert.ai">Contact</a><a href="#" data-action="foundingUnlock">Founding access</a></div>
   </div>

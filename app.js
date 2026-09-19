@@ -1547,6 +1547,19 @@ function heroAudit() {
   else { $('url').focus(); }
 }
 { const hf = document.getElementById('heroaudit'); if (hf) hf.addEventListener('submit', e => { e.preventDefault(); heroAudit(); }); }
+
+// Scroll-reveal: fade a grid's children up as it enters view. Content is never
+// hidden unless JS runs (we add .js-reveal), so it degrades safely.
+(() => {
+  const els = document.querySelectorAll('[data-reveal]');
+  if (!els.length) return;
+  document.documentElement.classList.add('js-reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(el => el.classList.add('in')); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  els.forEach(el => io.observe(el));
+})();
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeUnlock(); });
 
 // Apply any saved founding state on load (badge + de-nag the Pro-preview copy)

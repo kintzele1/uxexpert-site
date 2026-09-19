@@ -118,6 +118,22 @@
   @keyframes heroIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
   .lensline .cell{transition:transform .16s ease,box-shadow .16s ease}
   .lensline .cell:hover{transform:translateY(-2px)}
+  .steps .step,.featgrid .feat{transition:transform .16s ease,box-shadow .16s ease}
+  .steps .step:hover,.featgrid .feat:hover{transform:translateY(-2px)}
+
+  /* Scroll-reveal: children fade-up as a grid enters. Gated by .js-reveal so
+     content is never hidden if JS is off, and disabled under reduced-motion. */
+  @media (prefers-reduced-motion: no-preference){
+    .js-reveal [data-reveal] > *{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .55s cubic-bezier(.2,.6,.2,1)}
+    .js-reveal [data-reveal].in > *{opacity:1;transform:none}
+    .js-reveal [data-reveal].in > *:nth-child(2){transition-delay:.05s}
+    .js-reveal [data-reveal].in > *:nth-child(3){transition-delay:.10s}
+    .js-reveal [data-reveal].in > *:nth-child(4){transition-delay:.15s}
+    .js-reveal [data-reveal].in > *:nth-child(5){transition-delay:.20s}
+    .js-reveal [data-reveal].in > *:nth-child(6){transition-delay:.25s}
+    .js-reveal [data-reveal].in > *:nth-child(7){transition-delay:.30s}
+    .js-reveal [data-reveal].in > *:nth-child(8){transition-delay:.35s}
+  }
 
   /* Nav */
   nav{position:sticky;top:0;z-index:50;background:rgba(248,250,252,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
@@ -413,7 +429,7 @@
   <div class="wrap">
     <p class="eyebrow">How it works</p>
     <h2>Three steps to a shippable roadmap</h2>
-    <div class="steps">
+    <div class="steps" data-reveal>
       <div class="step"><div class="n">01</div><h3>Add your product</h3><p>Drop in HTML, CSS, and JavaScript files, paste code directly, add screenshots for a visual review, or point UXexpert at a live URL or GitHub repository. Add design systems or brand guidelines to tune enforcement.</p></div>
       <div class="step"><div class="n">02</div><h3>Tune the review</h3><p>Choose the audience you are building for, set custom rules, and load expertise skills that teach the reviewer your domain — from telco BSS collections consoles to patient portals. The audit re-weights itself around your users.</p></div>
       <div class="step"><div class="n">03</div><h3>Ship the fixes</h3><p>Every finding is scored by severity, effort, and impact, and arrives with a concrete fix — often a code snippet you can paste in as-is. Export the report and get to work.</p></div>
@@ -535,7 +551,7 @@
   <div class="wrap">
     <p class="eyebrow">Features</p>
     <h2>Depth that generic checkers can't reach</h2>
-    <div class="featgrid">
+    <div class="featgrid" data-reveal>
       <div class="feat"><span class="ico"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg></span><h3>True multi-role synthesis</h3><p>Not three separate reports — one prioritized roadmap where design, engineering, and growth trade-offs are weighed against each other.</p></div>
       <div class="feat"><span class="ico teal"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><h3>Code-native fixes</h3><p>Every technical finding ships with a corrected snippet you can paste straight into your codebase.</p></div>
       <div class="feat"><span class="ico"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 14 0v1"/></svg></span><h3>Audience tuning</h3><p>Auditing for Gen Z mobile users in emerging markets is a different job than auditing for enterprise buyers. Priorities re-weight to who you serve.</p></div>
@@ -564,7 +580,7 @@
 
 <footer>
   <div class="wrap">
-    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.09.15-2</span></div>
+    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.09.15-3</span></div>
     <div style="max-width:640px;font-size:12.5px;color:var(--slate-500);line-height:1.5">UXexpert produces automated and AI-assisted suggestions, not professional advice or a guarantee of compliance. A human should review, validate, and edit every finding, story, and fix before acting on it.</div>
     <div><a href="/about/">About</a><a href="/blog/">Blog</a><a href="/pricing/">Pricing</a><a href="https://uxexpert.ai/privacy/">Privacy</a><a href="https://uxexpert.ai/terms/">Terms</a><a href="mailto:hello@uxexpert.ai">Contact</a><a href="#" data-action="foundingUnlock">Founding access</a></div>
   </div>
@@ -612,6 +628,6 @@
 
 <div class="toast" id="toast" role="status"></div>
 
-<script src="app.js?v=20260915-1" defer></script>
+<script src="app.js?v=20260915-2" defer></script>
 </body>
 </html>

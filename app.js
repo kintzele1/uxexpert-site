@@ -712,11 +712,28 @@ function luminance([r,g,b]) {
   return .2126*f(r) + .7152*f(g) + .0722*f(b);
 }
 function ratio(a, b) { const [l1,l2] = [luminance(a), luminance(b)].sort((x,y)=>y-x); return (l1+.05)/(l2+.05); }
-// Cross-rule contrast: resolves CSS custom properties and checks text colors
-// against the page background when a rule declares no background of its own —
-// the most common real-world contrast failure (e.g. a muted .hint class on a
-// white body). Base-theme only: @media blocks are excluded so dark-mode
-// overrides don't cross-contaminate the light-theme analysis.
+// Cross-rule contrast: resolves CSS custom properties and checks each text color
+// against the background it actually sits on. When a rule declares no
+// background of its own, the engine finds the elements it styles in the
+// audited page and walks up their ancestors to the nearest declared background
+// (so light text in a dark sidebar is judged against the sidebar, not the page).
+// Translucent backgrounds are composited over what is beneath them. When the
+// styled elements are not in the page, it falls back to the page background —
+// the most common real-world failure (e.g. a muted .hint class on a white body).
+// Base-theme only: @media blocks are excluded so dark-mode overrides don't
+// cross-contaminate the light-theme analysis.
+function parseColorA(s) {
+  if (!s) return null;
+  const t = s.trim().toLowerCase();
+  if (t === 'transparent') return [0, 0, 0, 0];
+  const m = t.match(/^rgba?\((\d+)[,\s]+(\d+)[,\s]+(\d+)(?:[,\s/]+([\d.]+%?))?\)/);
+  if (m) { const a = m[4] === undefined ? 1 : m[4].endsWith('%') ? parseFloat(m[4]) / 100 : +m[4]; return [+m[1], +m[2], +m[3], a]; }
+  const c = parseColor(t);
+  return c ? [...c, 1] : null;
+}
+const over = (top, under) => top.slice(0, 3).map((v, i) => v * top[3] + under[i] * (1 - top[3]));
+const toHex = c => '#' + c.slice(0, 3).map(v => Math.round(v).toString(16).padStart(2, '0')).join('');
+
 function findContrastIssues(css, doc, threshold) {
   const issues = [], seen = new Set();
   const baseCss = css.replace(/@media[^{]*\{(?:[^{}]*\{[^}]*\})*[^{}]*\}/g, '');
@@ -735,39 +752,127 @@ function findContrastIssues(css, doc, threshold) {
     const m = v.match(/^var\(\s*(--[\w-]+)\s*(?:,\s*([^)]+))?\)$/);
     return m ? resolve((vars[m[1]] || m[2] || '').trim(), depth + 1) : v;
   };
-  const firstVal = s => resolve(s.trim().split(/\s+/)[0]);
+  const firstVal = s => resolve(s.trim().match(/^(rgba?\([^)]*\)|[^\s]+)/)?.[1] || s.trim());
+  const bgOfBlock = block => { const m = block.match(/background(?:-color)?\s*:\s*([^;}]+)/); return m ? firstVal(m[1]) : null; };
 
   // Page background: the last html/body/:root rule that declares one
   let pageBg = '#ffffff';
   rules.forEach(r => {
     const sel = (r.split('{')[0] || '').trim();
     if (!/(^|,)\s*(html|body|:root)\s*(,|$)/.test(sel)) return;
-    const bg = (r.split('{')[1] || '').match(/background(?:-color)?\s*:\s*([^;}]+)/);
-    if (bg && parseColor(firstVal(bg[1]))) pageBg = firstVal(bg[1]);
+    const bg = bgOfBlock(r.split('{')[1] || '');
+    if (bg && parseColor(bg)) pageBg = bg;
   });
+  const pageRGB = parseColorA(pageBg) || [255, 255, 255, 1];
 
-  const scan = (block, where) => {
-    const fg = block.match(/(?:^|[;{\s])color\s*:\s*([^;}]+)/);
-    if (!fg) return;
-    const bgm = block.match(/background(?:-color)?\s*:\s*([^;}]+)/);
-    const fgv = firstVal(fg[1]);
-    const bgv = bgm ? firstVal(bgm[1]) : pageBg;
-    const c1 = parseColor(fgv), c2 = parseColor(bgv);
-    if (!c1 || !c2) return;
-    const r = ratio(c1, c2);
-    const key = fgv + '|' + bgv;
-    if (r < threshold && !seen.has(key)) {
-      seen.add(key);
-      issues.push({ ratio: r.toFixed(1), fg: fgv, bg: bgv, where: where + (bgm ? '' : ' vs page background') });
+  // Rules that paint a background, for resolving what sits behind an element.
+  // Pseudo-classes/elements are stripped for matching; state-only rules (:hover…) are skipped.
+  const clean = sel => sel.replace(/::?[\w-]+(\([^)]*\))?/g, '').trim();
+  const bgRules = [];
+  rules.forEach(rule => {
+    const sel = (rule.split('{')[0] || '').trim();
+    if (sel.startsWith('@') || /:(hover|focus|active|visited|focus-visible|focus-within)\b/.test(sel)) return;
+    const bg = bgOfBlock(rule.split('{')[1] || '');
+    const c = parseColorA(bg);
+    // ::before/::after paint their own box (lines, dots, overlays), not the element's text background.
+    const parts = sel.split(',').filter(p => !/::?(before|after|placeholder|marker|selection|backdrop)\b/.test(p)).map(clean).filter(Boolean);
+    if (c && c[3] > 0 && parts.length) bgRules.push({ parts, c });
+  });
+  const matches = (el, part) => { try { return el.matches(part); } catch { return false; } };
+  // Specificity (ids, classes/attributes/pseudo-classes, types) so each element is judged
+  // only by the color rule that actually wins for it.
+  const specificity = sel => {
+    const ids = (sel.match(/#[\w-]+/g) || []).length;
+    const cls = (sel.match(/\.[\w-]+|\[[^\]]+\]|:(?!:)[\w-]+/g) || []).length;
+    const types = (sel.replace(/#[\w-]+|\.[\w-]+|\[[^\]]+\]|::?[\w-]+(\([^)]*\))?/g, ' ').match(/(^|[\s>+~])[a-z][\w-]*/gi) || []).length;
+    return ids * 10000 + cls * 100 + types;
+  };
+  const colorRules = [];
+  rules.forEach((rule, index) => {
+    const sel = (rule.split('{')[0] || '').trim();
+    if (sel.startsWith('@') || /:(hover|focus|active|visited|focus-visible|focus-within)\b/.test(sel)) return;
+    if (!/(?:^|[;{\s])color\s*:/.test(rule.split('{')[1] || '')) return;
+    colorRules.push({ index, parts: sel.split(',').map(p => p.trim()) });
+  });
+  /** True when the rule at ruleIndex is the winning color declaration for el. */
+  const winsColor = (el, ruleIndex) => {
+    if (/(?:^|;)\s*color\s*:/.test((el.getAttribute && el.getAttribute('style')) || '')) return false;
+    let best = null;
+    for (const r of colorRules) {
+      const spec = Math.max(-1, ...r.parts.map(p => (matches(el, clean(p)) ? specificity(p) : -1)));
+      if (spec < 0) continue;
+      if (!best || spec > best.spec || (spec === best.spec && r.index > best.index)) best = { spec, index: r.index };
     }
+    return !best || best.index === ruleIndex;
+  };
+  const ownBg = el => {
+    const inline = (el.getAttribute && el.getAttribute('style')) || '';
+    const ib = parseColorA(bgOfBlock(';' + inline));
+    if (ib && ib[3] > 0) return ib;
+    for (let i = bgRules.length - 1; i >= 0; i--) if (bgRules[i].parts.some(p => matches(el, p))) return bgRules[i].c;
+    return null;
+  };
+  /** Opaque color behind `el` (its own background excluded unless includeSelf). */
+  const behind = (el, includeSelf) => {
+    const layers = [];
+    for (let e = includeSelf ? el : el.parentElement; e && e.nodeType === 1; e = e.parentElement) {
+      const b = ownBg(e);
+      if (b) { layers.push(b); if (b[3] >= 1) break; }
+    }
+    return layers.reverse().reduce((under, top) => over(top, under), pageRGB.slice(0, 3));
+  };
+  const elementsFor = sel => {
+    if (!doc) return [];
+    const out = [];
+    for (const part of sel.split(',').map(clean).filter(Boolean)) {
+      try { out.push(...doc.querySelectorAll(part)); } catch { /* unsupported selector */ }
+      if (out.length > 40) break;
+    }
+    return out.slice(0, 40);
   };
 
-  rules.forEach(rule => {
-    const sel = (rule.split('{')[0] || '').trim().slice(0, 40);
+  const report = (fgv, fgRGB, bgRGB, where) => {
+    const r = ratio(fgRGB.slice(0, 3), bgRGB.slice(0, 3));
+    const bgv = toHex(bgRGB);
+    const key = fgv + '|' + bgv;
+    if (r < threshold && !seen.has(key)) { seen.add(key); issues.push({ ratio: r.toFixed(1), fg: fgv, bg: bgv, where }); }
+  };
+
+  const scan = (block, where, sel, inlineEl, ruleIndex) => {
+    const fg = block.match(/(?:^|[;{\s])color\s*:\s*([^;}]+)/);
+    if (!fg) return;
+    const fgv = firstVal(fg[1]);
+    const fgA = parseColorA(fgv);
+    if (!fgA || fgA[3] === 0) return;
+    const own = parseColorA(bgOfBlock(block));
+    const stateRule = sel && /:(hover|focus|active|visited|focus-visible|focus-within)\b/.test(sel);
+    const found = inlineEl ? [inlineEl] : sel ? elementsFor(sel) : [];
+    // Only elements where this rule's color actually applies (state rules like :hover win while active).
+    const els = inlineEl || stateRule || ruleIndex === undefined ? found : found.filter(el => winsColor(el, ruleIndex));
+    if (own && own[3] >= 1) return report(fgv, fgA, own, where);
+    if (found.length && !els.length) return; // every matching element takes its color from a more specific rule
+    if (!els.length) {
+      // Elements not in the audited page: judge against the page. A translucent tint with nothing
+      // beneath it to measure is skipped rather than guessed.
+      if (own) return;
+      return report(fgv, fgA, pageRGB, where + ' vs page background');
+    }
+    const backgrounds = new Map();
+    for (const el of els) {
+      const under = behind(el, false);
+      const bg = own ? over(own, under) : (() => { const b = ownBg(el); return b ? over(b, under) : under; })();
+      backgrounds.set(toHex(bg), bg);
+    }
+    for (const bg of backgrounds.values()) report(fgv, fgA, bg, where + (own ? '' : ' vs its container'));
+  };
+
+  rules.forEach((rule, index) => {
+    const fullSel = (rule.split('{')[0] || '').trim();
+    const sel = fullSel.slice(0, 40);
     if (sel.startsWith('@') || sel.startsWith('--')) return;
-    scan(rule.split('{')[1] || '', `"${sel}"`);
+    scan(rule.split('{')[1] || '', `"${sel}"`, fullSel, undefined, index);
   });
-  [...doc.querySelectorAll('[style]')].forEach(el => scan(';' + (el.getAttribute('style') || ''), 'inline style'));
+  if (doc) [...doc.querySelectorAll('[style]')].forEach(el => scan(';' + (el.getAttribute('style') || ''), 'inline style', null, el));
   return issues;
 }
 
@@ -1308,6 +1413,10 @@ async function runEvaluation() {
     setEngine('ai');
     return;
   }
+
+  // Entitlement gate: sign in (captures email) → consume one free audit, or paywall.
+  // Only reached once there is real input to audit, so a free run is never wasted.
+  if (typeof requireAudit === 'function' && !(await requireAudit())) return;
 
   const opts = {
     persona: $('persona').value,

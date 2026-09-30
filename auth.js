@@ -5,6 +5,9 @@
   var SB_URL = 'https://zntkdduacrfqvjbcikpn.supabase.co';
   var SB_ANON = 'sb_publishable_znJr-9ITxg3XwU82zNgvkg_pUXviS5Z';
   var SKEY = 'ux_session';
+  // Set to the deployed uxexpert-billing Worker URL to switch on Stripe Checkout
+  // + Customer Portal (see billing/README.md). Empty = CTAs fall back to /pricing/.
+  var BILLING_URL = 'https://uxexpert-billing.kintzele1994.workers.dev';
   function $(id) { return document.getElementById(id); }
 
   function getSession() { try { var s = JSON.parse(localStorage.getItem(SKEY) || 'null'); return (s && s.access_token) ? s : null; } catch (e) { return null; } }
@@ -104,6 +107,48 @@
     catch (e) { openPaywall('error'); return false; }
   }
 
+  /* ---------- Stripe billing (dormant until BILLING_URL is set) ---------- */
+  async function billing(path, body) {
+    var s = getSession(); if (!s) throw new Error('not signed in');
+    if (s.expires_at && Date.now() > s.expires_at - 30000) { await refresh(); s = getSession(); }
+    var res = await fetch(BILLING_URL.replace(/\/$/, '') + path, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + s.access_token },
+      body: JSON.stringify(body || {})
+    });
+    var j = await res.json().catch(function () { return {}; });
+    if (!res.ok || !j.url) throw new Error(j.error || 'Could not start billing. Try again in a minute.');
+    return j.url;
+  }
+  // Resolve the plan: explicit 'monthly'/'annual', else read the pricing toggle.
+  function resolvePlan(plan) {
+    if (plan === 'monthly' || plan === 'annual') return plan;
+    var yr = document.getElementById('bill-yr');
+    return (yr && yr.checked) ? 'annual' : 'monthly';
+  }
+  // Ensure a session. If the sign-in modal exists on this page, open it; else
+  // send the visitor to the home audit flow to sign in + take their free audit.
+  async function ensureSession() {
+    if (getSession()) return true;
+    if (document.getElementById('signin')) return await openSignIn();
+    location.href = '/#audit';
+    return false;
+  }
+  function billingErr(e) { if (window.toast) window.toast(e.message); else alert(e.message); }
+  async function startCheckout(plan) {
+    if (!BILLING_URL) { location.href = '/pricing/'; return; }
+    plan = resolvePlan(plan);
+    if (!(await ensureSession())) return;
+    try { if (window.track) window.track('Checkout Started', { plan: plan }); location.href = await billing('/checkout', { plan: plan }); }
+    catch (e) { billingErr(e); }
+  }
+  async function openPortal() {
+    if (!BILLING_URL) { location.href = '/pricing/'; return; }
+    if (!(await ensureSession())) return;
+    try { location.href = await billing('/portal', {}); }
+    catch (e) { billingErr(e); }
+  }
+
   function updateAccountUI() {
     var s = getSession(), acct = $('acct'), so = $('acct-signout');
     if (acct) {
@@ -123,10 +168,12 @@
     else if (a === 'signout') signOut();
     else if (a === 'signin') openSignIn();
     else if (a === 'resend') submitEmail();
+    else if (a === 'checkout') startCheckout(el.dataset.plan);
+    else if (a === 'portal') openPortal();
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeSignIn(false); closePaywall(); } });
   updateAccountUI();
 
   window.requireAudit = requireAudit;
-  window.uxAuth = { getSession: getSession, signOut: signOut, updateAccountUI: updateAccountUI };
+  window.uxAuth = { getSession: getSession, signOut: signOut, updateAccountUI: updateAccountUI, startCheckout: startCheckout, openPortal: openPortal, billingEnabled: function () { return !!BILLING_URL; } };
 })();

@@ -18,7 +18,7 @@
 <meta name="twitter:image" content="https://uxexpert.ai/og.png?v=20260810">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://uxexpert.ai/pricing/">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src https://plausible.io; connect-src 'self' https://plausible.io; img-src 'self' data:; style-src 'unsafe-inline'; base-uri 'none'; object-src 'none'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://plausible.io; connect-src 'self' https://plausible.io https://zntkdduacrfqvjbcikpn.supabase.co https://uxexpert-billing.kintzele1994.workers.dev; img-src 'self' data:; style-src 'unsafe-inline'; base-uri 'none'; object-src 'none'; form-action 'self'">
 <script async src="https://plausible.io/js/pa-HuKnDbBb6VROp-Q7KzWUg.js"></script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230F172A'/%3E%3Cpath d='M10 10 22 22' stroke='%236366F1' stroke-width='3.6' stroke-linecap='round'/%3E%3Cpath d='M22 10 10 22' stroke='%232DD4BF' stroke-width='3.6' stroke-linecap='round'/%3E%3C/svg%3E">
 <script type="application/ld+json">
@@ -169,8 +169,8 @@
             <li>Saved history &amp; version comparison <span class="lv soon">Coming</span></li>
             <li>PDF, Jira, Figma &amp; Notion exports <span class="lv soon">Coming</span></li>
           </ul>
-          <a href="/#audit" class="btn btn-primary btn-block">Start your free audit</a>
-          <p class="foot-note">Start free — no card. Upgrade to Pro anytime to keep auditing; switch monthly ↔ annual or cancel whenever. <strong>Accounts &amp; checkout are rolling out now.</strong></p>
+          <button type="button" class="btn btn-primary btn-block" data-auth="checkout">Go Pro</button>
+          <p class="foot-note">Try it free first — your first audit needs only your email. Upgrade to Pro anytime; switch monthly ↔ annual or cancel whenever. <strong>Secure checkout by Stripe.</strong></p>
         </div>
       </div>
     </div>
@@ -225,5 +225,6 @@
     <div class="links"><a href="/">Home</a><a href="/blog/">Blog</a><a href="/about/">About</a><a href="/pricing/">Pricing</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><span>Contact: Liz Kintzele, Founder &middot; hello@uxexpert.ai</span></div>
   </div>
 </footer>
+<script src="/auth.js?v=20260930-1" defer></script>
 </body>
 </html>

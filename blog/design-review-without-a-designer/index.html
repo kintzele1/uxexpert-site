@@ -54,7 +54,7 @@
   .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:var(--slate);letter-spacing:-.02em;text-decoration:none}
   .logo:hover{text-decoration:none}
   .navlinks{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
-  .navlinks a{color:var(--slate-700);font-size:14.5px;font-weight:500}
+  .navlinks a:not(.btn){color:var(--slate-700);font-size:14.5px;font-weight:500}
   .navlinks a[aria-current=page]{color:var(--indigo);font-weight:600}
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:15px;border:1px solid transparent;border-radius:10px;padding:11px 18px;cursor:pointer;text-decoration:none;transition:background .2s ease,border-color .2s ease,color .2s ease}
   .btn:hover{text-decoration:none}
@@ -163,7 +163,7 @@
     <h2>What to look for in a design audit tool for indie hackers</h2>
     <p>Not all "audit" tools are built for the way fast teams actually work. A short checklist:</p>
     <ul>
-      <li><strong>Speed to first result.</strong> If it needs an onboarding call and a sales demo, it's not built for your loop. You should get value in minutes, on your first try, without an account.</li>
+      <li><strong>Speed to first result.</strong> If it needs an onboarding call and a sales demo, it's not built for your loop. You should get value in minutes, on your first try, without a sales gate.</li>
       <li><strong>Reads code, not just pixels.</strong> Real issues live in markup and CSS. A tool that ingests your actual code surfaces root causes a screenshot analyzer can't.</li>
       <li><strong>Prioritized by impact.</strong> A dump of two hundred warnings is worse than useless. You want severity, effort, and impact so you know what to do before lunch.</li>
       <li><strong>Broad coverage in one pass.</strong> Design, accessibility, code quality, and conversion together — so you're not stitching four tools into a workflow.</li>
@@ -174,7 +174,7 @@
 
     <div class="callout">
       <p class="lbl">Where UXexpert fits</p>
-      <p><a href="/">UXexpert.ai</a> was built for exactly this loop. It reads your real code — URL, repo, or paste — and returns a principal design review, an engineering code audit, and a growth strategist's conversion analysis in one prioritized report, each finding scored and paired with a concrete fix. The local engine runs entirely in your browser and returns results in seconds; a deeper Claude review takes a minute or two. No account to start, and you can tune it to your product with uploadable <a href="/features/">expertise skills</a>. It raises the floor instantly — you stay the human in the loop for the judgment calls.</p>
+      <p><a href="/">UXexpert.ai</a> was built for exactly this loop. It reads your real code — URL, repo, or paste — and returns a principal design review, an engineering code audit, and a growth strategist's conversion analysis in one prioritized report, each finding scored and paired with a concrete fix. The local engine runs entirely in your browser and returns results in seconds; a deeper Claude review takes a minute or two. Your first audit is free — just your email to start — and you can tune it to your product with uploadable <a href="/features/">expertise skills</a>. It raises the floor instantly — you stay the human in the loop for the judgment calls.</p>
     </div>
 
     <div class="disc">Automated and AI-assisted findings can be incomplete or wrong, and don't replace a professional review or certify compliance. Review, validate, and edit each finding before you act.</div>
@@ -197,7 +197,7 @@
 
     <div class="cta">
       <h2>Get a principal-level review right now</h2>
-      <p>No designer's calendar, no account. Run a free audit and see what a senior eye would flag.</p>
+      <p>No designer's calendar, no sales gate. Your first audit is free — run it and see what a senior eye would flag.</p>
       <div class="cta-row">
         <a href="/#audit" class="btn btn-primary">Start a free audit</a>
         <a href="/pricing/" class="btn btn-quiet">See pricing</a>

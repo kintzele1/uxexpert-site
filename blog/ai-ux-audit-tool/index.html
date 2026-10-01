@@ -35,7 +35,7 @@
 {"@type":"Question","name":"What is an AI UX audit tool?","acceptedAnswer":{"@type":"Answer","text":"An AI UX audit tool uses AI to review a website or web app the way an expert would — checking usability, accessibility, code quality, performance, and conversion — and returns prioritized, actionable findings with fixes. UXexpert.ai runs three lenses at once: a principal design review, an engineering code audit, and a growth strategist's conversion analysis."}},
 {"@type":"Question","name":"What does an AI UX audit check?","acceptedAnswer":{"@type":"Answer","text":"It checks design and usability, accessibility mapped to WCAG, engineering and code quality, performance signals, SEO fundamentals, and conversion. Each finding is scored by severity, effort, and impact and paired with a concrete fix, often a pasteable code snippet."}},
 {"@type":"Question","name":"How is an AI UX audit different from Lighthouse?","acceptedAnswer":{"@type":"Answer","text":"Lighthouse measures one dimension (mostly performance and some best-practices checks). An AI UX audit combines usability, engineering, and conversion review in one report and adds reasoning that reads your actual code and screenshots in context. UXexpert.ai complements tools like Lighthouse and axe rather than replacing them."}},
-{"@type":"Question","name":"Is there a free AI UX audit tool?","acceptedAnswer":{"@type":"Answer","text":"Yes. UXexpert.ai has a free local engine that runs unlimited audits entirely in your browser, with no account or API key. A deeper Claude review is available with your own API key, and Founding Pro adds saved history and richer exports as they ship."}}
+{"@type":"Question","name":"Is there a free AI UX audit tool?","acceptedAnswer":{"@type":"Answer","text":"Yes — your first audit is free. UXexpert.ai runs in your browser and needs only your email to start; the local engine requires no API key and your code never leaves your device. A deeper Claude review uses your own Anthropic API key, and Pro ($49/mo or $490/yr) unlocks unlimited audits plus user stories, custom rules, and richer exports as they ship."}}
 ]}
 </script>
 <style>
@@ -55,7 +55,7 @@
   .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:var(--slate);letter-spacing:-.02em;text-decoration:none}
   .logo:hover{text-decoration:none}
   .navlinks{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
-  .navlinks a{color:var(--slate-700);font-size:14.5px;font-weight:500}
+  .navlinks a:not(.btn){color:var(--slate-700);font-size:14.5px;font-weight:500}
   .navlinks a[aria-current=page]{color:var(--indigo);font-weight:600}
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:15px;border:1px solid transparent;border-radius:10px;padding:11px 18px;cursor:pointer;text-decoration:none;transition:background .2s ease,border-color .2s ease,color .2s ease}
   .btn:hover{text-decoration:none}
@@ -191,7 +191,7 @@
 
     <div class="callout">
       <p class="lbl">Where UXexpert fits</p>
-      <p><a href="/">UXexpert.ai</a> is an AI UX audit tool built around these principles: three expert lenses in one report, reads your real code, tunable to your product, private by default, and honest about being AI-assisted. The local engine is free and needs no account. It's the fastest way to get a principal-level review of your web app — start with a URL, a repo, or pasted code.</p>
+      <p><a href="/">UXexpert.ai</a> is an AI UX audit tool built around these principles: three expert lenses in one report, reads your real code, tunable to your product, private by default, and honest about being AI-assisted. Your first audit is free, and the local engine needs no API key. It's the fastest way to get a principal-level review of your web app — start with a URL, a repo, or pasted code.</p>
     </div>
 
     <div class="disc">AI-assisted audit output can be incomplete or wrong and is not professional advice or a compliance certification. Review, validate, and edit findings before acting on them.</div>
@@ -212,13 +212,13 @@
       </details>
       <details>
         <summary>Is there a free AI UX audit tool?</summary>
-        <div class="a">Yes. UXexpert.ai has a free local engine that runs unlimited audits entirely in your browser, with no account or API key. A deeper Claude review is available with your own API key, and Founding Pro adds saved history and richer exports as they ship.</div>
+        <div class="a">Yes — your first audit is free. UXexpert.ai runs in your browser and needs only your email to start; the local engine requires no API key and your code never leaves your device. A deeper Claude review uses your own Anthropic API key, and Pro ($49/mo or $490/yr) unlocks unlimited audits plus user stories, custom rules, and richer exports as they ship.</div>
       </details>
     </div>
 
     <div class="cta">
       <h2>Try an AI UX audit on your site</h2>
-      <p>Free, private, and instant — no account, no API key to start.</p>
+      <p>Private and instant — your first audit is free, just your email to start.</p>
       <div class="cta-row">
         <a href="/#audit" class="btn btn-primary">Start a free audit</a>
         <a href="/pricing/" class="btn btn-quiet">See pricing</a>

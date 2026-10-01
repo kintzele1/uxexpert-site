@@ -54,7 +54,7 @@
   .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:var(--slate);letter-spacing:-.02em;text-decoration:none}
   .logo:hover{text-decoration:none}
   .navlinks{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
-  .navlinks a{color:var(--slate-700);font-size:14.5px;font-weight:500}
+  .navlinks a:not(.btn){color:var(--slate-700);font-size:14.5px;font-weight:500}
   .navlinks a[aria-current=page]{color:var(--indigo);font-weight:600}
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:15px;border:1px solid transparent;border-radius:10px;padding:11px 18px;cursor:pointer;text-decoration:none;transition:background .2s ease,border-color .2s ease,color .2s ease}
   .btn:hover{text-decoration:none}
@@ -199,7 +199,7 @@
 
     <div class="cta">
       <h2>Find your design debt in the next five minutes</h2>
-      <p>Paste a URL or drop your code. No account, no API key, nothing leaves your browser.</p>
+      <p>Paste a URL or drop your code. Your first audit is free — just your email to start, and your code never leaves your browser.</p>
       <div class="cta-row">
         <a href="/#audit" class="btn btn-primary">Start a free audit</a>
         <a href="/pricing/" class="btn btn-quiet">See pricing</a>

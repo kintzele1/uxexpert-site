@@ -155,6 +155,19 @@
       if (s && s.user) { var em = s.user.email || 'Account'; acct.textContent = em.length > 22 ? em.slice(0, 20) + '…' : em; acct.title = em; acct.hidden = false; if (so) so.hidden = false; }
       else { acct.hidden = true; if (so) so.hidden = true; }
     }
+    refreshBilling();
+  }
+  // Show "Manage billing" only to signed-in active Pro subscribers.
+  async function refreshBilling() {
+    var b = $('acct-billing'); if (!b) return;
+    if (!getSession()) { b.hidden = true; return; }
+    try {
+      var res = await sb('/rest/v1/profiles?select=plan,subscription_status', {}, true);
+      if (res.status === 401 && await refresh()) res = await sb('/rest/v1/profiles?select=plan,subscription_status', {}, true);
+      var rows = await res.json().catch(function () { return []; });
+      var p = rows && rows[0];
+      b.hidden = !(p && p.plan === 'pro' && p.subscription_status === 'active');
+    } catch (e) { b.hidden = true; }
   }
 
   // deferred script → DOM is parsed; wire now

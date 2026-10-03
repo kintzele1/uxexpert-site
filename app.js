@@ -1128,10 +1128,11 @@ const STORY_SCHEMA = {
 
 async function generateStories() {
   if (!state.last) { toast('Run an audit first — stories are written from its findings.'); return; }
+  if (!isProView()) { if (window.uxAuth && window.uxAuth.paywall) window.uxAuth.paywall('stories'); else toast('User stories are a Pro feature.'); return; }
   let key;
   try { key = getApiKey(); }
   catch (e) {
-    toast('User stories are a Pro capability — during beta, preview them by adding your Anthropic API key in step 03.');
+    toast('Add your Anthropic API key in step 03 to generate the backlog.');
     setEngine('ai');
     return;
   }
@@ -1409,6 +1410,9 @@ const SEVNAME = ['Low','Medium','High','Critical'];
 const scoreColor = s => s >= 80 ? 'var(--emerald)' : s >= 55 ? 'var(--amber)' : 'var(--red)';
 const scoreTextColor = s => s >= 80 ? 'var(--emerald-text)' : s >= 55 ? 'var(--amber-text)' : 'var(--red)';
 
+// Pro gates the solution (fixes, backlog, exports); the diagnosis is free.
+function isProView() { try { return !!(window.uxAuth && window.uxAuth.isPro && window.uxAuth.isPro()); } catch (e) { return false; } }
+
 function renderReport(result, opts) {
   clearError();
   $('placeholder').hidden = true;
@@ -1440,6 +1444,13 @@ function renderReport(result, opts) {
       ${['ux','dev','gtm'].map(l => `<button class="tab" data-lens="${l}" data-action="filterLens">${LENS[l].label} (${findings.filter(f=>f.lens===l).length})</button>`).join('')}
     </div>
     <h3 class="sr-only">Audit findings</h3>
+    ${(!isProView() && findings.length) ? `<div class="upsell">
+      <div class="upsell-copy"><b>You have ${findings.length} issue${findings.length===1?'':'s'} to fix.</b> You're seeing the full diagnosis free. Pro unlocks the code-native fix for every finding, the prioritized backlog and user stories, saved history, and exports.</div>
+      <div class="upsell-cta">
+        <button class="btn btn-primary btn-sm" data-auth="checkout" data-plan="monthly">Unlock fixes — $49/mo</button>
+        <button class="btn btn-quiet btn-sm" data-auth="checkout" data-plan="annual">or $490/yr</button>
+      </div>
+    </div>` : ''}
     <div id="findings">${findings.map(renderFinding).join('') || '<div class="empty-lens">No issues found — remarkably clean.</div>'}</div>
     ${renderPlaybook(findings)}
     <div id="stories" style="display:none"></div>
@@ -1456,6 +1467,15 @@ function renderReport(result, opts) {
 }
 
 function renderFinding(f, i) {
+  const pro = isProView();
+  const teaser = !pro && i === 0; // reveal the top finding's fix as proof of value
+  let fixBlock;
+  if (pro || teaser) {
+    fixBlock = `<div class="fix"><b>Fix</b> — ${esc(f.fix)}</div>${f.snippet ? `<pre>${esc(f.snippet)}</pre>` : ''}`;
+    if (teaser) fixBlock += `<p class="teaser-note">Preview fix — Pro unlocks the fix for every finding. <button class="btn-link" data-auth="checkout" data-plan="monthly">Go Pro</button></p>`;
+  } else {
+    fixBlock = `<div class="fix locked"><svg class="lockico" aria-hidden="true" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> <b>Fix</b> — available on Pro</div>`;
+  }
   return `<div class="finding s${f.sev}" data-lens="${f.lens}">
     <div class="top">
       <span class="sev sev-${f.sev}">${SEVNAME[f.sev]}</span>
@@ -1467,8 +1487,7 @@ function renderFinding(f, i) {
     </div>
     <h4>${i+1}. ${esc(f.title)}</h4>
     <p>${esc(f.detail)}</p>
-    <div class="fix"><b>Fix</b> — ${esc(f.fix)}</div>
-    ${f.snippet ? `<pre>${esc(f.snippet)}</pre>` : ''}
+    ${fixBlock}
   </div>`;
 }
 
@@ -1521,6 +1540,7 @@ function buildMarkdown() {
 }
 function exportMarkdown() {
   if (!state.last) return;
+  if (!isProView()) { if (window.uxAuth && window.uxAuth.paywall) window.uxAuth.paywall('export'); else toast('Exports are a Pro feature.'); return; }
   const blob = new Blob([buildMarkdown()], { type: 'text/markdown' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob); a.download = 'uxexpert-report.md'; a.click();
@@ -1530,6 +1550,7 @@ function exportMarkdown() {
 }
 function copyReport() {
   if (!state.last) return;
+  if (!isProView()) { if (window.uxAuth && window.uxAuth.paywall) window.uxAuth.paywall('export'); else toast('Exports are a Pro feature.'); return; }
   navigator.clipboard.writeText(buildMarkdown()).then(() => toast('Report copied to clipboard.'));
 }
 
@@ -1597,3 +1618,18 @@ function heroAudit() {
   // Safety net: never leave content hidden if the observer misses (odd viewports, etc.).
   setTimeout(revealAll, 2500);
 })();
+
+// Re-render the open report when entitlement resolves (async load, or right after
+// an upgrade) so the fixes unlock in place without a manual re-run.
+if (window.uxAuth && window.uxAuth.onEntitlement) {
+  window.uxAuth.onEntitlement(() => {
+    if (state.last && !$('report').hidden) { state.restoring = true; renderReport(state.last.result, {}); state.restoring = false; }
+  });
+}
+// Return from Stripe Checkout: refresh entitlement and unlock in place.
+if (new URLSearchParams(location.search).get('checkout') === 'success') {
+  track('Checkout Success');
+  if (window.uxAuth && window.uxAuth.refreshEntitlement) window.uxAuth.refreshEntitlement();
+  toast('You\'re Pro — fixes, backlog, and exports are unlocked. Thank you!');
+  history.replaceState(null, '', location.pathname);
+}

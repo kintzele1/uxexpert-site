@@ -100,11 +100,14 @@
   }
   function closePaywall() { $('paywall').classList.remove('show'); document.querySelectorAll('nav,main,footer').forEach(function (n) { n.removeAttribute('inert'); }); }
 
-  /* ---------- the gate the app awaits ---------- */
+  /* ---------- the gate the app awaits ----------
+     The diagnosis (scores + findings) is free; we only require a verified email
+     so we can nurture the account. The fixes, backlog, and exports are gated in
+     the report itself by plan (see isPro). */
   async function requireAudit() {
     if (!getSession()) { var ok = await openSignIn(); if (!ok) return false; }
-    try { var res = await consumeAudit(); if (res && res.allowed) return true; openPaywall(res && res.reason); return false; }
-    catch (e) { openPaywall('error'); return false; }
+    if (!entitlement.known) { try { await refreshBilling(); } catch (e) {} }
+    return true;
   }
 
   /* ---------- Stripe billing (dormant until BILLING_URL is set) ---------- */
@@ -157,17 +160,23 @@
     }
     refreshBilling();
   }
-  // Show "Manage billing" only to signed-in active Pro subscribers.
+  // Entitlement cache: the report reads isPro() to decide whether to reveal the
+  // fixes/backlog. Refreshed on load, after sign-in, and after a checkout return.
+  var entitlement = { plan: 'free', status: null, known: false };
+  var onEntitlementCb = null;
+  function isPro() { return entitlement.plan === 'pro' && entitlement.status === 'active'; }
   async function refreshBilling() {
-    var b = $('acct-billing'); if (!b) return;
-    if (!getSession()) { b.hidden = true; return; }
+    var b = $('acct-billing');
+    if (!getSession()) { entitlement = { plan: 'free', status: null, known: true }; if (b) b.hidden = true; if (onEntitlementCb) onEntitlementCb(); return; }
     try {
       var res = await sb('/rest/v1/profiles?select=plan,subscription_status', {}, true);
       if (res.status === 401 && await refresh()) res = await sb('/rest/v1/profiles?select=plan,subscription_status', {}, true);
       var rows = await res.json().catch(function () { return []; });
-      var p = rows && rows[0];
-      b.hidden = !(p && p.plan === 'pro' && p.subscription_status === 'active');
-    } catch (e) { b.hidden = true; }
+      var p = (rows && rows[0]) || {};
+      entitlement = { plan: p.plan || 'free', status: p.subscription_status || null, known: true };
+    } catch (e) { entitlement.known = true; }
+    if (b) b.hidden = !isPro();
+    if (onEntitlementCb) onEntitlementCb();
   }
 
   // deferred script → DOM is parsed; wire now
@@ -188,5 +197,13 @@
   updateAccountUI();
 
   window.requireAudit = requireAudit;
-  window.uxAuth = { getSession: getSession, signOut: signOut, updateAccountUI: updateAccountUI, startCheckout: startCheckout, openPortal: openPortal, billingEnabled: function () { return !!BILLING_URL; } };
+  window.uxAuth = {
+    getSession: getSession, signOut: signOut, updateAccountUI: updateAccountUI,
+    startCheckout: startCheckout, openPortal: openPortal,
+    billingEnabled: function () { return !!BILLING_URL; },
+    isPro: isPro,
+    refreshEntitlement: refreshBilling,
+    onEntitlement: function (cb) { onEntitlementCb = cb; },
+    paywall: function (reason) { openPaywall(reason); }
+  };
 })();

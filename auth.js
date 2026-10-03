@@ -209,6 +209,37 @@
     } catch (e) { return null; }
   }
 
+  // Magic-link callback: Supabase redirects the email link back to the site with
+  // the session tokens in the URL hash (implicit flow). Parse them, sign in, and
+  // clean the URL — so clicking the link works as well as typing the code.
+  async function handleAuthRedirect() {
+    var h = (location.hash || '').replace(/^#/, '');
+    if (!h) return false;
+    var p = new URLSearchParams(h);
+    if (p.get('error') || p.get('error_description')) {
+      history.replaceState(null, '', location.pathname + location.search);
+      var d = (p.get('error_description') || 'That sign-in link didn\'t work — request a new code.').replace(/\+/g, ' ');
+      try { d = decodeURIComponent(d); } catch (e) {}
+      if (typeof window.toast === 'function') window.toast(d);
+      return false;
+    }
+    var at = p.get('access_token'); if (!at) return false;
+    setSession({ access_token: at, refresh_token: p.get('refresh_token'), expires_in: Number(p.get('expires_in')) || 3600, user: null });
+    history.replaceState(null, '', location.pathname + location.search);
+    try {
+      var res = await sb('/auth/v1/user', {}, true);
+      var u = res.ok ? await res.json().catch(function () { return null; }) : null;
+      if (!u || !u.id) { clearSession(); if (typeof window.toast === 'function') window.toast('That sign-in link has expired — enter your email again for a fresh code.'); return false; }
+      var s = getSession(); if (s) { s.user = { id: u.id, email: u.email }; try { localStorage.setItem(SKEY, JSON.stringify(s)); } catch (e) {} }
+    } catch (e) { clearSession(); return false; }
+    closeSignIn(true);
+    updateAccountUI();
+    if (window.track) window.track('Signed In', { via: 'link' });
+    var se = getSession();
+    if (typeof window.toast === 'function') window.toast('You\'re signed in' + (se && se.user && se.user.email ? ' as ' + se.user.email : '') + '. Run your audit.');
+    return true;
+  }
+
   // deferred script → DOM is parsed; wire now
   var f1 = $('si-form-email'); if (f1) f1.addEventListener('submit', function (e) { e.preventDefault(); submitEmail(); });
   var f2 = $('si-form-code'); if (f2) f2.addEventListener('submit', function (e) { e.preventDefault(); submitCode(); });
@@ -225,6 +256,7 @@
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeSignIn(false); closePaywall(); } });
   updateAccountUI();
+  handleAuthRedirect();
 
   window.requireAudit = requireAudit;
   window.uxAuth = {

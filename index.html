@@ -348,6 +348,20 @@
   .fix.locked b{color:var(--slate-500)}
   .fix.locked .lockico{color:var(--indigo);flex:none}
   .teaser-note{font-size:12.5px;color:var(--slate-500);margin-top:8px}
+  #history{margin-top:28px;border-top:1px solid var(--line);padding-top:24px}
+  .histhead{font-size:17px;font-weight:700;margin-bottom:4px}
+  .histsub{font-size:13.5px;color:var(--slate-500);margin-bottom:14px}
+  .histlist{display:flex;flex-direction:column;gap:8px}
+  .histrow{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 14px;cursor:pointer;font:inherit;color:var(--slate);transition:border-color .15s ease,background .15s ease}
+  .histrow:hover{border-color:var(--indigo);background:var(--white)}
+  .histrow .h-date{font-size:12.5px;color:var(--slate-500);width:56px;flex:none}
+  .histrow .h-label{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;font-weight:550}
+  .histrow .h-score{display:inline-flex;align-items:center;gap:8px;font-size:15px}
+  .histrow .h-score b{font-variant-numeric:tabular-nums}
+  .delta{font-size:12px;font-weight:700;padding:2px 7px;border-radius:999px}
+  .delta.up{color:var(--emerald-text);background:#ECFDF5}
+  .delta.down{color:var(--red);background:#FEF2F2}
+  .delta.flat{color:var(--slate-500);background:var(--paper);border:1px solid var(--line)}
   .errline{color:var(--red);font-size:13px;margin:10px 0 0;line-height:1.5}
   .modal{background:var(--white);border-radius:14px;padding:30px;max-width:420px;width:100%;box-shadow:0 24px 80px rgba(15,23,42,.3)}
   .modal h3{font-size:18px;margin-bottom:6px}
@@ -556,6 +570,7 @@
           Findings from all three reviewers, scored and prioritized,<br>with fixes you can apply today.
         </div>
         <div id="report" hidden></div>
+        <div id="history" hidden></div>
       </div>
     </div>
   </div>
@@ -595,7 +610,7 @@
 
 <footer>
   <div class="wrap">
-    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.10.03-2</span></div>
+    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.10.03-3</span></div>
     <div style="max-width:640px;font-size:12.5px;color:var(--slate-500);line-height:1.5">UXexpert produces automated and AI-assisted suggestions, not professional advice or a guarantee of compliance. A human should review, validate, and edit every finding, story, and fix before acting on it.</div>
     <div><a href="/about/">About</a><a href="/blog/">Blog</a><a href="/pricing/">Pricing</a><a href="https://uxexpert.ai/privacy/">Privacy</a><a href="https://uxexpert.ai/terms/">Terms</a><span>Contact: Liz Kintzele, Founder &middot; hello@uxexpert.ai</span></div>
   </div>
@@ -660,7 +675,7 @@
 
 <div class="toast" id="toast" role="status"></div>
 
-<script src="auth.js?v=20261003-2" defer></script>
-<script src="app.js?v=20261003-2" defer></script>
+<script src="auth.js?v=20261003-3" defer></script>
+<script src="app.js?v=20261003-3" defer></script>
 </body>
 </html>

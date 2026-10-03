@@ -179,6 +179,36 @@
     if (onEntitlementCb) onEntitlementCb();
   }
 
+  /* ---------- saved history (Pro) ---------- */
+  async function sbAuthed(path, opts) {
+    var res = await sb(path, opts || {}, true);
+    if (res.status === 401 && await refresh()) res = await sb(path, opts || {}, true);
+    return res;
+  }
+  async function saveAudit(rec) {
+    if (!getSession() || !isPro()) return null; // history is a Pro feature
+    try {
+      var res = await sbAuthed('/rest/v1/audits', { method: 'POST', headers: { 'Prefer': 'return=representation' }, body: JSON.stringify(rec) });
+      var j = await res.json().catch(function () { return null; });
+      return res.ok ? (j && j[0]) : null;
+    } catch (e) { return null; }
+  }
+  async function listAudits(limit) {
+    if (!getSession()) return [];
+    try {
+      var res = await sbAuthed('/rest/v1/audits?select=id,created_at,label,engine,overall,ux,dev,gtm,findings&order=created_at.desc&limit=' + (limit || 20));
+      var j = await res.json().catch(function () { return []; });
+      return res.ok && Array.isArray(j) ? j : [];
+    } catch (e) { return []; }
+  }
+  async function getAudit(id) {
+    try {
+      var res = await sbAuthed('/rest/v1/audits?id=eq.' + encodeURIComponent(id) + '&select=result');
+      var j = await res.json().catch(function () { return []; });
+      return (j && j[0] && j[0].result) || null;
+    } catch (e) { return null; }
+  }
+
   // deferred script → DOM is parsed; wire now
   var f1 = $('si-form-email'); if (f1) f1.addEventListener('submit', function (e) { e.preventDefault(); submitEmail(); });
   var f2 = $('si-form-code'); if (f2) f2.addEventListener('submit', function (e) { e.preventDefault(); submitCode(); });
@@ -204,6 +234,7 @@
     isPro: isPro,
     refreshEntitlement: refreshBilling,
     onEntitlement: function (cb) { onEntitlementCb = cb; },
-    paywall: function (reason) { openPaywall(reason); }
+    paywall: function (reason) { openPaywall(reason); },
+    saveAudit: saveAudit, listAudits: listAudits, getAudit: getAudit
   };
 })();

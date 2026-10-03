@@ -1396,6 +1396,7 @@ async function runEvaluation() {
     skills: state.skills.length
   });
   saveState();
+  recordHistory(result);
   toast(`Audit complete — ${result.findings.length} findings across three lenses.`);
 }
 
@@ -1412,6 +1413,53 @@ const scoreTextColor = s => s >= 80 ? 'var(--emerald-text)' : s >= 55 ? 'var(--a
 
 // Pro gates the solution (fixes, backlog, exports); the diagnosis is free.
 function isProView() { try { return !!(window.uxAuth && window.uxAuth.isPro && window.uxAuth.isPro()); } catch (e) { return false; } }
+
+/* ---------- saved history + re-audit (Pro) ---------- */
+async function recordHistory(result) {
+  if (!(window.uxAuth && window.uxAuth.saveAudit)) return; // saveAudit no-ops for non-Pro
+  const s = result.scores;
+  const label = $('url').value.trim()
+    || (state.files.length ? `${state.files.length} file${state.files.length > 1 ? 's' : ''}`
+      : (state.images.length ? 'Screenshots' : (state.sampleInEditor ? 'Sample app' : 'Pasted code')));
+  const saved = await window.uxAuth.saveAudit({
+    label: label.slice(0, 200), engine: state.engine,
+    overall: s.overall, ux: s.ux, dev: s.dev, gtm: s.gtm,
+    findings: result.findings.length, result
+  });
+  if (saved) renderHistory();
+}
+async function renderHistory() {
+  const host = $('history'); if (!host) return;
+  if (!isProView() || !(window.uxAuth && window.uxAuth.listAudits)) { host.hidden = true; host.innerHTML = ''; return; }
+  const rows = await window.uxAuth.listAudits(20);
+  if (!rows.length) { host.hidden = true; host.innerHTML = ''; return; }
+  const asc = [...rows].reverse();                 // oldest → newest for deltas
+  const delta = {};
+  asc.forEach((r, i) => { delta[r.id] = i > 0 ? r.overall - asc[i - 1].overall : null; });
+  host.hidden = false;
+  host.innerHTML = `
+    <h3 class="histhead">Your audit history</h3>
+    <p class="histsub">Re-run after each change and watch your score move — ${rows.length} saved.</p>
+    <div class="histlist">
+      ${rows.map(r => {
+        const d = delta[r.id];
+        const dtxt = d === null ? '' : (d > 0 ? `<span class="delta up">+${d}</span>` : (d < 0 ? `<span class="delta down">${d}</span>` : `<span class="delta flat">±0</span>`));
+        return `<button class="histrow" data-action="viewAudit" data-arg="${r.id}">
+          <span class="h-date">${new Date(r.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}</span>
+          <span class="h-label">${esc(r.label || 'Audit')}</span>
+          <span class="h-score"><b>${r.overall}</b>${dtxt}</span>
+        </button>`;
+      }).join('')}
+    </div>`;
+}
+async function viewAudit(id) {
+  if (!(window.uxAuth && window.uxAuth.getAudit)) return;
+  const result = await window.uxAuth.getAudit(id);
+  if (!result || !result.findings) { toast('Could not load that audit.'); return; }
+  state.last = { result, opts: {}, engine: result.engine || 'local', skills: [], when: 'saved audit' };
+  state.restoring = true; renderReport(result, {}); state.restoring = false;
+  $('report').scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
+}
 
 function renderReport(result, opts) {
   clearError();
@@ -1564,6 +1612,7 @@ updateReady();
 const ACTIONS = {
   runEvaluation, generateStories, exportStories, exportMarkdown, copyReport, clearError,
   addCustomSkill, closeWaitlist, toggleNav, loadSample, startDemo,
+  viewAudit: (el) => viewAudit(el.dataset.arg),
   toggleComposer: () => toggleComposer(),
   toggleComposerClose: () => toggleComposer(false),
   filterLens: (el) => filterLens(el),
@@ -1624,6 +1673,7 @@ function heroAudit() {
 if (window.uxAuth && window.uxAuth.onEntitlement) {
   window.uxAuth.onEntitlement(() => {
     if (state.last && !$('report').hidden) { state.restoring = true; renderReport(state.last.result, {}); state.restoring = false; }
+    renderHistory();
   });
 }
 // Return from Stripe Checkout: refresh entitlement and unlock in place.

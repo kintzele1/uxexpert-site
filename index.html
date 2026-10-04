@@ -402,7 +402,7 @@
   <div class="wrap">
     <p class="eyebrow">Your instant principal UX expert</p>
     <h1>Your web app, reviewed like a <em>flagship product</em>.</h1>
-    <p class="sub">UXexpert.ai is an AI UX audit tool that gives you a principal-level design review, an engineering code audit, and a growth strategist's conversion analysis — in one prioritized report: instantly with the local engine, or a deeper Claude review in a minute or two.</p>
+    <p class="sub">Three expert reviews — design, engineering, and growth — in one prioritized report. It runs <strong>instantly in your browser</strong> so your code never leaves your device, goes <strong>deeper with Claude using your own API key</strong>, and <strong>tunes to your audience</strong> with custom rules and uploadable expertise skills. That's what generic checkers can't do.</p>
     <p class="proof">Built for indie hackers, agencies, and product teams</p>
     <form class="heroaudit" id="heroaudit">
       <input type="text" id="herourl" inputmode="url" autocomplete="off" spellcheck="false" placeholder="Paste your site URL — e.g. yoursite.com" aria-label="Your site URL to audit">
@@ -451,6 +451,18 @@
     </div>
   </div>
 </header>
+
+<section id="why" style="background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <p class="eyebrow">Why it's different</p>
+    <h2>Not a generic checker. A reviewer you control and tune.</h2>
+    <div class="featgrid featgrid-3" data-reveal>
+      <div class="feat"><span class="ico"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><h3>Private local engine</h3><p>Run a full three-lens audit <strong>instantly, right in your browser</strong>. Your code never leaves your device and no API key is required — most tools upload everything to a server first.</p></div>
+      <div class="feat"><span class="ico teal"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></span><h3>Deeper review, your own key</h3><p>Want more? Add <strong>your own Anthropic API key</strong> for a deeper Claude review that reads code and screenshots — sent browser-to-Anthropic with <strong>no middleman</strong>. You own the data and the cost.</p></div>
+      <div class="feat"><span class="ico emerald"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 14 0v1"/></svg></span><h3>Tuned to your world</h3><p>Set your <strong>audience</strong>, switch on <strong>custom rules</strong> like AAA contrast, and upload <strong>expertise skills</strong> that teach the reviewer your domain. The audit re-weights around your real users — not a generic checklist.</p></div>
+    </div>
+  </div>
+</section>
 
 <section id="how">
   <div class="wrap">
@@ -599,7 +611,7 @@
   <div class="wrap" style="text-align:center">
     <p class="eyebrow">Pricing</p>
     <h2>The diagnosis is free. The fixes are Pro.</h2>
-    <p style="max-width:560px;margin:10px auto 0;color:var(--slate-500);font-size:17px">Run a full design, code, and conversion review free &mdash; just your email to start. Pro unlocks the code-native fix for every finding at <strong>$49/month</strong> or <strong>$490/year</strong> (two months free). Cancel anytime.</p>
+    <p style="max-width:580px;margin:10px auto 0;color:var(--slate-500);font-size:17px">Run a private, three-lens review free &mdash; in your browser, tuned to your audience, as deep as you want with your own Claude key. Pro unlocks the code-native fix for every finding at <strong>$49/month</strong> or <strong>$490/year</strong> (two months free). Cancel anytime.</p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px">
       <a href="/pricing/" class="btn btn-primary">See pricing &amp; FAQ</a>
       <a href="#audit" class="btn btn-quiet">Start a free audit</a>
@@ -610,7 +622,7 @@
 
 <footer>
   <div class="wrap">
-    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.10.03-4</span></div>
+    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.10.04-1</span></div>
     <div style="max-width:640px;font-size:12.5px;color:var(--slate-500);line-height:1.5">UXexpert produces automated and AI-assisted suggestions, not professional advice or a guarantee of compliance. A human should review, validate, and edit every finding, story, and fix before acting on it.</div>
     <div><a href="/about/">About</a><a href="/blog/">Blog</a><a href="/pricing/">Pricing</a><a href="https://uxexpert.ai/privacy/">Privacy</a><a href="https://uxexpert.ai/terms/">Terms</a><span>Contact: Liz Kintzele, Founder &middot; hello@uxexpert.ai</span></div>
   </div>
@@ -663,7 +675,7 @@
 <div class="overlay" id="paywall" role="dialog" aria-modal="true" aria-labelledby="pw-title">
   <div class="modal">
     <h3 id="pw-title">Unlock the fixes with Pro</h3>
-    <p>You've got the full diagnosis free. Pro unlocks the code-native fix for every finding, the prioritized backlog and user stories, saved history, and exports. Cancel anytime.</p>
+    <p>You've run a private, tuned, three-lens diagnosis. Pro unlocks the code-native fix for every finding, the prioritized backlog and user stories, saved history, and exports. Cancel anytime.</p>
     <div class="row">
       <button type="button" class="btn btn-primary" data-auth="checkout" data-plan="monthly">Go Pro — $49/mo</button>
       <button type="button" class="btn btn-quiet" data-auth="checkout" data-plan="annual">Annual — $490/yr</button>

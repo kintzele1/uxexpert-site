@@ -235,8 +235,8 @@
     closeSignIn(true);
     updateAccountUI();
     if (window.track) window.track('Signed In', { via: 'link' });
-    var se = getSession();
-    if (typeof window.toast === 'function') window.toast('You\'re signed in' + (se && se.user && se.user.email ? ' as ' + se.user.email : '') + '. Run your audit.');
+    // Hand off to the app to resume the audit the user started before the email.
+    try { document.dispatchEvent(new Event('ux:resume-audit')); } catch (e) {}
     return true;
   }
 

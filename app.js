@@ -1343,9 +1343,13 @@ async function runEvaluation() {
     return;
   }
 
-  // Entitlement gate: sign in (captures email) → consume one free audit, or paywall.
-  // Only reached once there is real input to audit, so a free run is never wasted.
+  // Entitlement gate: sign in (captures email). The diagnosis is free; fixes are Pro.
+  // If sign-in is needed, remember the URL so the email round-trip can drop the
+  // user straight back into their running audit instead of a blank homepage.
+  const signedIn = !!(window.uxAuth && window.uxAuth.getSession && window.uxAuth.getSession());
+  if (!signedIn) stashResume();
   if (typeof requireAudit === 'function' && !(await requireAudit())) return;
+  try { localStorage.removeItem('ux_resume'); } catch (e) {} // code-path run owns it inline
 
   const opts = {
     persona: $('persona').value,
@@ -1413,6 +1417,61 @@ const scoreTextColor = s => s >= 80 ? 'var(--emerald-text)' : s >= 55 ? 'var(--a
 
 // Pro gates the solution (fixes, backlog, exports); the diagnosis is free.
 function isProView() { try { return !!(window.uxAuth && window.uxAuth.isPro && window.uxAuth.isPro()); } catch (e) { return false; } }
+
+// Before sign-in, snapshot the full audit intent — the product input AND the
+// tuning (audience, rules, expertise skills) AND the chosen engine — so the
+// email round-trip resumes exactly what the user set, not a default run.
+function stashResume() {
+  try {
+    const snap = {
+      url: $('url').value, code: $('code').value, sampleInEditor: !!state.sampleInEditor,
+      engine: state.engine,
+      persona: $('persona') ? $('persona').value : '',
+      rules: ['r-contrast', 'r-anim', 'r-dark', 'r-mobile'].filter(id => $(id) && $(id).checked),
+      skills: state.skills,
+      ts: Date.now()
+    };
+    let j = JSON.stringify(snap);
+    if (j.length > 2500000) { snap.code = ''; snap.skills = []; j = JSON.stringify(snap); } // localStorage cap
+    localStorage.setItem('ux_resume', j);
+  } catch (e) {}
+}
+// After the magic link reloads the page, drop the user straight back into their
+// audit — same inputs, same tuning, same engine — instead of a blank homepage.
+function resumeAudit() {
+  let p; try { p = JSON.parse(localStorage.getItem('ux_resume') || 'null'); } catch (e) { p = null; }
+  try { localStorage.removeItem('ux_resume'); } catch (e) {}
+  const audit = document.getElementById('audit');
+  const scrollToAudit = () => { if (audit) audit.scrollIntoView({ behavior: scrollBehavior(), block: 'start' }); };
+  if (!p || Date.now() - (p.ts || 0) > 30 * 60 * 1000 || !(p.url || p.code || p.sampleInEditor)) {
+    toast('You\'re signed in. Add your product and hit Run to see your verdict.');
+    scrollToAudit();
+    return;
+  }
+  // inputs
+  if (typeof p.url === 'string') $('url').value = p.url;
+  if (typeof p.code === 'string') $('code').value = p.code;
+  state.sampleInEditor = !!p.sampleInEditor;
+  // tuning
+  if (Array.isArray(p.skills)) { state.skills = p.skills; renderSkills(); }
+  if (p.persona && $('persona')) $('persona').value = p.persona;
+  ['r-contrast', 'r-anim', 'r-dark', 'r-mobile'].forEach(id => { if ($(id)) $(id).checked = Array.isArray(p.rules) && p.rules.includes(id); });
+  // engine (local vs Claude)
+  if (p.engine === 'ai') { const r = document.querySelector('#eng-ai input'); if (r) r.checked = true; setEngine('ai'); }
+  else { const r = document.querySelector('#eng-local input'); if (r) r.checked = true; setEngine('local'); }
+  updateReady();
+  scrollToAudit();
+  // Claude engine needs the key on this device; if it wasn't remembered, prompt instead of failing.
+  const keyPresent = (() => { try { return !!$('apikey').value.replace(/\s+/g, ''); } catch (e) { return false; } })();
+  if (p.engine === 'ai' && !keyPresent) {
+    toast('Signed in — add your Anthropic API key in step 03 to run your Claude review.');
+    const k = $('apikey'); if (k) k.focus();
+    return;
+  }
+  toast(p.engine === 'ai' ? 'Signed in — running your Claude review…' : 'Signed in — running your audit…');
+  runEvaluation();
+}
+document.addEventListener('ux:resume-audit', resumeAudit);
 
 /* ---------- saved history + re-audit (Pro) ---------- */
 async function recordHistory(result) {

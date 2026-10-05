@@ -1303,6 +1303,9 @@ async function fetchGitHubRepo(url) {
 
 /* ---------- run + render ---------- */
 async function runEvaluation() {
+  // Clear the post-sign-in "inputs saved, hit Run" banner + button pulse once they run.
+  const rnote = $('resume-note'); if (rnote) rnote.hidden = true;
+  const rbtn = $('runbtn'); if (rbtn) rbtn.classList.remove('pulse');
   let src = gatherSource();
   let url = $('url').value.trim();
   if (url && !/^https?:\/\//i.test(url)) url = 'https://' + url;
@@ -1460,16 +1463,25 @@ function resumeAudit() {
   if (p.engine === 'ai') { const r = document.querySelector('#eng-ai input'); if (r) r.checked = true; setEngine('ai'); }
   else { const r = document.querySelector('#eng-local input'); if (r) r.checked = true; setEngine('local'); }
   updateReady();
-  scrollToAudit();
-  // Claude engine needs the key on this device; if it wasn't remembered, prompt instead of failing.
+  const note = $('resume-note');
+  const runbtn = $('runbtn');
   const keyPresent = (() => { try { return !!$('apikey').value.replace(/\s+/g, ''); } catch (e) { return false; } })();
-  if (p.engine === 'ai' && !keyPresent) {
-    toast('Signed in — add your Anthropic API key in step 03 to run your Claude review.');
-    const k = $('apikey'); if (k) k.focus();
+  const needKey = p.engine === 'ai' && !keyPresent;
+  if (note) {
+    note.hidden = false;
+    note.innerHTML = needKey
+      ? '<b>Welcome back — your inputs and tuning are saved.</b> Add your Anthropic API key in step 03, then run your Claude review.'
+      : '<b>Welcome back — your inputs and tuning are saved.</b> Run your audit to see your verdict.';
+  }
+  if (needKey) {
+    const k = $('apikey'); if (k) { try { k.focus(); } catch (e) {} k.scrollIntoView({ behavior: scrollBehavior(), block: 'center' }); }
+    toast('Signed in — add your API key in step 03, then hit Run.');
     return;
   }
-  toast(p.engine === 'ai' ? 'Signed in — running your Claude review…' : 'Signed in — running your audit…');
-  runEvaluation();
+  // Land them right at the Run button, draw the eye, and let them click Run.
+  if (runbtn) { runbtn.classList.add('pulse'); runbtn.scrollIntoView({ behavior: scrollBehavior(), block: 'center' }); }
+  else scrollToAudit();
+  toast('Signed in — your audit is ready. Hit Run to see your verdict.');
 }
 document.addEventListener('ux:resume-audit', resumeAudit);
 

@@ -822,6 +822,16 @@ Research and validate: Screens must surface account context instantly — outsta
 Design standards: Dense, keyboard-friendly layouts beat whitespace-heavy marketing aesthetics — agents live in tables and queues. Prioritize scan speed, status color-coding with redundant text labels, and zero data loss on navigation. Flag anything that adds clicks to high-frequency tasks.
 
 Red flags: balance or aging data below the fold; modal-heavy flows that block queue work; missing audit trails on payment promises; consumer-style onboarding patterns aimed at the wrong user.` },
+  uc: { name: 'Unified Communications — agent & admin consoles', text:
+`Domain: Unified Communications and contact center (UCaaS/CCaaS) — calling, messaging, meetings, presence, and the agent, supervisor, and admin consoles that run them.
+
+Primary user: Contact-center agents and supervisors who live in the console for a full shift, plus IT admins who provision users, numbers, and policies. Agents are measured on average handle time, after-call work, and first-contact resolution — every extra click or hidden control is a tax paid thousands of times a day. Admins are measured on time-to-provision and error-free bulk changes.
+
+Research and validate: The active interaction is the product. Validate that call and chat controls (answer, hold, transfer, conference, mute, disposition/wrap-up) are reachable without hunting, survive a busy queue, and never lose state when a new interaction arrives. Presence and queue status must be unambiguous and real-time. For omnichannel, confirm a single unified view across voice, chat, email, and SMS rather than disconnected silos. For admin, validate bulk operations (provisioning, number/DID assignment, policy changes) with preview-before-apply and clear partial-failure reporting. Terminology must match the field — disposition, wrap-up, ACD, IVR, SIP, DID, presence, barge/whisper — because mislabeled controls cause live-call errors.
+
+Design standards: Dense, keyboard-first layouts over whitespace; the active call/interaction panel stays visible and is never buried in a modal. Status uses color plus a redundant text label, never color alone. Routing and destructive actions (transfer, end, bulk apply) need confirmation proportional to impact. Latency and connection state are shown honestly.
+
+Red flags: call controls behind extra clicks or modals; losing the active interaction on navigation; presence or queue data that lags reality; admin bulk actions with no preview or no partial-failure report; consumer-app patterns imposed on a high-frequency operational tool.` },
   health: { name: 'Healthcare — patient portal', text:
 `Domain: Patient-facing healthcare portals — appointments, results, messaging, billing.
 

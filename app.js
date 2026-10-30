@@ -812,6 +812,56 @@ function findContrastIssues(css, doc, threshold) {
 state.skills = [];
 
 const SKILL_TEMPLATES = {
+  enterprise: { name: 'Principal UX — Enterprise & B2B tools', text:
+`Domain: Enterprise and B2B software — internal tools, admin consoles, operational dashboards, and line-of-business apps employees use to get work done.
+
+Primary user: Professionals who use the product for hours a day as part of their job, not by choice. They value speed, density, and predictability over delight. Efficiency on high-frequency tasks is the whole game — every extra click is paid thousands of times.
+
+Research and validate: Optimize for expert throughput, not first-run hand-holding. Validate that frequent tasks are reachable in one or two actions, that dense tables support sort / filter / bulk actions, and that the product can be driven by keyboard end to end. Confirm power-user patterns: multi-select, bulk edit, undo, saved views, and no data loss on navigation. Terminology must match the users' real vocabulary; roles and permissions must be legible so people see only what they can act on.
+
+Design standards: Information density over whitespace; consistency and learnability over novelty. Status uses color plus a text label, never color alone. Destructive and bulk actions need confirmation proportional to blast radius, with clear partial-failure reporting. Loading and empty states say what is happening.
+
+Red flags: consumer-marketing aesthetics imposed on an operational tool; high-frequency actions buried in menus or modals; no keyboard path; silent failures on bulk operations; onboarding patterns aimed at the wrong (occasional) user.` },
+  consumer: { name: 'Principal UX — Consumer & mobile-first', text:
+`Domain: Consumer-facing products — B2C apps and sites where people arrive by choice, on their own devices, with seconds of patience and no obligation to stay.
+
+Primary user: Everyday people, mostly on phones, often distracted, on variable connections, spanning a wide range of ability and tech comfort. They leave the instant the product confuses them or makes them wait.
+
+Research and validate: Audit mobile behavior first, desktop second. Speed is retention — flag render-blocking resources, unsized media, and layout shift near primary actions. Validate that the core value is reachable within the first screen and the first few taps, that onboarding asks for the minimum up front, and that the primary call to action is obvious and thumb-reachable. First-run clarity matters more than depth; the product must explain itself without a manual.
+
+Design standards: 44px minimum touch targets, primary actions in the thumb zone, legible type at mobile sizes, honest loading states. Reduce choices to the next best action. Earn trust before asking for data or payment.
+
+Red flags: desktop-first layouts that break on phones; forced account creation before any value; hidden costs or dark-pattern urgency; tiny tap targets; interstitials and carousels that bury the main thing; slow first paint.` },
+  saas: { name: 'Principal UX — SaaS product & onboarding', text:
+`Domain: Self-serve SaaS — where one web app must convert a visitor, activate a new user, and retain a daily one, usually with no salesperson and no training session.
+
+Primary user: A prospect evaluating in minutes, a new user trying to reach first value, and a returning user doing real work — often the same person over time. The product serves all three with no human in the loop.
+
+Research and validate: Validate the activation path — can a new user reach a first meaningful outcome ("aha") quickly, with empty states that teach and sample data that demonstrates? Check that signup asks only what is needed to start and defers the rest. Confirm the pricing and upgrade path is honest and legible, that value is shown before the paywall, and that the next action is obvious at every step. For returning users, validate that frequent tasks get faster with familiarity (shortcuts, defaults, saved state).
+
+Design standards: Progressive disclosure — simple by default, powerful on demand. Empty and loading states do work (teach, suggest, reassure). Consistent, predictable navigation. Honest trust and security signals near account and billing.
+
+Red flags: a blank dashboard with no first step; signup friction before any value; feature tours that block instead of teach; a paywall that hides what it is selling; dead ends with no next action.` },
+  landing: { name: 'Principal UX — Marketing site & conversion', text:
+`Domain: Marketing sites and landing pages — the first impression, where the job is to make a value proposition clear and move a visitor to one action (sign up, start a trial, buy, book).
+
+Primary user: A skeptical visitor arriving cold, often from an ad or link, scanning not reading, deciding in seconds whether this is for them. Most are on mobile.
+
+Research and validate: Validate that above-the-fold answers who this is for, what it does, and what to do next — without scrolling or jargon. Confirm one primary call to action, reinforced but not competing with itself. Check that claims are backed by honest proof (never fabricated social proof), that the page loads fast, and that the conversion step (form, signup, checkout) is as short as possible. Every field and every second of load costs conversions.
+
+Design standards: One clear message, one primary action, a visual hierarchy that guides the eye to it. Fast first paint, no layout shift near the CTA. Mobile-first. Trust signals placed where hesitation happens.
+
+Red flags: vague or clever-over-clear headlines; multiple competing CTAs; walls of text; slow or janky loading; long forms; hidden pricing; fabricated testimonials or metrics.` },
+  accessibility: { name: 'Principal UX — Accessibility & inclusive design', text:
+`Domain: Accessibility and inclusive design across any product — ensuring the experience works for people using assistive technology, keyboards, screen readers, and magnification, and for those with low-vision, motor, or cognitive differences.
+
+Primary user: The full range of real users, including the roughly 1 in 5 with a disability, plus everyone in a temporary or situational constraint (bright sun, one hand, noisy room, slow connection). Accessible design is better design for all of them.
+
+Research and validate: Audit to WCAG 2.2 AA as the floor. Validate color contrast (4.5:1 for text, 3:1 for UI and graphics) and that color is never the only signal. Confirm full keyboard operability with a visible focus order that matches the visual order, no traps, and skip links. Check semantic structure: real headings, labels tied to inputs, alt text, landmarks, and ARIA only where native semantics fall short. Validate that errors are announced and described in text, that motion can be reduced, and that targets are large enough.
+
+Design standards: Semantic HTML first; name, role, and state exposed for every control; plain language; respect for prefers-reduced-motion and dark mode; touch targets at least 44px. Accessibility is treated as correctness, not polish.
+
+Red flags: contrast failures; color-only status; keyboard traps or invisible focus; images and icon-buttons with no accessible name; form fields with no label; motion with no reduce option; errors signalled by color alone.` },
   telco: { name: 'Telco BSS — Finance Collections agent', text:
 `Domain: Telecom Business Support Systems (BSS) — billing, accounts receivable, dunning, and collections.
 

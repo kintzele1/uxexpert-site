@@ -536,11 +536,20 @@
         <p class="fieldnote">Teach the reviewer your domain: who your users are, what to research and validate, and what good design means in your world. Skills are applied in depth by the Claude AI engine.</p>
         <select id="skilltpl" data-change="addTemplateSkill" aria-label="Add a starter skill">
           <option value="">Add a starter skill…</option>
-          <option value="telco">Telco BSS — Finance Collections agent</option>
-          <option value="uc">Unified Communications — agent &amp; admin consoles</option>
-          <option value="health">Healthcare — patient portal</option>
-          <option value="fintech">Fintech — B2B analytics dashboard</option>
-          <option value="ecom">E-commerce — mobile-first shoppers</option>
+          <optgroup label="By audience">
+            <option value="enterprise">Principal UX — Enterprise &amp; B2B tools</option>
+            <option value="consumer">Principal UX — Consumer &amp; mobile-first</option>
+            <option value="saas">Principal UX — SaaS product &amp; onboarding</option>
+            <option value="landing">Principal UX — Marketing site &amp; conversion</option>
+            <option value="accessibility">Principal UX — Accessibility &amp; inclusive design</option>
+          </optgroup>
+          <optgroup label="By industry">
+            <option value="telco">Telco BSS — Finance Collections agent</option>
+            <option value="uc">Unified Communications — agent &amp; admin consoles</option>
+            <option value="health">Healthcare — patient portal</option>
+            <option value="fintech">Fintech — B2B analytics dashboard</option>
+            <option value="ecom">E-commerce — mobile-first shoppers</option>
+          </optgroup>
         </select>
         <div class="skillrow">
           <button class="btn btn-quiet btn-sm" data-action="browseSkillFile">Upload skill file</button>
@@ -633,7 +642,7 @@
 
 <footer>
   <div class="wrap">
-    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.10.26-2</span></div>
+    <div>© 2026 TnTW LLC · UXexpert.ai — your instant principal UX expert. <span>· build 2026.10.30-1</span></div>
     <div style="max-width:640px;font-size:12.5px;color:var(--slate-500);line-height:1.5">UXexpert produces automated and AI-assisted suggestions, not professional advice or a guarantee of compliance. A human should review, validate, and edit every finding, story, and fix before acting on it.</div>
     <div><a href="/about/">About</a><a href="/blog/">Blog</a><a href="/pricing/">Pricing</a><a href="https://uxexpert.ai/privacy/">Privacy</a><a href="https://uxexpert.ai/terms/">Terms</a><span>Contact: Liz Kintzele, Founder &middot; hello@uxexpert.ai</span></div>
   </div>
@@ -699,6 +708,6 @@
 <div class="toast" id="toast" role="status"></div>
 
 <script src="auth.js?v=20261004-1" defer></script>
-<script src="app.js?v=20261026-1" defer></script>
+<script src="app.js?v=20261030-1" defer></script>
 </body>
 </html>
